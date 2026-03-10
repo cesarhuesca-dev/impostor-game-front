@@ -1,0 +1,128 @@
+{
+  "welcome": "Welcome",
+  "join": "Join",
+
+  "game": {
+    "category": "Category",
+    "word": "Word",
+    "categories": {
+      "animals": "Animals",
+      "fast": "Food",
+      "countries": "Countries",
+      "world-capitals": "World Capitals",
+      "car-brands": "Car Brands",
+      "football": "Football",
+      "sports": "Sports",
+      "movies": "Movies",
+      "tv-series": "TV Series",
+      "video-games": "Video Games",
+      "famous": "Famous People",
+      "music": "Music",
+      "professions": "Professions",
+      "science": "Science"
+    }
+  },
+
+  "pages": {
+    "home": "Home",
+    "create": "Create Game",
+    "join": "Join",
+    "settings": "Settings",
+    "game": "Game",
+    "manager": "Manager"
+  },
+
+  "home": {
+    "find": "Find the",
+    "impostor": "Impostor",
+    "game-description": "Everyone receives a word... except one. Use clues, suspect others and discover who the impostor is before they discover you.",
+    "create": "Create Game",
+    "join": "Join Game",
+    "how-works": "How it works",
+    "illustration-1-title": "Receive your word",
+    "illustration-1-description": "All players receive a secret word... except the impostor.",
+    "illustration-2-title": "Give a clue",
+    "illustration-2-description": "Each player gives a clue related to their word without saying it directly.",
+    "illustration-3-title": "Find the impostor",
+    "illustration-3-description": "Discuss and vote who you think the impostor is.",
+    "solutions": "One product, multiple solutions",
+    "illustration-4-title": "Overlay",
+    "illustration-4-description": "Use it as a template for your streams so your viewers can follow the game with an attractive interface.",
+    "illustration-5-title": "Play and enjoy",
+    "illustration-5-description": "Can you discover the impostor before it's too late? Play, suspect and have fun!",
+    "slogan-1": "The perfect party game",
+    "slogan-2": "Play with friends, family or coworkers. All you need is a phone and the desire to lie",
+    "start-now": "Start now"
+  },
+
+  "create-login-game": {
+    "create-title": "Create Game",
+    "login-title": "Join Game",
+    "create-subtitle": "Configure your impostor game",
+    "login-subtitle": "Get ready, this is about to begin",
+    "room-name": "Room name",
+    "room-password": "Room password",
+    "room-players": "Number of players",
+    "room-custom-words": "Custom words",
+    "room-specific-category": "Specific category",
+    "room-impostor": "Multiple impostors",
+    "room-overlay": "Streaming overlay",
+    "button-create-submit": "Create Game",
+    "button-login-submit": "Join Game"
+  },
+
+  "settings": {
+    "title": "Settings",
+    "theme": "Application theme",
+    "theme-description": "Application colors and appearance",
+    "language": "Language",
+    "save": "Save",
+    "reset": "Reset"
+  },
+
+  "manager": {
+    "panel": "Game Panel",
+    "name": "Name",
+    "word": "Word",
+    "category": "Category",
+    "players": "Players",
+    "controls": "Controls",
+    "round": "Round",
+    "settings": "Settings",
+    "events": "Game events",
+    "game": "Game",
+    "buttons": {
+      "next-round": "Next round",
+      "change-word": "Change word",
+      "change-category": "Change category",
+      "show-word": "Show word",
+      "hide-word": "Hide word",
+      "show-impostor": "Show impostor",
+      "hide-impostor": "Hide impostor",
+      "game-settings": "Game settings",
+      "ban-player": "Remove player",
+      "start-game": "Start game",
+      "close-game": "End game"
+    }
+  },
+
+  "languages": {
+    "language": "Language",
+    "de": "German",
+    "es": "Spanish",
+    "en": "English",
+    "fr": "French",
+    "it": "Italian",
+    "pt": "Portuguese"
+  },
+
+  "about-me": {
+    "name": "Cesar Huesca",
+    "contact": "Game developer. If you need contact or want to report bugs",
+    "copyright": "© 2026 Impostor Game - All rights reserved"
+  },
+
+  "loader": {
+    "loading": "Loading..."
+  }
+}

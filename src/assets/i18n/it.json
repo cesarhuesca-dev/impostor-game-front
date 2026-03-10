@@ -1,0 +1,128 @@
+{
+  "welcome": "Benvenuto",
+  "join": "Unisciti",
+
+  "game": {
+    "category": "Categoria",
+    "word": "Parola",
+    "categories": {
+      "animals": "Animali",
+      "fast": "Cibo",
+      "countries": "Paesi",
+      "world-capitals": "Capitali del mondo",
+      "car-brands": "Marchi di auto",
+      "football": "Calcio",
+      "sports": "Sport",
+      "movies": "Film",
+      "tv-series": "Serie TV",
+      "video-games": "Videogiochi",
+      "famous": "Personaggi famosi",
+      "music": "Musica",
+      "professions": "Professioni",
+      "science": "Scienza"
+    }
+  },
+
+  "pages": {
+    "home": "Home",
+    "create": "Crea partita",
+    "join": "Unisciti",
+    "settings": "Impostazioni",
+    "game": "Partita",
+    "manager": "Gestore"
+  },
+
+  "home": {
+    "find": "Trova",
+    "impostor": "l'impostore",
+    "game-description": "Tutti ricevono una parola... tranne uno. Usa indizi, sospetta degli altri e scopri chi è l'impostore prima che scoprano te.",
+    "create": "Crea partita",
+    "join": "Unisciti alla partita",
+    "how-works": "Come funziona",
+    "illustration-1-title": "Ricevi la tua parola",
+    "illustration-1-description": "Tutti i giocatori ricevono una parola segreta... tranne l'impostore.",
+    "illustration-2-title": "Dai un indizio",
+    "illustration-2-description": "Ogni giocatore dà un indizio collegato alla sua parola senza dirla direttamente.",
+    "illustration-3-title": "Trova l'impostore",
+    "illustration-3-description": "Discutete e votate chi pensate sia l'impostore.",
+    "solutions": "Un prodotto, diverse soluzioni",
+    "illustration-4-title": "Overlay",
+    "illustration-4-description": "Usalo come overlay per le tue dirette così gli spettatori possono seguire il gioco con un'interfaccia accattivante.",
+    "illustration-5-title": "Gioca e divertiti",
+    "illustration-5-description": "Riuscirai a scoprire l'impostore prima che sia troppo tardi? Gioca, sospetta e divertiti!",
+    "slogan-1": "Il gioco perfetto per le feste",
+    "slogan-2": "Gioca con amici, famiglia o colleghi. Ti serve solo un telefono e la voglia di mentire",
+    "start-now": "Inizia ora"
+  },
+
+  "create-login-game": {
+    "create-title": "Crea partita",
+    "login-title": "Unisciti alla partita",
+    "create-subtitle": "Configura la tua partita dell'impostore",
+    "login-subtitle": "Preparati, sta per iniziare",
+    "room-name": "Nome della stanza",
+    "room-password": "Password della stanza",
+    "room-players": "Numero di giocatori",
+    "room-custom-words": "Parole personalizzate",
+    "room-specific-category": "Categoria specifica",
+    "room-impostor": "Più impostori",
+    "room-overlay": "Overlay per streaming",
+    "button-create-submit": "Crea partita",
+    "button-login-submit": "Unisciti alla partita"
+  },
+
+  "settings": {
+    "title": "Impostazioni",
+    "theme": "Tema dell'applicazione",
+    "theme-description": "Colori e aspetto dell'applicazione",
+    "language": "Lingua",
+    "save": "Salva",
+    "reset": "Ripristina"
+  },
+
+  "manager": {
+    "panel": "Pannello della partita",
+    "name": "Nome",
+    "word": "Parola",
+    "category": "Categoria",
+    "players": "Giocatori",
+    "controls": "Controlli",
+    "round": "Round",
+    "settings": "Impostazioni",
+    "events": "Eventi della partita",
+    "game": "Partita",
+    "buttons": {
+      "next-round": "Nuovo round",
+      "change-word": "Cambia parola",
+      "change-category": "Cambia categoria",
+      "show-word": "Mostra parola",
+      "hide-word": "Nascondi parola",
+      "show-impostor": "Mostra impostore",
+      "hide-impostor": "Nascondi impostore",
+      "game-settings": "Impostazioni del gioco",
+      "ban-player": "Rimuovi giocatore",
+      "start-game": "Inizia partita",
+      "close-game": "Termina partita"
+    }
+  },
+
+  "languages": {
+    "language": "Lingua",
+    "de": "German",
+    "es": "Spanish",
+    "en": "English",
+    "fr": "French",
+    "it": "Italian",
+    "pt": "Portuguese"
+  },
+
+  "about-me": {
+    "name": "Cesar Huesca",
+    "contact": "Sviluppatore del gioco. Se hai bisogno di contatto o vuoi segnalare bug",
+    "copyright": "© 2026 Impostor Game - Tutti i diritti riservati"
+  },
+
+  "loader": {
+    "loading": "Caricamento..."
+  }
+}

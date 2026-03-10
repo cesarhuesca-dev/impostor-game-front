@@ -1,0 +1,32 @@
+[
+  {
+    "label": "pages.home",
+    "icon": "pi pi-home",
+    "routerLink": "/home"
+  },
+  {
+    "label": "pages.create",
+    "icon": "pi pi-plus-circle",
+    "routerLink": "/create"
+  },
+  {
+    "label": "pages.join",
+    "icon": "pi pi-sign-in",
+    "routerLink": "/join"
+  },
+  {
+    "label": "pages.game",
+    "icon": "pi pi-video",
+    "routerLink": "/game"
+  },
+  {
+    "label": "pages.manager",
+    "icon": "pi pi-desktop",
+    "routerLink": "/manager"
+  },
+  {
+    "label": "pages.settings",
+    "icon": "pi pi-wrench",
+    "routerLink": "/settings"
+  }
+]

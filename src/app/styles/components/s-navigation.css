@@ -1,0 +1,25 @@
+
+
+.s-navigation-component {
+
+  .p-tieredmenu {
+    position: fixed !important;
+    bottom: 1% !important;
+    right: 1%;
+
+    inset-inline-start: unset !important;
+    top: unset !important;
+    transform-origin: unset !important;
+    margin-top: unset !important;
+  }
+
+  .p-button {
+    position: fixed !important;
+    bottom: 1% !important;
+    right: 1% !important;
+
+    @apply bg-slate-500/50! rounded-3xl active:scale-90! hover:bg-slate-500/90! border-0! shadow-sm! shadow-black!;
+  }
+
+}
+

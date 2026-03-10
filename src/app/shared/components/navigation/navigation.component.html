@@ -1,0 +1,19 @@
+
+
+<div>
+  <p-button (click)="menu.toggle($event)" >
+    <span class="flex items-center justify-center h-5 w-5 text-gray-400!"><i class="text pi" style="font-size: 1.2rem" [className]="classMenuIcon()"></i></span>
+  </p-button>
+  <p-tieredmenu #menu
+    [model]="items()"
+    [popup]="true">
+    <ng-template  #item let-item>
+      <div class="flex items-center px-3 py-2 cursor-pointer" [routerLink]="item.routerLink" (click)="changeIcon(item)">
+        <span [class]="item.icon"></span>
+        <span class="ms-2">{{ item.label | translate }}</span>
+      </div>
+    </ng-template>
+  </p-tieredmenu>
+</div>
+
+

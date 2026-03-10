@@ -1,0 +1,128 @@
+{
+  "welcome": "Bienvenue",
+  "join": "Rejoindre",
+
+  "game": {
+    "category": "Catégorie",
+    "word": "Mot",
+    "categories": {
+      "animals": "Animaux",
+      "fast": "Nourriture",
+      "countries": "Pays",
+      "world-capitals": "Capitales du monde",
+      "car-brands": "Marques de voitures",
+      "football": "Football",
+      "sports": "Sports",
+      "movies": "Films",
+      "tv-series": "Séries TV",
+      "video-games": "Jeux vidéo",
+      "famous": "Personnalités",
+      "music": "Musique",
+      "professions": "Professions",
+      "science": "Science"
+    }
+  },
+
+  "pages": {
+    "home": "Accueil",
+    "create": "Créer une partie",
+    "join": "Rejoindre",
+    "settings": "Paramètres",
+    "game": "Jeu",
+    "manager": "Gestionnaire"
+  },
+
+  "home": {
+    "find": "Trouve",
+    "impostor": "l'imposteur",
+    "game-description": "Tout le monde reçoit un mot... sauf un. Utilise des indices, soupçonne les autres et découvre qui est l'imposteur avant qu'ils ne te découvrent.",
+    "create": "Créer une partie",
+    "join": "Rejoindre une partie",
+    "how-works": "Comment ça marche",
+    "illustration-1-title": "Reçois ton mot",
+    "illustration-1-description": "Tous les joueurs reçoivent un mot secret... sauf l'imposteur.",
+    "illustration-2-title": "Donne un indice",
+    "illustration-2-description": "Chaque joueur donne un indice lié à son mot sans le dire directement.",
+    "illustration-3-title": "Trouve l'imposteur",
+    "illustration-3-description": "Discutez et votez pour celui que vous pensez être l'imposteur.",
+    "solutions": "Un produit, plusieurs solutions",
+    "illustration-4-title": "Overlay",
+    "illustration-4-description": "Utilisez-le comme modèle pour vos streams afin que vos spectateurs puissent suivre le jeu avec une interface attrayante.",
+    "illustration-5-title": "Joue et amuse-toi",
+    "illustration-5-description": "Peux-tu découvrir l'imposteur avant qu'il ne soit trop tard ? Joue, soupçonne et amuse-toi !",
+    "slogan-1": "Le jeu parfait pour les fêtes",
+    "slogan-2": "Joue avec des amis, la famille ou des collègues. Tout ce dont tu as besoin est un téléphone et l'envie de mentir",
+    "start-now": "Commencer maintenant"
+  },
+
+  "create-login-game": {
+    "create-title": "Créer une partie",
+    "login-title": "Rejoindre une partie",
+    "create-subtitle": "Configure ta partie de l'imposteur",
+    "login-subtitle": "Prépare-toi, ça va commencer",
+    "room-name": "Nom de la salle",
+    "room-password": "Mot de passe de la salle",
+    "room-players": "Nombre de joueurs",
+    "room-custom-words": "Mots personnalisés",
+    "room-specific-category": "Catégorie spécifique",
+    "room-impostor": "Plusieurs imposteurs",
+    "room-overlay": "Overlay pour streaming",
+    "button-create-submit": "Créer la partie",
+    "button-login-submit": "Rejoindre la partie"
+  },
+
+  "settings": {
+    "title": "Paramètres",
+    "theme": "Thème de l'application",
+    "theme-description": "Couleurs et apparence de l'application",
+    "language": "Langue",
+    "save": "Enregistrer",
+    "reset": "Réinitialiser"
+  },
+
+  "manager": {
+    "panel": "Panneau de la partie",
+    "name": "Nom",
+    "word": "Mot",
+    "category": "Catégorie",
+    "players": "Joueurs",
+    "controls": "Contrôles",
+    "round": "Manche",
+    "settings": "Paramètres",
+    "events": "Événements de la partie",
+    "game": "Partie",
+    "buttons": {
+      "next-round": "Nouvelle manche",
+      "change-word": "Changer le mot",
+      "change-category": "Changer la catégorie",
+      "show-word": "Afficher le mot",
+      "hide-word": "Masquer le mot",
+      "show-impostor": "Afficher l'imposteur",
+      "hide-impostor": "Masquer l'imposteur",
+      "game-settings": "Paramètres du jeu",
+      "ban-player": "Supprimer le joueur",
+      "start-game": "Démarrer la partie",
+      "close-game": "Terminer la partie"
+    }
+  },
+
+  "languages": {
+    "language": "Langue",
+    "de": "German",
+    "es": "Spanish",
+    "en": "English",
+    "fr": "French",
+    "it": "Italian",
+    "pt": "Portuguese"
+  },
+
+  "about-me": {
+    "name": "Cesar Huesca",
+    "contact": "Développeur du jeu. Si vous avez besoin de contact ou pour signaler des bugs",
+    "copyright": "© 2026 Impostor Game - Tous droits réservés"
+  },
+
+  "loader": {
+    "loading": "Chargement..."
+  }
+}

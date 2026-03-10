@@ -1,0 +1,42 @@
+
+
+.p-game-position-top-left {
+  width: fit-content;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.p-game-position-top-right {
+  width: fit-content;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.p-game-position-bottom-left {
+  width: fit-content;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+
+}
+
+.p-game-position-bottom-right {
+  width: fit-content;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
+
+.p-game-position-bottom-center {
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+
+  > div {
+    align-items: center;
+    justify-content: center;
+  }
+}
+

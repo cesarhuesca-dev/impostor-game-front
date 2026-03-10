@@ -1,0 +1,27 @@
+
+@import "tailwindcss";
+
+/* PAGES COMPONENTS */
+@import "./components/p-game.css";
+
+
+/* SHARED COMPONENTS */
+@import "./components/s-navigation.css";
+
+/* FORMS COMPONENTS */
+@import "./forms/select.css";
+
+/* PRIMENG COMPONENTS */
+@import "./primeng/primeng-toggleswitch.css";
+@import "./primeng/primeng-button.css";
+
+
+/* ANIMATIONS */
+@import "./animations/home.css";
+
+
+
+body {
+  @apply bg-slate-500/20;
+}
+

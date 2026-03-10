@@ -1,0 +1,47 @@
+<div
+  class="min-h-screen bg-linear-to-br from-slate-950 via-slate-900 to-purple-950 flex items-center justify-center p-6">
+
+  <div class="w-full max-w-lg bg-slate-900/80 backdrop-blur border border-purple-500/20 rounded-3xl shadow-2xl p-8">
+
+    <!-- Header -->
+    <div class="text-center mb-8">
+      <h1 class="text-4xl font-extrabold text-purple-400 tracking-wider">
+        <span> 🎭 </span><span>{{'create-login-game.login-title' | translate }}</span>
+      </h1>
+
+      <p class="text-slate-400 mt-2">{{'create-login-game.login-subtitle' | translate }}</p>
+
+    </div>
+
+    <form class="space-y-3">
+
+      <!-- Nombre -->
+      <div>
+        <label class="text-sm text-purple-300">{{'create-login-game.room-name' | translate }}</label>
+
+        <input class="w-full mt-1 bg-slate-800 border border-slate-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-purple-500 transition"
+          type="text"
+          [formField]="this.createGameForm.roomName">
+      </div>
+
+      <!-- Constraña de la sala -->
+      <div>
+        <label class="text-sm text-purple-300">{{'create-login-game.room-password' | translate }}</label>
+
+        <input class="w-full mt-1 bg-slate-800 border border-slate-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-purple-500 transition"
+          type="text"
+          [formField]="this.createGameForm.roomPassword">
+      </div>
+
+      <!-- Botón -->
+      <div>
+        <p-button class="form-btn"
+          [disabled]="!this.createGameForm().valid()"
+          (click)="loginGame()">
+          <span> 👥 </span><span>{{'create-login-game.button-login-submit' | translate }}</span>
+        </p-button>
+      </div>
+
+    </form>
+  </div>
+</div>

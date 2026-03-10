@@ -1,0 +1,11 @@
+#home{
+  background: linear-gradient(270deg,#02010a,#020114,#03021f,#04052e,#060641,#08085a);
+  background-size: 600% 600%;
+  animation: gradientMove 30s ease-in infinite;
+}
+
+@keyframes gradientMove{
+  0%{background-position:0% 50%;}
+  50%{background-position:100% 50%;}
+  100%{background-position:0% 50%;}
+}

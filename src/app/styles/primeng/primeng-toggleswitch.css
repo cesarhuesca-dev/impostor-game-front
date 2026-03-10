@@ -1,0 +1,8 @@
+
+p-toggleswitch {
+
+  .p-toggleswitch-slider[data-p="checked"] {
+    @apply bg-purple-300!
+  }
+
+}

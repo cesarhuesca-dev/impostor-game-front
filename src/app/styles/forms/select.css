@@ -1,0 +1,15 @@
+
+select.custom-picker {
+ appearance: base-select;
+
+ &::picker-icon {
+  @apply mr-3;
+  transition: 0.4s rotate;
+
+ }
+
+ &:open::picker-icon {
+  rotate: 180deg;
+}
+
+}

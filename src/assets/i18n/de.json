@@ -1,0 +1,128 @@
+{
+  "welcome": "Willkommen",
+  "join": "Beitreten",
+
+  "game": {
+    "category": "Kategorie",
+    "word": "Wort",
+    "categories": {
+      "animals": "Tiere",
+      "fast": "Essen",
+      "countries": "Länder",
+      "world-capitals": "Hauptstädte der Welt",
+      "car-brands": "Automarken",
+      "football": "Fußball",
+      "sports": "Sport",
+      "movies": "Filme",
+      "tv-series": "Serien",
+      "video-games": "Videospiele",
+      "famous": "Berühmte Persönlichkeiten",
+      "music": "Musik",
+      "professions": "Berufe",
+      "science": "Wissenschaft"
+    }
+  },
+
+  "pages": {
+    "home": "Startseite",
+    "create": "Spiel erstellen",
+    "join": "Beitreten",
+    "settings": "Einstellungen",
+    "game": "Spiel",
+    "manager": "Manager"
+  },
+
+  "home": {
+    "find": "Finde den",
+    "impostor": "Impostor",
+    "game-description": "Jeder bekommt ein Wort... außer einer Person. Nutze Hinweise, verdächtige andere und finde heraus, wer der Impostor ist, bevor sie dich entdecken.",
+    "create": "Spiel erstellen",
+    "join": "Spiel beitreten",
+    "how-works": "So funktioniert es",
+    "illustration-1-title": "Erhalte dein Wort",
+    "illustration-1-description": "Alle Spieler erhalten ein geheimes Wort... außer dem Impostor.",
+    "illustration-2-title": "Gib einen Hinweis",
+    "illustration-2-description": "Jeder Spieler gibt einen Hinweis zu seinem Wort, ohne es direkt zu sagen.",
+    "illustration-3-title": "Finde den Impostor",
+    "illustration-3-description": "Diskutiert und stimmt ab, wer der Impostor ist.",
+    "solutions": "Ein Produkt, mehrere Lösungen",
+    "illustration-4-title": "Overlay",
+    "illustration-4-description": "Nutze es als Overlay für deine Streams, damit Zuschauer das Spiel mit einer attraktiven Oberfläche verfolgen können.",
+    "illustration-5-title": "Spielen und Spaß haben",
+    "illustration-5-description": "Kannst du den Impostor finden, bevor es zu spät ist? Spiele, verdächtige und habe Spaß!",
+    "slogan-1": "Das perfekte Partyspiel",
+    "slogan-2": "Spiele mit Freunden, Familie oder Kollegen. Alles, was du brauchst, ist ein Handy und Lust zu lügen",
+    "start-now": "Jetzt starten"
+  },
+
+  "create-login-game": {
+    "create-title": "Spiel erstellen",
+    "login-title": "Spiel beitreten",
+    "create-subtitle": "Konfiguriere dein Impostor-Spiel",
+    "login-subtitle": "Mach dich bereit, es geht gleich los",
+    "room-name": "Raumname",
+    "room-password": "Raumpasswort",
+    "room-players": "Anzahl der Spieler",
+    "room-custom-words": "Benutzerdefinierte Wörter",
+    "room-specific-category": "Spezifische Kategorie",
+    "room-impostor": "Mehrere Impostoren",
+    "room-overlay": "Streaming-Overlay",
+    "button-create-submit": "Spiel erstellen",
+    "button-login-submit": "Spiel beitreten"
+  },
+
+  "settings": {
+    "title": "Einstellungen",
+    "theme": "App-Thema",
+    "theme-description": "Farben und Erscheinungsbild der Anwendung",
+    "language": "Sprache",
+    "save": "Speichern",
+    "reset": "Zurücksetzen"
+  },
+
+  "manager": {
+    "panel": "Spielpanel",
+    "name": "Name",
+    "word": "Wort",
+    "category": "Kategorie",
+    "players": "Spieler",
+    "controls": "Steuerung",
+    "round": "Runde",
+    "settings": "Einstellungen",
+    "events": "Spielereignisse",
+    "game": "Spiel",
+    "buttons": {
+      "next-round": "Neue Runde",
+      "change-word": "Wort ändern",
+      "change-category": "Kategorie ändern",
+      "show-word": "Wort anzeigen",
+      "hide-word": "Wort verbergen",
+      "show-impostor": "Impostor anzeigen",
+      "hide-impostor": "Impostor verbergen",
+      "game-settings": "Spieleinstellungen",
+      "ban-player": "Spieler entfernen",
+      "start-game": "Spiel starten",
+      "close-game": "Spiel beenden"
+    }
+  },
+
+  "languages": {
+    "language": "Sprache",
+    "de": "German",
+    "es": "Spanish",
+    "en": "English",
+    "fr": "French",
+    "it": "Italian",
+    "pt": "Portuguese"
+  },
+
+  "about-me": {
+    "name": "Cesar Huesca",
+    "contact": "Spielentwickler. Wenn du Kontakt aufnehmen oder Bugs melden möchtest",
+    "copyright": "© 2026 Impostor Game - Alle Rechte vorbehalten"
+  },
+
+  "loader": {
+    "loading": "Lädt..."
+  }
+}
