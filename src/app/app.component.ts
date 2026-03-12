@@ -3,10 +3,11 @@ import { RouterOutlet } from '@angular/router';
 import { NavigationComponent } from "./shared/components/navigation/navigation.component";
 import { LanguageService } from '@/services/language.service';
 import { LoaderComponent } from "./shared/components/loader/loader.component";
+import { MessagesComponent } from "./shared/components/messages/messages.component";
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, NavigationComponent, LoaderComponent],
+  imports: [RouterOutlet, NavigationComponent, LoaderComponent, MessagesComponent],
   templateUrl: './app.component.html'
 })
 export class App implements OnInit {

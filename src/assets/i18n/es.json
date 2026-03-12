@@ -5,6 +5,16 @@
   "game" : {
     "category" : "Categoría",
     "word" : "Palabra",
+    "player" : "Jugador",
+    "not-impostor" : "No eres el impostor",
+    "are-impostor" : "Eres el impostor",
+    "listen-not-impostor" : "Escucha las pistas de los demás y trata de adivinar quién es el impostor.",
+    "touch-show-word" : "Toca para revelar tu palabra",
+    "clue" : "Da una pista relacionada con la palabra sin decirla directamente.",
+    "impostor-clue" : "Da una pista relacionada con la palabra sin decirla directamente.",
+    "no-word" : "No tienes palabra secreta.",
+    "ready": "Estoy listo",
+    "show-info": "Mostrar información",
     "categories" : {
       "animals": "Animales",
       "fast": "Comida",
@@ -27,8 +37,9 @@
     "create" : "Crear partida",
     "join" : "Unirse",
     "settings" : "Ajustes",
-    "game" : "Game",
-    "manager": "Controlador"
+    "overlay" : "Overlay",
+    "manager": "Controlador",
+    "game": "Juego"
   },
   "home" : {
     "find": "Encuentra al",
@@ -100,6 +111,25 @@
       "close-game" : "Terminar partida"
     }
   },
+  "about-me" : {
+    "name": "Cesar Huesca",
+    "contact" : "Desarrollador del juego. Si necesitas contacto o reportar bugs",
+    "copyright" : "© 2026 Impostor Game - Todos los derechos reservados"
+  },
+  "loader" : {
+    "loading" : "Cargando..."
+  },
+  "forms" : {
+    "error" : {
+      "room-name-required" : "El campo nombre de la sala es obligatorio",
+      "room-name-min-length" : "El campo nombre tiene que tener al menos 3 caracteres",
+      "room-password-required" : "El campo contraseña de la sala es obligatorio",
+      "room-password-min-length" : "El campo contraseña tiene que tener al menos 3 caracteres",
+      "room-players-required" : "El campo jugadores es obligatorio",
+      "room-players-min" : "Tiene que haber al menos 4 jugadores",
+      "room-specific-category-required" : "El campo Categoría es obligatorio"
+    }
+  },
   "languages" : {
     "language" : "Idioma",
     "de": "German",
@@ -108,13 +138,5 @@
     "fr": "French",
     "it": "Italian",
     "pt": "Portuguese"
-  },
-  "about-me" : {
-    "name": "Cesar Huesca",
-    "contact" : "Desarrollador del juego. Si necesitas contacto o reportar bugs",
-    "copyright" : "© 2026 Impostor Game - Todos los derechos reservados"
-  },
-  "loader" : {
-    "loading" : "Cargando..."
   }
 }

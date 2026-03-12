@@ -16,8 +16,13 @@
   },
   {
     "label": "pages.game",
-    "icon": "pi pi-video",
+    "icon": "pi pi-play-circle",
     "routerLink": "/game"
+  },
+  {
+    "label": "pages.overlay",
+    "icon": "pi pi-video",
+    "routerLink": "/overlay"
   },
   {
     "label": "pages.manager",

@@ -1,6 +1,6 @@
 <div  class="bg-linear-to-br from-slate-950 via-slate-900 to-purple-950">
   <!-- HERO -->
-  <section class="text-center px-6 pt-24 pb-32 relative">
+  <section class="text-center px-6 pt-24 md:pb-10 relative">
     <!-- <div class="absolute inset-0 bg-linear-to-r from-purple-600/20 via-pink-600/20 to-blue-600/20 blur-3xl"></div> -->
 
     <h1 class="text-6xl md:text-7xl font-extrabold relative text-shadow-black text-shadow-md">
@@ -10,17 +10,16 @@
 
     <p class="mt-6 text-gray-400 text-xl max-w-2xl mx-auto relative">{{'home.game-description' | translate }}</p>
 
-    <div class="mt-10 flex justify-center gap-6 relative">
-
+    <div class="mt-10 flex flex-col md:flex-row justify-center gap-6 relative">
 
       <div class="flex items-center justify-center px-10 py-4">
-        <p-button class="home-btn home-btn-xl" [routerLink]="['/create']">
+        <p-button class="w-full home-btn home-btn-xl" [routerLink]="['/create']">
            <span> 🎮 </span><span>{{'home.create' | translate }} </span>
         </p-button>
       </div>
 
       <div class="flex items-center justify-center px-10 py-4">
-        <p-button class="home-btn home-btn-xl btn-secondary" [routerLink]="['/join']">
+        <p-button class="w-full home-btn home-btn-xl btn-secondary" [routerLink]="['/join']">
           <span> 👥 </span><span>{{'home.join' | translate }}</span>
         </p-button>
       </div>

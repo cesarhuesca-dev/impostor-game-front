@@ -5,10 +5,13 @@ import { ButtonModule } from 'primeng/button';
 import { LoginGameInterface } from '@/interfaces/forms/game.interface';
 import { GameService } from '@/services/game.service';
 import { TranslatePipe } from '@ngx-translate/core';
+import { ToastMessageService } from '@/services/toast-message.service';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-join',
   imports: [ToggleSwitchModule, FormField, ButtonModule, TranslatePipe],
+  providers : [MessageService],
   templateUrl: './join.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
@@ -23,11 +26,11 @@ export default class JoinComponent {
   });
 
   createGameForm = form(this.createGameModel, (schemaPath) => {
-    required(schemaPath.roomName);
-    minLength(schemaPath.roomName, 3);
+    required(schemaPath.roomName, { message: 'forms.error.room-name-required'});
+    minLength(schemaPath.roomName, 3, { message: 'forms.error.room-name-min-length'});
 
-    required(schemaPath.roomPassword);
-    minLength(schemaPath.roomPassword, 3);
+    required(schemaPath.roomPassword, { message: 'forms.error.room-password-required'});
+    minLength(schemaPath.roomPassword, 3, { message: 'forms.error.room-password-min-length'});
 
   });
 
@@ -40,6 +43,7 @@ export default class JoinComponent {
     const data = this.createGameForm().value();
 
     this.gameService.loginGame(data);
+
   }
 
 }

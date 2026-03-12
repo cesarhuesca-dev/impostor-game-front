@@ -4,7 +4,15 @@ export const routes: Routes = [
 
   {
     path: 'home',
-    loadComponent: () => import('@/pages/home/home.component')
+    loadComponent: () => import('@/pages/user/home/home.component')
+  },
+  {
+    path: 'create',
+    loadComponent: () => import('@/pages/user/create/create.component')
+  },
+  {
+    path: 'join',
+    loadComponent: () => import('@/pages/user/join/join.component')
   },
   {
     path: 'settings',
@@ -12,19 +20,15 @@ export const routes: Routes = [
   },
   {
     path: 'game',
-    loadComponent: () => import('@/pages/game/game.component')
+    loadComponent: () => import('@/pages/game/game/game.component')
   },
   {
     path: 'manager',
-    loadComponent: () => import('@/pages/manager/manager.component')
+    loadComponent: () => import('@/pages/game/manager/manager.component')
   },
   {
-    path: 'create',
-    loadComponent: () => import('@/pages/create/create.component')
-  },
-  {
-    path: 'join',
-    loadComponent: () => import('@/pages/join/join.component')
+    path: 'overlay',
+    loadComponent: () => import('@/pages/game/overlay/overlay.component')
   },
   {
     path: '**',

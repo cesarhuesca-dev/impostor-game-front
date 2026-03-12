@@ -1,11 +1,10 @@
-import { ChangeDetectionStrategy, Component, computed, inject, OnInit, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, OnInit, signal } from '@angular/core';
 import { ToggleSwitchModule } from 'primeng/toggleswitch';
-import { form, FormField, required, min, minLength, validate, validateTree} from '@angular/forms/signals';
+import { form, FormField, required, min, minLength, validate } from '@angular/forms/signals';
 import { ButtonModule } from 'primeng/button';
 import { CreateGameInterface } from '@/interfaces/forms/game.interface';
 import { GameService } from '@/services/game.service';
 import { TranslatePipe, TranslateService } from '@ngx-translate/core';
-import { single } from 'rxjs';
 
 @Component({
   selector: 'app-create',
@@ -31,14 +30,14 @@ export default class CreateComponent implements OnInit {
   });
 
   createGameForm = form(this.createGameModel, (schemaPath) => {
-    required(schemaPath.roomName);
-    minLength(schemaPath.roomName, 3);
+    required(schemaPath.roomName, { message: 'forms.error.room-name-required' });
+    minLength(schemaPath.roomName, 3, { message: 'forms.error.room-name-min-length' });
 
-    required(schemaPath.roomPassword);
-    minLength(schemaPath.roomPassword, 3);
+    required(schemaPath.roomPassword, { message: 'forms.error.room-password-required' });
+    minLength(schemaPath.roomPassword, 3, { message: 'forms.error.room-password-min-length' });
 
-    required(schemaPath.players);
-    min(schemaPath.players, 3);
+    required(schemaPath.players, { message: 'room-players-required' });
+    min(schemaPath.players, 3,{ message: 'forms.error.room-players-min' });
 
     validate(schemaPath.specificCategory, ({value, valueOf}) => {
       const category = valueOf(schemaPath.category);
@@ -46,8 +45,8 @@ export default class CreateComponent implements OnInit {
 
       if (category && (!specificCategory || specificCategory === '')) {
         return {
-          kind: 'categoryRequired',
-          message: 'Category is required',
+          kind: 'category-required',
+          message: 'forms.error.room-specific-category-required',
         };
       }
       return null;

@@ -20,7 +20,7 @@ export const mockedPlayers: Player[] = [
   {
     name: 'Cesar',
     img: 'https://primefaces.org/cdn/primeng/images/demo/avatar/amyelsner.png',
-    impostor: false,
+    impostor: true,
     id: 1
   },
   {

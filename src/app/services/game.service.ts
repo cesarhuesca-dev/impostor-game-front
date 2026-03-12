@@ -6,6 +6,8 @@ import { LoaderService } from './loader.service';
 
 
 import { gameMocked, mockConfigGame } from '../dataMocks';
+import { ToastMessageService } from './toast-message.service';
+import { ToastType } from '@/enums/toast.enum';
 
 
 @Injectable({
@@ -15,6 +17,8 @@ export class GameService {
 
 
   private loadingService = inject(LoaderService);
+  private toastMessageService = inject(ToastMessageService);
+
 
   //!TODO QUITAR LOS DATA MOCKS
   private configurationGame = signal<ConfigurationApp>(mockConfigGame);
@@ -51,7 +55,8 @@ export class GameService {
     console.log('Login game from service', data)
     this.loadingService.addLoading();
     setTimeout(() => {
-      this.loadingService.finishLoading()
+      this.loadingService.finishLoading();
+      this.toastMessageService.addMessage({detail: 'Te has unido a la sala.', summary: 'Login', severity : ToastType.SUCCESS})
     }, 1000);
   }
 
