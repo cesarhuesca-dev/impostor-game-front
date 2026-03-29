@@ -43,7 +43,7 @@ export class MessagesComponent {
     if (message) {
       this.messageService.add({
         ...message,
-        severity: message['severity'] ?? ToastType.INFO,
+        severity: message['severity'] ?? ToastType.SUCCESS,
         key: message['key'] ?? ToastPosition.TOP_RIGHT
       });
     }

@@ -21,7 +21,7 @@
 
         <input class="w-full mt-1 bg-slate-800 border border-slate-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-purple-500 transition"
           type="text"
-          [formField]="this.createGameForm.roomName">
+          [formField]="this.joinGameForm.roomName">
       </div>
 
       <!-- Constraña de la sala -->
@@ -30,13 +30,13 @@
 
         <input class="w-full mt-1 bg-slate-800 border border-slate-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-purple-500 transition"
           type="text"
-          [formField]="this.createGameForm.roomPassword">
+          [formField]="this.joinGameForm.roomPassword">
       </div>
 
       <!-- Botón -->
       <div>
         <p-button class="form-btn"
-          [disabled]="!this.createGameForm().valid()"
+          [disabled]="!this.joinGameForm().valid()"
           (click)="loginGame()">
           <span> 👥 </span><span>{{'create-login-game.button-login-submit' | translate }}</span>
         </p-button>
@@ -45,3 +45,6 @@
     </form>
   </div>
 </div>
+
+
+<s-user-modal (newPlayer)="createNewPlayer($event)" (cancelButton)="clearForm()"></s-user-modal>

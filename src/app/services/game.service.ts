@@ -2,12 +2,11 @@ import { inject, Injectable, Signal, signal } from '@angular/core';
 import { ConfigurationApp } from '@/interfaces/configuration-app.interface';
 import { Game, Player, WordGame } from '@/interfaces/game.interface';
 import { CreateGameInterface, LoginGameInterface } from '@/interfaces/forms/game.interface';
-import { LoaderService } from './loader.service';
-
-
 import { gameMocked, mockConfigGame } from '../dataMocks';
-import { ToastMessageService } from './toast-message.service';
-import { ToastType } from '@/enums/toast.enum';
+import { HttpClient } from '@angular/common/http';
+import { environment } from '@/assets/environments/environment.development';
+import { HttpResponse } from '@/interfaces/http-response.interfaces';
+import { delay } from 'rxjs';
 
 
 @Injectable({
@@ -16,8 +15,7 @@ import { ToastType } from '@/enums/toast.enum';
 export class GameService {
 
 
-  private loadingService = inject(LoaderService);
-  private toastMessageService = inject(ToastMessageService);
+  private readonly httpClient = inject(HttpClient);
 
 
   //!TODO QUITAR LOS DATA MOCKS
@@ -41,23 +39,18 @@ export class GameService {
   }
 
   createGame( data : CreateGameInterface ){
-
-    console.log('Crea game from service', data)
-    this.loadingService.addLoading();
-    setTimeout(() => {
-      this.loadingService.finishLoading()
-    }, 1000);
-
+    return this.httpClient.post<HttpResponse<any>>(`${environment.URL_API}/game`, data )
+      .pipe(delay(1000))
   }
 
-  loginGame( data : LoginGameInterface ){
+  loginVerifyGame( data : LoginGameInterface ) {
+    return this.httpClient.post<HttpResponse<any>>(`${environment.URL_API}/join/verify`, data )
+      .pipe(delay(1000))
+  }
 
-    console.log('Login game from service', data)
-    this.loadingService.addLoading();
-    setTimeout(() => {
-      this.loadingService.finishLoading();
-      this.toastMessageService.addMessage({detail: 'Te has unido a la sala.', summary: 'Login', severity : ToastType.SUCCESS})
-    }, 1000);
+  loginGame( data : LoginGameInterface ) {
+    return this.httpClient.post<HttpResponse<any>>(`${environment.URL_API}/join`, data )
+      .pipe(delay(1000))
   }
 
   setNewPlayers(newPlayers : Player[]){

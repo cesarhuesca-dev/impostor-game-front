@@ -1,32 +1,43 @@
-import { ChangeDetectionStrategy, Component, inject, OnInit, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, OnInit, signal, viewChild } from '@angular/core';
 import { ToggleSwitchModule } from 'primeng/toggleswitch';
 import { form, FormField, required, min, minLength, validate } from '@angular/forms/signals';
 import { ButtonModule } from 'primeng/button';
-import { CreateGameInterface } from '@/interfaces/forms/game.interface';
+import { CreateGameInterface, LoginGameInterface } from '@/interfaces/forms/game.interface';
 import { GameService } from '@/services/game.service';
 import { TranslatePipe, TranslateService } from '@ngx-translate/core';
+import { UserModal } from "@/shared/components/user-modal/user-modal.component";
+import { LoaderService } from '@/services/loader.service';
+import { HandleResponseService } from '@/services/handle-response.service';
+import { PlayerService } from '@/services/player.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-create',
-  imports: [ToggleSwitchModule, FormField, ButtonModule, TranslatePipe],
+  imports: [ToggleSwitchModule, FormField, ButtonModule, TranslatePipe, UserModal],
   templateUrl: './create.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export default class CreateComponent implements OnInit {
 
 
-  private gameService = inject(GameService);
-  private translateService = inject(TranslateService);
+  private userModal = viewChild.required(UserModal);
+
+  private readonly gameService = inject(GameService);
+  private readonly translateService = inject(TranslateService);
+  private readonly loadingService = inject(LoaderService);
+  private readonly handleResponseService = inject(HandleResponseService);
+  private readonly playerService = inject(PlayerService)
+  private readonly router = inject(Router)
 
   createGameModel = signal<CreateGameInterface>({
     roomName: '',
     roomPassword: '',
-    players: 0,
+    roomPlayers: 0,
     customWords: false,
-    category: false,
-    specificCategory: '',
-    canMultipleImpostors: false,
-    availableOverlay: false
+    specificCategory: false,
+    category: '',
+    multipleImpostors: false,
+    overlay: false
   });
 
   createGameForm = form(this.createGameModel, (schemaPath) => {
@@ -36,14 +47,14 @@ export default class CreateComponent implements OnInit {
     required(schemaPath.roomPassword, { message: 'forms.error.room-password-required' });
     minLength(schemaPath.roomPassword, 3, { message: 'forms.error.room-password-min-length' });
 
-    required(schemaPath.players, { message: 'room-players-required' });
-    min(schemaPath.players, 3,{ message: 'forms.error.room-players-min' });
+    required(schemaPath.roomPlayers, { message: 'room-players-required' });
+    min(schemaPath.roomPlayers, 3,{ message: 'forms.error.room-players-min' });
 
-    validate(schemaPath.specificCategory, ({value, valueOf}) => {
+    validate(schemaPath.specificCategory, ({valueOf}) => {
+      const specificCategory = valueOf(schemaPath.specificCategory);
       const category = valueOf(schemaPath.category);
-      const specificCategory = value();
 
-      if (category && (!specificCategory || specificCategory === '')) {
+      if (specificCategory && (!category || category === '')) {
         return {
           kind: 'category-required',
           message: 'forms.error.room-specific-category-required',
@@ -57,6 +68,19 @@ export default class CreateComponent implements OnInit {
 
   ngOnInit(): void {
     this.setGameCategories();
+  }
+
+  clearForm = () => {
+    this.createGameModel.update(() => ({
+      roomName: '',
+      roomPassword: '',
+      roomPlayers: 0,
+      customWords: false,
+      specificCategory: false,
+      category: '',
+      multipleImpostors: false,
+      overlay: false
+    }));
   }
 
   setGameCategories(){
@@ -76,10 +100,9 @@ export default class CreateComponent implements OnInit {
     if(!this.createGameForm.category().value()){
       this.createGameModel.update(x => ({
         ...x,
-        specificCategory: ''
+        category: ''
       }));
     }
-
   }
 
   createGame() {
@@ -89,7 +112,41 @@ export default class CreateComponent implements OnInit {
     }
 
     const data = this.createGameForm().value();
-    this.gameService.createGame(data);
+
+    this.loadingService.addLoading()
+    this.gameService.createGame(data)
+      .subscribe({
+      next: (res) => {
+        if(this.handleResponseService.handleResposne(res, 'success.create-game')){
+          this.userModal().openModal();
+        }
+      },
+      error: (error) => this.handleResponseService.handleError(error, 'error.login-game', this.clearForm)
+    })
+  }
+
+
+
+  createNewPlayer(event: { name: string; }) {
+
+    const data: LoginGameInterface = {
+      roomName:  this.createGameForm().value().roomName,
+      roomPassword: this.createGameForm().value().roomPassword,
+      playerName: event.name
+    }
+
+    this.loadingService.addLoading();
+    this.gameService.loginGame(data)
+    .subscribe({
+      next: (res) => {
+        if(this.handleResponseService.handleResposne(res, 'success.login-game', this.clearForm)){
+          this.playerService.setPlayerCookie(res.data![0]);
+          this.router.navigate(['/game']);
+        }
+      },
+      error: (error) => this.handleResponseService.handleError(error, 'error.login-game', this.clearForm)
+    })
+
   }
 
 

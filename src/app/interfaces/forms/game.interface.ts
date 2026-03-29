@@ -1,15 +1,16 @@
 export interface CreateGameInterface {
   roomName: string;
   roomPassword: string;
-  players: number;
+  roomPlayers: number;
   customWords: boolean;
-  category: boolean;
-  specificCategory: string;
-  canMultipleImpostors: boolean;
-  availableOverlay: boolean;
+  specificCategory: boolean;
+  category: string;
+  multipleImpostors: boolean;
+  overlay: boolean;
 }
 
 export interface LoginGameInterface {
   roomName: string;
   roomPassword: string;
+  playerName? : string
 }

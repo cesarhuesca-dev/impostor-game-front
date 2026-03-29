@@ -127,8 +127,19 @@
       "room-password-min-length" : "El campo contraseña tiene que tener al menos 3 caracteres",
       "room-players-required" : "El campo jugadores es obligatorio",
       "room-players-min" : "Tiene que haber al menos 4 jugadores",
-      "room-specific-category-required" : "El campo Categoría es obligatorio"
+      "room-specific-category-required" : "El campo Categoría es obligatorio",
+      "player-name-required": "El nombre del jugador es obligatorio",
+      "player-name-min-length": "El nombre del jugador tiene que tener al menos 3 caracteres"
     }
+  },
+  "success": {
+    "create-game" : "Has creado la sala de juego",
+    "login-game-verify" : "Sala encontrada",
+    "login-game" : "Te has unido a la sala"
+  },
+  "error" : {
+    "warning": "Algo salio mal",
+    "login-game" : "No se ha podido unirse a la partida"
   },
   "languages" : {
     "language" : "Idioma",
