@@ -15,13 +15,15 @@ export class HandleResponseService {
   private readonly loadingService = inject(LoaderService);
   private readonly translateService = inject(TranslateService);
 
-  handleResposne(response : HttpResponse<any>, title: string = '' , fnClearForm:(() => void) | null = null ) : boolean {
+  handleResposne(response : HttpResponse<any>, title: string = '' , stopLoading: boolean = true, fnClearForm:(() => void) | null = null ) : boolean {
 
     if(fnClearForm){
       fnClearForm();
     }
 
-    this.loadingService.finishLoading();
+    if(stopLoading){
+      this.loadingService.finishLoading();
+    }
 
     if(response.success){
         this.toastMessageService.addMessage({

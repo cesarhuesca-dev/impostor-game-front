@@ -4,6 +4,7 @@ import { NavigationComponent } from "./shared/components/navigation/navigation.c
 import { LanguageService } from '@/services/language.service';
 import { LoaderComponent } from "./shared/components/loader/loader.component";
 import { MessagesComponent } from "./shared/components/messages/messages.component";
+import { PlayerService } from './services/player.service';
 
 @Component({
   selector: 'app-root',
@@ -13,15 +14,17 @@ import { MessagesComponent } from "./shared/components/messages/messages.compone
 export class App implements OnInit {
 
   private languageService = inject(LanguageService)
+  private playerService = inject(PlayerService)
 
   protected readonly title = signal('game-impostor');
 
 
   ngOnInit(): void {
     this.languageService.loadLanguage();
+    this.playerService.startApp();
 
-    console.log('IDIOMA ACTUAL ->', this.languageService.currentLanguage)
-
+    console.log('IDIOMA ACTUAL ->', this.languageService.currentLanguage);
+    console.log('Player jwt ->', this.playerService.jwtPlayer)
   }
 
 }

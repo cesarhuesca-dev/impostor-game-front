@@ -13,7 +13,13 @@
     [class.translate-y-0]="isOpen()">
 
     <!-- Header -->
-    <h2 class="text-2xl font-bold text-purple-400 text-center mb-6">Crear jugador</h2>
+    <div class="text-center mb-8">
+      <h1 class="text-4xl font-extrabold text-purple-400 tracking-wider">
+        <span> 👤 </span><span>{{'create-login-game.create-player-title' | translate }}</span>
+      </h1>
+
+      <p class="text-slate-400 mt-2">{{'create-login-game.create-player-subtitle' | translate }}</p>
+    </div>
 
     <form class="space-y-6">
 
@@ -22,16 +28,16 @@
 
         <div class="w-24 h-24 rounded-full bg-slate-800 border border-slate-700 flex items-center justify-center overflow-hidden">
 
-          @if (previewImage) {
-            <img [src]="previewImage" class="w-full h-full object-cover"/>
+          @if (playerImage()) {
+            <img [src]="playerImage()" class="w-full h-full object-cover"/>
           }@else {
-            <span class="text-slate-500 text-sm">Sin imagen</span>
+            <span class="text-slate-500 text-sm">{{'common.no-image' | translate }}</span>
           }
         </div>
 
         <!-- Input file -->
         <label class="cursor-pointer text-sm text-purple-400 hover:text-purple-300 transition">
-          <span>Subir imagen</span>
+          <span>{{'common.upload-image' | translate }}</span>
           <input type="file" accept="image/*" (change)="onFileSelected($event)" class="hidden">
         </label>
 
@@ -39,29 +45,27 @@
 
       <!-- Nombre -->
       <div>
-
-        <label class="text-sm text-slate-400">Nombre</label>
+        <label class="text-sm text-purple-300">{{'create-login-game.player-name' | translate }}</label>
 
         <input class="w-full mt-2 px-4 py-3 rounded-xl bg-slate-800 border border-slate-700 text-white focus:outline-none focus:ring-2 focus:ring-purple-500"
-          type="text" [formField]="playerForm.name" placeholder="Tu nombre..." >
+          type="text" [formField]="playerForm.name">
 
       </div>
 
       <!-- Botones -->
-      <div class="flex gap-4 pt-4">
+      <div class="flex gap-4 pt-4 items-center justify-center">
 
-        <button class="flex-1 bg-slate-700 hover:bg-slate-600 py-3 rounded-xl transition"
-          type="button"
+        <p-button class="form-btn btn-secondary w-full"
           (click)="closeModal()">
-          Cancelar
-        </button>
+          <span>{{'common.cancel' | translate }}</span>
+        </p-button>
 
-        <button class="flex-1 bg-purple-600 hover:bg-purple-500 py-3 rounded-xl font-semibold shadow-lg shadow-purple-600/30 transition disabled:opacity-50"
-          type="button"
+
+        <p-button class="form-btn w-full"
           [disabled]="playerForm().invalid()"
           (click)="sendNewPlayer()">
-          Continuar a
-        </button>
+          <span>{{'common.continue' | translate }}</span>
+        </p-button>
 
       </div>
 

@@ -68,7 +68,10 @@
     "room-impostor": "Multiple impostors",
     "room-overlay": "Streaming overlay",
     "button-create-submit": "Create Game",
-    "button-login-submit": "Join Game"
+    "button-login-submit": "Join Game",
+    "create-player-title" : "Create player",
+    "create-player-subtitle" : "Customize your profile",
+    "player-name" : "Player name"
   },
 
   "settings": {
@@ -105,6 +108,32 @@
       "close-game": "End game"
     }
   },
+  "about-me": {
+    "name": "Cesar Huesca",
+    "contact": "Game developer. If you need contact or want to report bugs",
+    "copyright": "© 2026 Impostor Game - All rights reserved"
+  },
+
+  "loader": {
+    "loading": "Loading..."
+  },
+  "common" : {
+    "upload-image" : "Upload image",
+    "no-image" : "No image",
+    "cancel" : "Cancel",
+    "continue": "Continue"
+
+  },
+  "success": {
+    "create-game" : "Has creado la sala de juego",
+    "login-game-verify" : "Sala encontrada",
+    "login-game" : "Te has unido a la sala",
+    "uploaded-image" : "Se ha creado correctamente la imagen"
+  },
+  "error" : {
+    "warning": "Algo salio mal",
+    "login-game" : "No se ha podido unirse a la partida"
+  },
 
   "languages": {
     "language": "Language",
@@ -114,15 +143,5 @@
     "fr": "French",
     "it": "Italian",
     "pt": "Portuguese"
-  },
-
-  "about-me": {
-    "name": "Cesar Huesca",
-    "contact": "Game developer. If you need contact or want to report bugs",
-    "copyright": "© 2026 Impostor Game - All rights reserved"
-  },
-
-  "loader": {
-    "loading": "Loading..."
   }
 }

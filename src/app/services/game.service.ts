@@ -15,6 +15,7 @@ import { delay } from 'rxjs';
 export class GameService {
 
 
+  private readonly apiGameTopic : string = '/game';
   private readonly httpClient = inject(HttpClient);
 
 
@@ -39,17 +40,17 @@ export class GameService {
   }
 
   createGame( data : CreateGameInterface ){
-    return this.httpClient.post<HttpResponse<any>>(`${environment.URL_API}/game`, data )
+    return this.httpClient.post<HttpResponse<any>>(`${environment.URL_API}${this.apiGameTopic}`, data )
       .pipe(delay(1000))
   }
 
   loginVerifyGame( data : LoginGameInterface ) {
-    return this.httpClient.post<HttpResponse<any>>(`${environment.URL_API}/join/verify`, data )
+    return this.httpClient.post<HttpResponse<any>>(`${environment.URL_API}${this.apiGameTopic}/join/verify`, data )
       .pipe(delay(1000))
   }
 
   loginGame( data : LoginGameInterface ) {
-    return this.httpClient.post<HttpResponse<any>>(`${environment.URL_API}/join`, data )
+    return this.httpClient.post<HttpResponse<any>>(`${environment.URL_API}${this.apiGameTopic}/join`, data )
       .pipe(delay(1000))
   }
 

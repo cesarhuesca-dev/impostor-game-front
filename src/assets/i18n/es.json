@@ -76,7 +76,11 @@
     "room-impostor" : "Varios impostores",
     "room-overlay" : "Overlay para retransmisiones",
     "button-create-submit" : "Crear partida",
-    "button-login-submit" : "Unirse a partida"
+    "button-login-submit" : "Unirse a partida",
+    "create-player-title" : "Crear juagador",
+    "create-player-subtitle" : "Dale un poco de vida a tu perfil",
+    "player-name" : "Nombre del jugador"
+
   },
   "settings" : {
     "title" : "Configuración",
@@ -132,10 +136,17 @@
       "player-name-min-length": "El nombre del jugador tiene que tener al menos 3 caracteres"
     }
   },
+  "common" : {
+    "upload-image" : "Subir imagen",
+    "no-image" : "Sin imagen",
+    "cancel" : "Cancelar",
+    "continue": "Continuar"
+  },
   "success": {
     "create-game" : "Has creado la sala de juego",
     "login-game-verify" : "Sala encontrada",
-    "login-game" : "Te has unido a la sala"
+    "login-game" : "Te has unido a la sala",
+    "uploaded-image" : "Se ha creado correctamente la imagen"
   },
   "error" : {
     "warning": "Algo salio mal",

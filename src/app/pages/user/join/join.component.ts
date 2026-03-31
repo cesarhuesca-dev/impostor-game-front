@@ -11,6 +11,7 @@ import { LoaderService } from '@/services/loader.service';
 import { HandleResponseService } from '@/services/handle-response.service';
 import { PlayerService } from '@/services/player.service';
 import { Router } from '@angular/router';
+import { UserModalInterface } from '@/interfaces/forms/user-modal.interface';
 
 @Component({
   selector: 'app-join',
@@ -64,7 +65,7 @@ export default class JoinComponent {
     this.gameService.loginVerifyGame(data)
     .subscribe({
       next: (res) => {
-        if(this.handleResponseService.handleResposne(res, 'success.login-game-verify', this.clearForm)){
+        if(this.handleResponseService.handleResposne(res, 'success.login-game-verify')){
           this.userModal().openModal();
         }
       },
@@ -72,25 +73,52 @@ export default class JoinComponent {
     })
   }
 
-  createNewPlayer(event: {name:string}) {
+  createNewPlayer(event: UserModalInterface) {
+
+    const {name, playerImg} = event;
+
 
     const data: LoginGameInterface = {
       ...this.joinGameForm().value(),
-      playerName: event.name
+      playerName: name
     }
 
     this.loadingService.addLoading();
     this.gameService.loginGame(data)
     .subscribe({
       next: (res) => {
+        if(this.handleResponseService.handleResposne(res, 'success.login-game', false)){
 
-        if(this.handleResponseService.handleResposne(res, 'success.login-game', this.clearForm)){
-          this.playerService.setPlayerCookie(res.data![0]);
-          this.router.navigate(['/game']);
+          this.playerService.setPlayerCookie(res.data![0].token);
+
+          if(playerImg !== null){
+            this.createPlayerImage(res.data![0].player.id, playerImg)
+          }else{
+            this.loadingService.finishLoading();
+            this.goGame()
+          }
+
         }
       },
       error: (error) => this.handleResponseService.handleError(error, 'error.login-game', this.clearForm)
-    })
+    });
+  }
+
+  createPlayerImage(idUser: string, file:File){
+    this.playerService.uploadPlayerImage(idUser, file)
+    .subscribe({
+      next: (res: any) => {
+        if(this.handleResponseService.handleResposne(res, 'success.uploaded-image', true, this.clearForm)){
+          this.goGame();
+        }
+      },
+      error: (error) => this.handleResponseService.handleError(error, 'error.warning', this.clearForm)
+    });
+
+  }
+
+  goGame(){
+    this.router.navigate(['/game']);
   }
 
 
