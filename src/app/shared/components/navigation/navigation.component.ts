@@ -1,13 +1,14 @@
-import { AfterViewInit, ChangeDetectionStrategy, Component, computed, DestroyRef, effect, inject, OnInit, signal, untracked, viewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, DestroyRef, effect, inject, OnInit, signal } from '@angular/core';
 import { TieredMenu, TieredMenuModule } from 'primeng/tieredmenu';
 import { ButtonModule } from 'primeng/button';
 import { TranslatePipe } from '@ngx-translate/core';
 
 import urls from '@/assets/urls/pages.json';
-import { ActivatedRoute, NavigationEnd, Router, RouterLink } from "@angular/router";
+import { NavigationEnd, Router, RouterLink } from "@angular/router";
 import { MenuItem } from 'primeng/api';
 import {takeUntilDestroyed} from '@angular/core/rxjs-interop';
-import { NavigationPages } from '@/interfaces/navigation-pages.interfaces';
+import { NavigationPages } from 'src/app/core/interfaces/navigation-pages.interfaces';
+import { PlayerService } from '@/services/player.service';
 
 @Component({
   selector: 's-navigation',
@@ -20,18 +21,31 @@ import { NavigationPages } from '@/interfaces/navigation-pages.interfaces';
 })
 export class NavigationComponent implements OnInit {
 
-  router = inject(Router)
-  private route = inject(ActivatedRoute);
-  private destroyRef = inject(DestroyRef);
+  private readonly router = inject(Router)
+  private readonly destroyRef = inject(DestroyRef);
+  private readonly playerService = inject(PlayerService);
 
-  private URLS: NavigationPages[] = urls as NavigationPages[];
+  private readonly URLS: NavigationPages[] = urls as NavigationPages[];
 
-  items = signal(this.URLS);
+  navigationItems = signal<NavigationPages[]>([]);
   classMenuIcon = signal<string>('');
 
+  constructor(){
+    effect(() => {
+      this.setNavigationData();
+    });
+  }
 
   ngOnInit(): void {
+    this.setNavigationData()
     this.setUrlListerner();
+  }
+
+  setNavigationData(){
+    const alwaysItems = this.URLS.filter(x => x.login === undefined);
+    const items: NavigationPages[] = this.URLS.filter(x => x.login !== undefined && x.login === this.playerService.isLogged);
+    // const items: NavigationPages[] = this.URLS;
+    this.navigationItems.update(() => [...items, ...alwaysItems]);
   }
 
   setUrlListerner(){
@@ -43,7 +57,7 @@ export class NavigationComponent implements OnInit {
   }
 
   setLoadIcon(urlString: string){
-    const find = this.items().find( x => x.routerLink === urlString ) as MenuItem;
+    const find = this.URLS.find( x => x.routerLink === urlString ) as MenuItem;
 
     if(!find) return;
 
@@ -51,7 +65,7 @@ export class NavigationComponent implements OnInit {
   }
 
   changeIcon(item: MenuItem) {
-    this.classMenuIcon.update(() => item.icon! )
+    this.classMenuIcon.update(() => item.icon! );
   }
 }
 

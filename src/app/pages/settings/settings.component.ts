@@ -7,8 +7,8 @@ import { TranslatePipe } from '@ngx-translate/core';
 import { form, FormField, Field } from '@angular/forms/signals';
 import { Router } from '@angular/router';
 import { LanguageService } from '@/services/language.service';
-import { SettingsForm } from '@/interfaces/forms/settings.interface';
-import { SupportedLanguages } from '@/enums/languages.enum';
+import { SettingsForm } from 'src/app/core/interfaces/forms/settings.interface';
+import { SupportedLanguages } from 'src/app/core/enums/languages.enum';
 
 
 @Component({

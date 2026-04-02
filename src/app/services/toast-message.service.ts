@@ -1,4 +1,4 @@
-import { ToastMessage } from '@/interfaces/toast-message.interface';
+import { ToastMessage } from 'src/app/core/interfaces/toast-message.interface';
 import { Injectable, signal } from '@angular/core';
 
 @Injectable({providedIn: 'root'})

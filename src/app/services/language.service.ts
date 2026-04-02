@@ -1,10 +1,10 @@
-import { GlobalSettings } from '@/interfaces/configuration-app.interface';
+import { GlobalSettings } from 'src/app/core/interfaces/configuration-app.interface';
 import { computed, effect, inject, Injectable } from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
 import { GameService } from '@/services/game.service';
 import { TranslateService } from '@ngx-translate/core';
 import { LoaderService } from './loader.service';
-import { SupportedLanguages } from '@/enums/languages.enum';
+import { SupportedLanguages } from 'src/app/core/enums/languages.enum';
 
 @Injectable({
   providedIn: 'root'

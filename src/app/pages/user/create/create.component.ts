@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, inject, OnInit, signal, viewChild }
 import { ToggleSwitchModule } from 'primeng/toggleswitch';
 import { form, FormField, required, min, minLength, validate } from '@angular/forms/signals';
 import { ButtonModule } from 'primeng/button';
-import { CreateGameInterface, LoginGameInterface } from '@/interfaces/forms/game.interface';
+import { CreateGameInterface, LoginGameInterface } from 'src/app/core/interfaces/forms/game.interface';
 import { GameService } from '@/services/game.service';
 import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { UserModal } from "@/shared/components/user-modal/user-modal.component";
@@ -10,7 +10,7 @@ import { LoaderService } from '@/services/loader.service';
 import { HandleResponseService } from '@/services/handle-response.service';
 import { PlayerService } from '@/services/player.service';
 import { Router } from '@angular/router';
-import { UserModalInterface } from '@/interfaces/forms/user-modal.interface';
+import { UserModalInterface } from 'src/app/core/interfaces/forms/user-modal.interface';
 
 @Component({
   selector: 'app-create',
@@ -135,7 +135,8 @@ export default class CreateComponent implements OnInit {
     const data: LoginGameInterface = {
       roomName:  this.createGameForm().value().roomName,
       roomPassword: this.createGameForm().value().roomPassword,
-      playerName: name
+      playerName: name,
+      host: true
     }
 
     this.loadingService.addLoading();
@@ -144,15 +145,14 @@ export default class CreateComponent implements OnInit {
       next: (res) => {
         if(this.handleResponseService.handleResposne(res, 'success.login-game', false)){
 
-          this.playerService.setPlayerCookie(res.data![0].token);
+          this.playerService.startPlayer(res.data![0].token);
 
           if(playerImg !== null){
-            this.createPlayerImage(res.data![0].player.id, playerImg)
+            this.createPlayerImage(res.data![0], playerImg)
           }else{
             this.loadingService.finishLoading();
-            this.goGame()
+            this.goGame();
           }
-
         }
       },
       error: (error) => this.handleResponseService.handleError(error, 'error.login-game', this.clearForm)
@@ -160,11 +160,12 @@ export default class CreateComponent implements OnInit {
 
   }
 
-  createPlayerImage(idUser: string, file:File){
-    this.playerService.uploadPlayerImage(idUser, file)
+  createPlayerImage(data: any, file:File){
+    this.playerService.uploadPlayerImage(data.player.id, file)
     .subscribe({
       next: (res: any) => {
         if(this.handleResponseService.handleResposne(res, 'success.uploaded-image', true, this.clearForm)){
+          this.playerService.startPlayer(data.token);
           this.goGame();
         }
       },

@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, inject, OnInit } from '@angular/cor
 import { ButtonModule } from 'primeng/button';
 import { TranslatePipe } from '@ngx-translate/core';
 import { GameService } from '@/services/game.service';
-import { WordGame } from '@/interfaces/game.interface';
+import { WordGame } from 'src/app/core/interfaces/game.interface';
 import { AvatarModule } from 'primeng/avatar';
 import { NgClass } from '@angular/common';
 
@@ -17,18 +17,18 @@ export default class ManagerComponent implements OnInit {
 
   private gameService = inject(GameService);
 
-  game = this.gameService.game;
+  game = this.gameService.gameData;
 
 
   ngOnInit(): void {
 
-    console.log('this.game', this.game())
+    console.log('this.game', this.game)
 
   }
 
   //#region CONTROLES CON JUGADORES
 
-  banPlayer(idPlayer: number) {
+  banPlayer(idPlayer: string) {
     this.gameService.banPlayer(idPlayer);
   }
 

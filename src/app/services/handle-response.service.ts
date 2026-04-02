@@ -1,10 +1,10 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { ToastMessageService } from './toast-message.service';
-import { ToastPosition, ToastType } from '@/enums/toast.enum';
+import { ToastPosition, ToastType } from 'src/app/core/enums/toast.enum';
 import { LoaderService } from './loader.service';
 import { TranslateService } from '@ngx-translate/core';
-import { HttpResponse } from '@/interfaces/http-response.interfaces';
+import { HttpResponse } from 'src/app/core/interfaces/http-response.interfaces';
 
 @Injectable({
   providedIn: 'root'
@@ -26,38 +26,60 @@ export class HandleResponseService {
     }
 
     if(response.success){
-        this.toastMessageService.addMessage({
-        key: ToastPosition.TOP_RIGHT,
-        severity: ToastType.SUCCESS,
-        summary: this.translateService.instant(title),
-      });
+      this.setToastSuccess(title);
       return true;
     }else {
-      this.toastMessageService.addMessage({
-        key: ToastPosition.TOP_RIGHT,
-        severity: ToastType.WARN,
-        summary: this.translateService.instant('error.warning'),
-      });
-
+      this.setToastWarning();
       return false;
     }
 
 
   }
 
-  handleError(error : HttpErrorResponse, titleError: string = '' ,fnClearForm:(() => void) | null = null ): void{
-    this.toastMessageService.addMessage({
-      key: ToastPosition.TOP_RIGHT,
-      severity: ToastType.ERROR,
-      summary: this.translateService.instant(titleError),
-      detail: error.error.message,
-    });
+  handleError(error : HttpErrorResponse, titleError: string = '', fnClearForm:(() => void) | null = null ): void{
+
+    this.setToastError(error, titleError);
 
     if(fnClearForm){
       fnClearForm();
     }
 
     this.loadingService.finishLoading();
+  }
+
+  private setToastSuccess(title: string = ''){
+
+    if(title.length === 0 ){
+    return
+    }
+
+    this.toastMessageService.addMessage({
+      key: ToastPosition.TOP_RIGHT,
+      severity: ToastType.SUCCESS,
+      summary: this.translateService.instant(title),
+    });
+  }
+
+  private setToastWarning(){
+    this.toastMessageService.addMessage({
+      key: ToastPosition.TOP_RIGHT,
+      severity: ToastType.WARN,
+      summary: this.translateService.instant('error.warning'),
+    });
+  }
+
+  private setToastError(error : HttpErrorResponse, titleError: string = ''){
+
+    if(titleError.length === 0 ){
+      return
+    }
+
+    this.toastMessageService.addMessage({
+      key: ToastPosition.TOP_RIGHT,
+      severity: ToastType.ERROR,
+      summary: this.translateService.instant(titleError),
+      detail: error.error.message,
+    });
   }
 
 }

@@ -1,5 +1,5 @@
-import { SupportedLanguages } from "@/enums/languages.enum";
-import { UserRole } from "@/enums/user-roles.enum";
+import { SupportedLanguages } from "src/app/core/enums/languages.enum";
+import { UserRole } from "src/app/core/enums/user-roles.enum";
 
 export interface ConfigurationApp {
 

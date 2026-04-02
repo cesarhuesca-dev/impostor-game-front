@@ -2,32 +2,38 @@
   {
     "label": "pages.home",
     "icon": "pi pi-home",
-    "routerLink": "/home"
+    "routerLink": "/home",
+    "login" : false
   },
   {
     "label": "pages.create",
     "icon": "pi pi-plus-circle",
-    "routerLink": "/create"
+    "routerLink": "/create",
+    "login" : false
   },
   {
     "label": "pages.join",
     "icon": "pi pi-sign-in",
-    "routerLink": "/join"
+    "routerLink": "/join",
+    "login" : false
   },
   {
     "label": "pages.game",
     "icon": "pi pi-play-circle",
-    "routerLink": "/game"
+    "routerLink": "/game",
+    "login" : true
   },
   {
     "label": "pages.overlay",
     "icon": "pi pi-video",
-    "routerLink": "/overlay"
+    "routerLink": "/overlay",
+    "login" : true
   },
   {
     "label": "pages.manager",
     "icon": "pi pi-desktop",
-    "routerLink": "/manager"
+    "routerLink": "/manager",
+    "login" : true
   },
   {
     "label": "pages.settings",

@@ -1,13 +1,13 @@
 <div class="min-h-screen flex items-center justify-center bg-linear-to-br from-gray-900 via-purple-900 to-black p-6">
 
-  @if (this.player()) {
+  @if (this.player() && this.game()) {
     <div class="w-full max-w-xl bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl shadow-2xl p-8">
 
       <!-- Perfil del jugador -->
       <div class="flex items-center jus gap-4 mb-8">
         <div>
-          @if (player()!.img && player()!.img.length > 0) {
-            <p-avatar [image]="player()!.img" size="xlarge" shape="circle" class="shadow-md/30"/>
+          @if (player()!.avatarImg) {
+            <p-avatar [image]="player()!.id | playerImage" size="xlarge" shape="circle" class="shadow-md/30"/>
           }@else {
             <p-avatar icon="pi pi-user" size="xlarge" shape="circle"/>
           }
@@ -18,8 +18,9 @@
         </div>
       </div>
 
-      @if (this.ready) {
-        @if (!this.player()!.impostor) {
+      @if (this.game()!.gameStarted) {
+        @if (this.ready) {
+          @if (!this.player()!.impostor) {
           <!-- JUGADOR NORMAL -->
           <div class="flex flex-col gap-5">
             <div>
@@ -30,10 +31,10 @@
               <p class="text-gray-400 text-sm text-center mt2">{{'game.listen-not-impostor' | translate}}</p>
             </div>
 
-            @if (this.game().word.category) {
+            @if (this.game()!.word.category) {
               <div class="text-center">
                 <span class="text-gray-400 text-sm uppercase tracking-widest mb-2">{{'game.category' | translate}}: </span>
-                <span class="text-purple-300 text-xl font-semibold">{{this.game().word.category}}</span>
+                <span class="text-purple-300 text-xl font-semibold">{{this.game()!.word.category}}</span>
               </div>
             }
 
@@ -48,49 +49,118 @@
                 }@else {
                   <button class="w-3/4 border border-purple-500/40 rounded-xl p-8 bg-purple-500/10 transition active:scale-95"
                     (click)="this.showWord = !this.showWord">
-                    <span class="font-bold text-3xl">{{this.game().word.word}}</span>
+                    <span class="font-bold text-3xl">{{this.game()!.word.word}}</span>
                   </button>
                 }
               </div>
                 <p class="text-gray-400 text-sm mt-6">{{'game.clue' | translate}}</p>
             </div>
           </div>
+          }@else {
+            <!-- IMPOSTOR -->
+            <div  class="text-center space-y-6">
+              <div class="text-7xl animate-pulse"><span> 🥷 </span></div>
+              <h2 class="text-4xl font-extrabold text-red-500">{{'game.are-impostor' | translate}}</h2>
+              <p class="text-gray-300 text-lg">No tienes palabra secreta.</p>
+              <p class="text-gray-400 text-sm">{{'game.impostor-clue' | translate}}</p>
+
+            </div>
+          }
         }@else {
-          <!-- IMPOSTOR -->
-          <div  class="text-center space-y-6">
-            <div class="text-7xl animate-pulse"><span> 🥷 </span></div>
-            <h2 class="text-4xl font-extrabold text-red-500">{{'game.are-impostor' | translate}}</h2>
-            <p class="text-gray-300 text-lg">No tienes palabra secreta.</p>
-            <p class="text-gray-400 text-sm">{{'game.impostor-clue' | translate}}</p>
+          <div class="text-center space-y-8 duration-300 ">
+
+            <!-- Icono -->
+            <div class="flex justify-center">
+              <span class="text-7xl"> 😶‍🌫️ </span>
+            </div>
+
+            <!-- Texto -->
+            <div class="space-y-3">
+              <h2 class="text-3xl font-bold text-white">Ronda en curso</h2>
+              <p class="text-gray-300 text-lg">Mantén tu palabra y rol en secreto</p>
+            </div>
 
           </div>
         }
-      }@else {
-        <div class="text-center space-y-8 duration-300 ">
+        <div class="mt-10 text-center">
+          <button class="w-2/4 border-0! text-white! bg-purple-600!  hover:bg-purple-500! py-3! rounded-xl! font-semibold! transition! active:scale-95!"
+            (click)="this.ready = !this.ready">
+            <span>{{(this.ready) ? ('game.ready' | translate) : ('game.show-info' | translate)}}</span>
+          </button>
+        </div>
+      } @else {
+        <!-- Header -->
+        <div class="text-center mb-8">
+          <h1 class="text-3xl font-bold text-purple-400">{{'game.waiting-room' | translate}}</h1>
+          <p class="text-gray-400 mt-2">{{'game.waiting-room-description' | translate}}</p>
+        </div>
 
-          <!-- Icono -->
-          <div class="flex justify-center">
-            <span class="text-7xl"> 😶‍🌫️ </span>
+        <!-- Estado -->
+
+        @if (this.game()!.roomPlayersJoined < this.game()!.roomPlayers) {
+          <div class="mt-8 text-center space-y-3">
+            <p class="text-gray-400"><span>{{'game.waiting-players' | translate}}</span>...</p>
+            <div class="flex justify-center gap-2">
+              <span class="w-2 h-2 bg-purple-400 rounded-full animate-bounce"></span>
+              <span class="w-2 h-2 bg-purple-400 rounded-full animate-bounce [animation-delay:150ms]"></span>
+              <span class="w-2 h-2 bg-purple-400 rounded-full animate-bounce [animation-delay:300ms]"></span>
+            </div>
           </div>
+        }
 
-          <!-- Texto -->
-          <div class="space-y-3">
-            <h2 class="text-3xl font-bold text-white">Ronda en curso</h2>
-            <p class="text-gray-300 text-lg">Mantén tu palabra y rol en secreto</p>
+
+        <!-- Jugadores -->
+        <div class="w-full max-w-2xl bg-slate-900 border border-purple-500/20 rounded-2xl p-6 shadow-xl mt-5">
+
+          <h2 class="text-lg text-purple-300 mb-4">
+            <span>{{'game.players' | translate}} </span>
+            <span>({{this.game()?.roomPlayersJoined}}/{{this.game()?.roomPlayers}})</span>
+          </h2>
+
+          <div class="grid grid-cols-2 sm:grid-cols-3 gap-4">
+
+            <!-- Listado de jugadores -->
+            @for (player of this.game()?.players; track player.id) {
+              <div class="flex items-center gap-3 bg-slate-800 p-3 rounded-xl border border-slate-700 hover:border-purple-500/40 transition">
+                @if (player.avatarImg) {
+                  <p-avatar [image]="player.id | playerImage" size="large" shape="circle" class="shadow-md/30"/>
+                }@else {
+                  <p-avatar icon="pi pi-user" size="large" shape="circle" class="shadow-md/30"/>
+                }
+                <span class="text-white font-medium truncate">{{player.name}}</span>
+              </div>
+            }
+
+            <!-- Slot vacío -->
+            @if (this.game()!.roomPlayersJoined < this.game()!.roomPlayers) {
+              <div class="flex items-center justify-center bg-slate-800/40 p-3 rounded-xl border border-dashed border-slate-700 text-slate-500">
+                <span>{{'game.waiting' | translate}}...</span>
+              </div>
+            }
+
+
           </div>
 
         </div>
+
+        <!-- Botón iniciar -->
+        @if (player()!.host) {
+          <div class="flex justify-center items-center mt-5">
+            <p-button class="form-btn w-2/3"
+              [disabled]="this.game()!.roomPlayersJoined < this.game()!.roomPlayers"
+              (click)="startGame()">
+              <span> 🎮 </span><span>{{'game.start' | translate }}</span>
+            </p-button>
+          </div>
+        }@else {
+          <div class="flex justify-center items-center mt-5">
+            <h2 class="text-lg text-purple-300 mb-4">
+              <span>{{'game.waiting-host' | translate}} </span>
+            </h2>
+          </div>
+        }
       }
 
-
-
-      <!-- BOTON LISTO -->
-      <div class="mt-10 text-center">
-        <button class="w-2/4 border-0! text-white! bg-purple-600!  hover:bg-purple-500! py-3! rounded-xl! font-semibold! transition! active:scale-95!"
-          (click)="this.ready = !this.ready">
-          <span>{{(this.ready) ? ('game.ready' | translate) : ('game.show-info' | translate)}}</span>
-        </button>
-      </div>
 
     </div>
   }
@@ -98,6 +168,4 @@
 
 
 </div>
-
-
 

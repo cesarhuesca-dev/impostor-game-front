@@ -12,6 +12,6 @@ import { GameService } from '@/services/game.service';
 export class AvatarsComponent {
 
   private gameService = inject(GameService);
-  game = this.gameService.game;
+  game = this.gameService.gameData;
 
 }

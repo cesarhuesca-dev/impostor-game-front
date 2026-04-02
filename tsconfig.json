@@ -7,10 +7,12 @@
     "paths": {
       "@/pages/*" : ["./src/app/pages/*"],
       "@/shared/*" : ["./src/app/shared/*"],
-      "@/interfaces/*" : ["./src/app/interfaces/*"],
+      "@/interfaces/*" : ["src/app/core/interfaces/*"],
       "@/services/*" : ["./src/app/services/*"],
       "@/assets/*" : ["./src/assets/*"],
-      "@/enums/*" : ["./src/app/enums/*"]
+      "@/enums/*" : ["src/app/core/enums/*"],
+      "@/guards/*" : ["src/app/core/guards/*"],
+      "@/interceptors/*" : ["./src/app/core/interceptors/*"]
     },
     "strict": true,
     "noImplicitOverride": true,

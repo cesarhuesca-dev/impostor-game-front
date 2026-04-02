@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, inject, signal, viewChild } from '@
 import { ToggleSwitchModule } from 'primeng/toggleswitch';
 import { form, FormField, required, minLength} from '@angular/forms/signals';
 import { ButtonModule } from 'primeng/button';
-import { LoginGameInterface } from '@/interfaces/forms/game.interface';
+import { LoginGameInterface } from 'src/app/core/interfaces/forms/game.interface';
 import { GameService } from '@/services/game.service';
 import { TranslatePipe } from '@ngx-translate/core';
 import { MessageService } from 'primeng/api';
@@ -11,7 +11,7 @@ import { LoaderService } from '@/services/loader.service';
 import { HandleResponseService } from '@/services/handle-response.service';
 import { PlayerService } from '@/services/player.service';
 import { Router } from '@angular/router';
-import { UserModalInterface } from '@/interfaces/forms/user-modal.interface';
+import { UserModalInterface } from 'src/app/core/interfaces/forms/user-modal.interface';
 
 @Component({
   selector: 'app-join',
@@ -80,7 +80,8 @@ export default class JoinComponent {
 
     const data: LoginGameInterface = {
       ...this.joinGameForm().value(),
-      playerName: name
+      playerName: name,
+      host: false
     }
 
     this.loadingService.addLoading();
@@ -89,10 +90,10 @@ export default class JoinComponent {
       next: (res) => {
         if(this.handleResponseService.handleResposne(res, 'success.login-game', false)){
 
-          this.playerService.setPlayerCookie(res.data![0].token);
+          this.playerService.startPlayer(res.data![0].token);
 
           if(playerImg !== null){
-            this.createPlayerImage(res.data![0].player.id, playerImg)
+            this.createPlayerImage(res.data![0], playerImg)
           }else{
             this.loadingService.finishLoading();
             this.goGame()
@@ -104,11 +105,12 @@ export default class JoinComponent {
     });
   }
 
-  createPlayerImage(idUser: string, file:File){
-    this.playerService.uploadPlayerImage(idUser, file)
+  createPlayerImage(data: any, file:File){
+    this.playerService.uploadPlayerImage(data.player.id, file)
     .subscribe({
       next: (res: any) => {
         if(this.handleResponseService.handleResposne(res, 'success.uploaded-image', true, this.clearForm)){
+          this.playerService.startPlayer(data.token);
           this.goGame();
         }
       },

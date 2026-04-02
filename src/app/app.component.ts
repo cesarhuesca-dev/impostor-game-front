@@ -1,4 +1,4 @@
-import { Component, inject, OnInit, signal } from '@angular/core';
+import { Component, effect, inject, OnInit, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { NavigationComponent } from "./shared/components/navigation/navigation.component";
 import { LanguageService } from '@/services/language.service';
@@ -18,13 +18,19 @@ export class App implements OnInit {
 
   protected readonly title = signal('game-impostor');
 
+  constructor(){
+    effect(() => {
+
+      console.log('----CAMBIOS----')
+      console.log('IDIOMA ACTUAL ->', this.languageService.currentLanguage);
+      console.log('Player info ->', this.playerService.playerData)
+
+    })
+  }
 
   ngOnInit(): void {
     this.languageService.loadLanguage();
     this.playerService.startApp();
-
-    console.log('IDIOMA ACTUAL ->', this.languageService.currentLanguage);
-    console.log('Player jwt ->', this.playerService.jwtPlayer)
   }
 
 }

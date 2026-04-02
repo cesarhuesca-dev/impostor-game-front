@@ -1,4 +1,4 @@
-import { UserModalInterface } from '@/interfaces/forms/user-modal.interface';
+import { UserModalInterface } from 'src/app/core/interfaces/forms/user-modal.interface';
 import { NgClass } from '@angular/common';
 import { ChangeDetectionStrategy, Component, output, signal } from '@angular/core';
 import {form, FormField, minLength, required} from '@angular/forms/signals';

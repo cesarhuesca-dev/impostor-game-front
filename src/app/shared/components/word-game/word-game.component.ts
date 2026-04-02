@@ -12,7 +12,7 @@ export class WordGameComponent {
 
   private gameService = inject(GameService)
 
-  game = computed( () => this.gameService.game());
+  game = computed( () => this.gameService.gameData);
 
 
 }

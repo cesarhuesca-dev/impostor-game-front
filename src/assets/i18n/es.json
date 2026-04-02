@@ -15,6 +15,13 @@
     "no-word" : "No tienes palabra secreta.",
     "ready": "Estoy listo",
     "show-info": "Mostrar información",
+    "waiting-room" : "Sala de espera",
+    "waiting-room-description" : "Comparte el código para que se unan tus amigos",
+    "waiting-players" : "Esperando a más jugadores",
+    "waiting" : "Esperando",
+    "start": "Empezar partida",
+    "players": "Jugadores",
+    "waiting-host" : "Esperando a que el host empieze la partida",
     "categories" : {
       "animals": "Animales",
       "fast": "Comida",
