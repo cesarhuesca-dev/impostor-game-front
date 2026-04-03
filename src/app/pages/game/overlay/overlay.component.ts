@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, computed, inject } from '@angular/c
 import { AvatarsComponent } from "@/shared/components/avatars/avatars.component";
 import { WordGameComponent } from "@/shared/components/word-game/word-game.component";
 import { CommonModule } from '@angular/common';
-import { GameService } from 'src/app/services/game.service';
+import { GameService } from '@/services/game.service';
 
 @Component({
   selector: 'page-overlay',

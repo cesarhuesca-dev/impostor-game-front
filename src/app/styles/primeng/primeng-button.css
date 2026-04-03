@@ -61,3 +61,32 @@ p-button.home-btn-xl{
     @apply px-10 md:px-20! py-4 md:py-8! md:text-xl! w-full
   }
 }
+
+
+div.btn-exit.p-dialog {
+  @apply w-3/6 bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl shadow-2xl p-8;
+}
+
+button.btn-exit {
+  @apply w-full!
+  border-0!
+  active:scale-95!
+  transition-all!
+  text-white!
+  font-bold!
+  px-10
+  py-4
+  rounded-xl!
+  shadow-sm!;
+
+  /* COLOR */
+  @apply bg-purple-500!
+  hover:bg-purple-600!
+  shadow-purple-600/30!;
+}
+
+
+button.btn-exit-secondary {
+  @apply bg-gray-800! hover:bg-gray-700! shadow-gray-600/30!
+}
+

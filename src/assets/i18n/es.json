@@ -147,13 +147,16 @@
     "upload-image" : "Subir imagen",
     "no-image" : "Sin imagen",
     "cancel" : "Cancelar",
-    "continue": "Continuar"
+    "continue": "Continuar",
+    "exit": "Salir",
+    "exit-confirm" : "Estas seguro de que quieres salir"
   },
   "success": {
     "create-game" : "Has creado la sala de juego",
     "login-game-verify" : "Sala encontrada",
     "login-game" : "Te has unido a la sala",
-    "uploaded-image" : "Se ha creado correctamente la imagen"
+    "uploaded-image" : "Se ha creado correctamente la imagen",
+    "exit": "Te has salido de la sala"
   },
   "error" : {
     "warning": "Algo salio mal",

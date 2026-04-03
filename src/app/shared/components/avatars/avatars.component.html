@@ -1,5 +1,5 @@
 <div class="flex flex-row gap-3">
-  @for (player of this.game().players; track player.name) {
+  @for (player of this.game!.players; track player.name) {
     <div class="flex flex-col items-center justify-center">
 
       @if (player.img && player.img.length > 0) {

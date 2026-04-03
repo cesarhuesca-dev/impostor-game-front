@@ -4,7 +4,7 @@ import { NavigationComponent } from "./shared/components/navigation/navigation.c
 import { LanguageService } from '@/services/language.service';
 import { LoaderComponent } from "./shared/components/loader/loader.component";
 import { MessagesComponent } from "./shared/components/messages/messages.component";
-import { PlayerService } from './services/player.service';
+import { PlayerService } from '@/services/player.service';
 
 @Component({
   selector: 'app-root',

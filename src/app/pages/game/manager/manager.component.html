@@ -90,17 +90,17 @@
         </button>
 
         <button pButton class="border-0! text-white! bg-blue-600!  hover:bg-blue-500! py-3! rounded-xl! font-semibold! transition! active:scale-95!"
-          [ngClass]="{ 'bg-blue-800! scale-95!' : this.game!.isShowingWord}"
+          [ngClass]="{ 'bg-blue-800! scale-95!' : this.game!.showingWord}"
           (click)="this.showWord()">
           <span> 💡 </span>
-          <span>{{(this.game!.isShowingWord) ? ('manager.buttons.hide-word' | translate) : ('manager.buttons.show-word' | translate)}}</span>
+          <span>{{(this.game!.showingWord) ? ('manager.buttons.hide-word' | translate) : ('manager.buttons.show-word' | translate)}}</span>
         </button>
 
         <button pButton class="border-0! text-white! bg-blue-600!  hover:bg-blue-500! py-3! rounded-xl! font-semibold! transition! active:scale-95!"
-          [ngClass]="{ 'bg-blue-800! scale-95!' : this.game!.isShowingImpostor}"
+          [ngClass]="{ 'bg-blue-800! scale-95!' : this.game!.showingImpostor}"
           (click)="this.showImpostor()">
           <span> 🥷 </span>
-          <span>{{(this.game!.isShowingImpostor) ? ('manager.buttons.hide-impostor' | translate) : ('manager.buttons.show-impostor' | translate)}}</span>
+          <span>{{(this.game!.showingImpostor) ? ('manager.buttons.hide-impostor' | translate) : ('manager.buttons.show-impostor' | translate)}}</span>
         </button>
 
 
@@ -120,24 +120,24 @@
       <div class="flex flex-col gap-4">
 
         <button pButton class="border-0! text-white! bg-blue-600! py-3! rounded-xl! font-semibold! transition!"
-          [ngClass]="{ 'active:scale-95! hover:bg-blue-500!' : this.game!.isGameStarted}"
-          [disabled]="!this.game!.isGameStarted"
+          [ngClass]="{ 'active:scale-95! hover:bg-blue-500!' : this.game!.gameStarted}"
+          [disabled]="!this.game!.gameStarted"
           (click)="this.nextRound()">
           <span> 🔄 </span>
           <span>{{'manager.buttons.next-round' | translate}}</span>
         </button>
 
         <button pButton class="border-0! text-white! bg-green-600! py-3! rounded-xl! font-semibold! transition!"
-          [ngClass]="{ 'active:scale-95! hover:bg-green-500!' : !this.game!.isGameStarted}"
-          [disabled]="this.game!.isGameStarted"
+          [ngClass]="{ 'active:scale-95! hover:bg-green-500!' : !this.game!.gameStarted}"
+          [disabled]="this.game!.gameStarted"
           (click)="this.startGame()">
           <span> ▶ </span>
           <span>{{'manager.buttons.start-game' | translate}}</span>
         </button>
 
         <button pButton class="border-0! text-white! bg-red-600!  py-3! rounded-xl! font-semibold! transition!"
-          [ngClass]="{ 'active:scale-95! hover:bg-red-500!' : this.game!.isGameStarted}"
-          [disabled]="!this.game!.isGameStarted"
+          [ngClass]="{ 'active:scale-95! hover:bg-red-500!' : this.game!.gameStarted}"
+          [disabled]="!this.game!.gameStarted"
           (click)="this.closeGame()">
           <span> ⛔ </span>
           <span>{{'manager.buttons.close-game' | translate}}</span>

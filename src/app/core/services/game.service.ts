@@ -2,13 +2,13 @@ import { inject, Injectable, Signal, signal } from '@angular/core';
 import { ConfigurationApp } from 'src/app/core/interfaces/configuration-app.interface';
 import { Game, Player, WordGame } from 'src/app/core/interfaces/game.interface';
 import { CreateGameInterface, LoginGameInterface } from 'src/app/core/interfaces/forms/game.interface';
-import { gameMocked, mockConfigGame } from '../dataMocks';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '@/assets/environments/environment.development';
 import { HttpResponse } from 'src/app/core/interfaces/http-response.interfaces';
 import { delay } from 'rxjs';
 import { LoaderService } from './loader.service';
 import { HandleResponseService } from './handle-response.service';
+import { mockConfigGame } from 'src/app/dataMocks';
 
 
 @Injectable({

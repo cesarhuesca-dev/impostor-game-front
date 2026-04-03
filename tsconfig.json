@@ -8,11 +8,11 @@
       "@/pages/*" : ["./src/app/pages/*"],
       "@/shared/*" : ["./src/app/shared/*"],
       "@/interfaces/*" : ["src/app/core/interfaces/*"],
-      "@/services/*" : ["./src/app/services/*"],
+      "@/services/*" : ["./src/app/core/services/*"],
       "@/assets/*" : ["./src/assets/*"],
       "@/enums/*" : ["src/app/core/enums/*"],
       "@/guards/*" : ["src/app/core/guards/*"],
-      "@/interceptors/*" : ["./src/app/core/interceptors/*"]
+      "@/interceptors/*" : ["./src/app/core/interceptors/*"],
     },
     "strict": true,
     "noImplicitOverride": true,

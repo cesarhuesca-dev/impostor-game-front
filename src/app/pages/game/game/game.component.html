@@ -145,18 +145,29 @@
 
         <!-- Botón iniciar -->
         @if (player()!.host) {
-          <div class="flex justify-center items-center mt-5">
-            <p-button class="form-btn w-2/3"
+          <div class="flex justify-center items-center gap-3 mt-5">
+            <p-button class="form-btn w-2/4"
               [disabled]="this.game()!.roomPlayersJoined < this.game()!.roomPlayers"
               (click)="startGame()">
               <span> 🎮 </span><span>{{'game.start' | translate }}</span>
             </p-button>
+
+            <div class="w-2/4">
+              <s-exit-button (acceptBtn)="exitPlayer()"></s-exit-button>
+            </div>
+
           </div>
         }@else {
           <div class="flex justify-center items-center mt-5">
             <h2 class="text-lg text-purple-300 mb-4">
               <span>{{'game.waiting-host' | translate}} </span>
             </h2>
+          </div>
+
+          <div class="flex justify-center items-center mt-5">
+            <div class="w-2/3">
+              <s-exit-button (acceptBtn)="exitPlayer()"></s-exit-button>
+            </div>
           </div>
         }
       }

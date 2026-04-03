@@ -1,11 +1,19 @@
 import { PlayerService } from "@/services/player.service";
 import { inject } from "@angular/core";
-import { CanActivateFn, ActivatedRouteSnapshot, RouterStateSnapshot } from "@angular/router";
+import { CanActivateFn, ActivatedRouteSnapshot, RouterStateSnapshot, Router } from "@angular/router";
 
 export const LoggedGuard: CanActivateFn = (
   route: ActivatedRouteSnapshot,
   state: RouterStateSnapshot,
 ) => {
   const playerService = inject(PlayerService);
-  return (playerService.isLogged) ? true : false;
+  const router = inject(Router);
+
+  const logged = playerService.isLogged;
+
+  if(!logged){
+    router.navigate(['/home']);
+  }
+
+  return (logged) ? true : false;
 };

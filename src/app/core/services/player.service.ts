@@ -88,6 +88,7 @@ export class PlayerService {
     this.loadPlayerCookie();
 
     if(!this.jwt() || this.jwt().length === 0){
+      this.deletePlayerData();
       this.loaderService.finishLoading();
       return;
     }
@@ -123,6 +124,10 @@ export class PlayerService {
     formData.append('file', file);
     const headers = new HttpHeaders({ 'enctype': 'multipart/form-data' });
     return this.httpClient.post(`${environment.URL_API}${this.apiPlayerTopic}/image/${idPlayer}`, formData, { headers: headers });
+  }
+
+  playerExit(idPlayer: string){
+    return  this.httpClient.delete(`${environment.URL_API}${this.apiPlayerTopic}/${idPlayer}`).pipe(delay(1000));
   }
 
 
