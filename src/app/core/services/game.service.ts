@@ -53,21 +53,8 @@ export class GameService {
 
 
   getGame(idGame : string){
-    this.loaderService.addLoading();
-    this.httpClient.get<HttpResponse<any>>(`${environment.URL_API}${this.apiGameTopic}/${idGame}` ).subscribe({
-      next: (res: any) => {
-        if(this.handleResponseService.handleResposne(res)){
-          console.log(res)
-          this.setGameData(res.data[0]);
-        }else{
-          this.deleteGameData();
-        }
-      },
-      error: (error) => {
-        this.handleResponseService.handleError(error, 'error.warning');
-        this.deleteGameData();
-      }
-    });
+    return this.httpClient.get<HttpResponse<any>>(`${environment.URL_API}${this.apiGameTopic}/${idGame}` )
+      .pipe(delay(1000))
   }
 
   createGame( data : CreateGameInterface ){
@@ -104,13 +91,8 @@ export class GameService {
 
   //#region CONTROLES DE PARTIDA
   startGame(){
-    //TODO AQUI HABRA QUE CONECTARLO CON BACK
-    // this.game.update(game => ({
-    //   ...game,
-    //   isGameStarted: true
-    // }));
-
-    console.log('Iniciando juego');
+    return this.httpClient.post<HttpResponse<any>>(`${environment.URL_API}${this.apiGameTopic}/start`, {})
+      .pipe(delay(1000))
   }
 
   closeGame(){

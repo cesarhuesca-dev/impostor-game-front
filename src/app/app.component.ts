@@ -30,7 +30,7 @@ export class App implements OnInit {
 
   ngOnInit(): void {
     this.languageService.loadLanguage();
-    this.playerService.startApp();
+    this.playerService.setPlayerInfo();
   }
 
 }

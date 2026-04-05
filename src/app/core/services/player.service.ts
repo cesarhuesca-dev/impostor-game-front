@@ -79,11 +79,11 @@ export class PlayerService {
 
   startPlayer(token: string){
     this.setPlayerCookie(token);
-    this.startApp();
+    this.setPlayerInfo();
   }
 
 
-  startApp(){
+  setPlayerInfo(){
     this.loaderService.addLoading();
     this.loadPlayerCookie();
 

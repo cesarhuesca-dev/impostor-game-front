@@ -50,7 +50,7 @@ export class HandleResponseService {
   private setToastSuccess(title: string = ''){
 
     if(title.length === 0 ){
-    return
+      return;
     }
 
     this.toastMessageService.addMessage({

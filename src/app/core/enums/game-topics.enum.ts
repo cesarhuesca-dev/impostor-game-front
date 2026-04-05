@@ -1,6 +1,10 @@
-export enum GameTopics {
+export enum GameSocketTopic {
 
-  GAME_STARTED = 'game-started',
-  GAME_CLOSED = 'game-closed',
+  //TOPICS EXTERNOS
+  PLAYER_MESSAGE = 'PLAYER_MESSAGE',
+
+
+  // TOPICS INTEROS
+  UPDATE_GAME_STATUS = 'UPDATE_GAME_STATUS'
 
 }

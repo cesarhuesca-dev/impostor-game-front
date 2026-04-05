@@ -88,6 +88,13 @@
             <span>{{(this.ready) ? ('game.ready' | translate) : ('game.show-info' | translate)}}</span>
           </button>
         </div>
+
+        <div class="flex justify-center items-center gap-3 mt-5">
+          <div class="w-2/4">
+            <s-exit-button (acceptBtn)="exitPlayer()"></s-exit-button>
+          </div>
+        </div>
+
       } @else {
         <!-- Header -->
         <div class="text-center mb-8">
