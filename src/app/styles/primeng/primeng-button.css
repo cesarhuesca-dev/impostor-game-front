@@ -62,6 +62,22 @@ p-button.home-btn-xl{
   }
 }
 
+p-button.btn-ban {
+
+  button {
+    @apply text-red-400  text-sm bg-transparent! border-0!  hover:text-red-300!;
+  }
+
+}
+
+p-button.btn-close-game {
+
+  button {
+    @apply w-full border-0! text-white! bg-red-600!  py-3! rounded-xl! font-semibold! transition! active:scale-95! hover:bg-red-500!;
+  }
+
+}
+
 
 div.btn-exit.p-dialog {
   @apply w-3/6 bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl shadow-2xl p-8;

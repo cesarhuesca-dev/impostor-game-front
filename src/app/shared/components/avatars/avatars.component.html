@@ -1,14 +1,19 @@
-<div class="flex flex-row gap-3">
-  @for (player of this.game!.players; track player.name) {
-    <div class="flex flex-col items-center justify-center">
 
-      @if (player.img && player.img.length > 0) {
-        <p-avatar [image]="player.img" size="xlarge" shape="circle" class="shadow-md/30"/>
-      }@else {
-        <p-avatar icon="pi pi-user" size="xlarge" shape="circle"/>
-      }
-      <span class="capitalize italic text-2xl font-bold text-border text-shadow-lg/40"
-        [ngClass]="{ 'text-red-800': player.impostor }">{{player.name}}</span>
-    </div>
-  }
-</div>
+@if(this.game()){
+  <div class="flex flex-row gap-3">
+    @for (player of this.game()!.players; track player.id) {
+      <div class="flex flex-col items-center justify-center">
+
+        @if (player.avatarImg) {
+          <p-avatar [image]="player.id| playerImage" size="xlarge" shape="circle" class="shadow-md/30"/>
+        }@else {
+          <p-avatar icon="pi pi-user" size="xlarge" shape="circle"/>
+        }
+        <span class="capitalize italic text-2xl font-bold text-border text-shadow-lg/40"
+          [ngClass]="{ 'text-red-800': player.impostor }">{{player.name}}</span>
+      </div>
+    }
+  </div>
+}
+
+

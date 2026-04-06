@@ -1,172 +1,200 @@
-<div class="min-h-screen bg-linear-to-br from-slate-950 via-slate-900 to-purple-950 p-6 text-white">
+@if (this.game()) {
+  <div class="min-h-screen bg-linear-to-br from-slate-950 via-slate-900 to-purple-950 p-6 text-white">
 
-  <!-- HEADER -->
-  <div class="max-w-7xl mx-auto mb-6 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+    <!-- HEADER -->
+    <div class="max-w-7xl mx-auto mb-6 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
 
-    <div>
-      <h1 class="text-3xl font-bold text-purple-400">
-        <span> 🎮 </span>
-        <span>{{'manager.panel' | translate}}</span>
-      </h1>
-      <p class="text-slate-400">{{'manager.name' | translate}}: Noche de Impostores</p>
+      <div>
+        <h1 class="text-3xl font-bold text-purple-400">
+          <span> 🎮 </span>
+          <span>{{'manager.panel' | translate}}</span>
+        </h1>
+        <p class="text-slate-400">{{'manager.name' | translate}}: Noche de Impostores</p>
+      </div>
+
+      <div class="flex gap-6 text-sm">
+
+        <div class="bg-slate-800 px-4 py-2 rounded-lg border border-slate-700">
+          <span>{{'manager.round' | translate}}: </span>
+          <span class="text-orange-300 font-semibold">{{this.game()!.round}}</span>
+        </div>
+
+        <div class="bg-slate-800 px-4 py-2 rounded-lg border border-slate-700">
+          <span>{{'manager.category' | translate}}: </span>
+          @if (this.game()!.word) {
+            <span class="text-blue-300 font-semibold">{{this.game()!.word.category}}</span>
+          }
+        </div>
+
+        <div class="bg-slate-800 px-4 py-2 rounded-lg border border-slate-700">
+          <span>{{'manager.word' | translate}}: </span>
+          @if (this.game()!.word) {
+            <span class="text-purple-300 font-semibold">{{this.game()!.word.word}}</span>
+          }
+        </div>
+
+      </div>
+
     </div>
 
-    <div class="flex gap-6 text-sm">
 
-      <div class="bg-slate-800 px-4 py-2 rounded-lg border border-slate-700">
-        <span>{{'manager.round' | translate}}: </span>
-         <span class="text-orange-300 font-semibold">{{this.game!.round}}</span>
-      </div>
+    <!-- GRID PRINCIPAL -->
+    <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-6">
 
-      <div class="bg-slate-800 px-4 py-2 rounded-lg border border-slate-700">
-        <span>{{'manager.category' | translate}}: </span>
-         <span class="text-blue-300 font-semibold">{{this.game!.word.category}}</span>
-      </div>
+      <!-- JUGADORES -->
+      <div class="bg-slate-900/70 backdrop-blur border border-slate-700 rounded-2xl p-6">
 
-      <div class="bg-slate-800 px-4 py-2 rounded-lg border border-slate-700">
-        <span>{{'manager.word' | translate}}: </span>
-        <span class="text-purple-300 font-semibold">{{this.game!.word.word}}</span>
-      </div>
+        <h2 class="text-xl font-semibold mb-4 text-purple-400">
+          <span> 👥 </span>
+          <span>{{'manager.players' | translate}}</span>
+        </h2>
 
-    </div>
+        <div class="space-y-3">
 
-  </div>
+          @for (player of this.game()!.players; track player.id) {
+            <div class="flex justify-between items-center bg-slate-800 p-3 rounded-lg">
+              <div class="flex items-center gap-3">
+                @if (player.avatarImg) {
+                  <p-avatar [image]="player.id | playerImage" size="normal" shape="circle" class="shadow-md/30"/>
+                }@else {
+                  <p-avatar icon="pi pi-user" size="normal" shape="circle" class="shadow-md/30"/>
+                }
+                <span class="capitalize">{{player.name}}</span>
+              </div>
 
-
-  <!-- GRID PRINCIPAL -->
-  <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-6">
-
-    <!-- JUGADORES -->
-    <div class="bg-slate-900/70 backdrop-blur border border-slate-700 rounded-2xl p-6">
-
-      <h2 class="text-xl font-semibold mb-4 text-purple-400">
-        <span> 👥 </span>
-        <span>{{'manager.players' | translate}}</span>
-      </h2>
-
-      <div class="space-y-3">
-
-        @for (item of this.game!.players; track item.id) {
-          <div class="flex justify-between items-center bg-slate-800 p-3 rounded-lg">
-            <div class="flex items-center gap-3">
-              @if (item.img && item.img.length > 0) {
-                <p-avatar [image]="item.img" size="normal" shape="circle" class="shadow-md/30"/>
-              }@else {
-                <p-avatar icon="pi pi-user" size="normal" shape="circle" class="shadow-md/30"/>
+              @if(!player.host){
+                <s-exit-button
+                  [title]="'common.ban'"
+                  [icon]="''"
+                  [styles]="'btn-ban'"
+                  [toastHeader]="'common.ban-player'"
+                  [toastMessage]="'common.ban-player-confirm'"
+                  [toastAcceptLabel]="'common.ban'"
+                  (acceptBtn)="this.banPlayer(player.id)">
+                </s-exit-button>
               }
-              <span class="capitalize">{{item.name}}</span>
             </div>
-            <button class="text-red-400 hover:text-red-300 text-sm"
-              (click)="this.banPlayer(item.id)">Expulsar</button>
-          </div>
-        }
+          }
+
+        </div>
+
+      </div>
+
+
+      <!-- AJUSTES EN LA RONDA -->
+      <div class="bg-slate-900/70 backdrop-blur border border-slate-700 rounded-2xl p-6">
+
+        <h2 class="text-xl font-semibold mb-4 text-purple-400">
+          <span> 🎮 </span>
+          <span>{{'manager.round' | translate}}</span>
+        </h2>
+
+        <div class="flex flex-col gap-4">
+
+
+          <button pButton class="border-0! text-white! bg-blue-600!  hover:bg-blue-500! py-3! rounded-xl! font-semibold! transition! active:scale-95!"
+            (click)="this.changeWord()">
+            <span> 🔃 </span>
+            <span>{{'manager.buttons.change-word' | translate}}</span>
+          </button>
+
+          <button pButton class="border-0! text-white! bg-blue-600!  hover:bg-blue-500! py-3! rounded-xl! font-semibold! transition! active:scale-95!"
+            (click)="this.changeCategory()">
+            <span> 🔃 </span>
+            <span>{{'manager.buttons.change-category' | translate}}</span>
+          </button>
+
+          <button pButton class="border-0! text-white! bg-blue-600!  hover:bg-blue-500! py-3! rounded-xl! font-semibold! transition! active:scale-95!"
+            [ngClass]="{ 'bg-blue-800! scale-95!' : this.game()!.showingWord}"
+            (click)="this.showWord()">
+            <span> 💡 </span>
+            <span>{{(this.game()!.showingWord) ? ('manager.buttons.hide-word' | translate) : ('manager.buttons.show-word' | translate)}}</span>
+          </button>
+
+          <button pButton class="border-0! text-white! bg-blue-600!  hover:bg-blue-500! py-3! rounded-xl! font-semibold! transition! active:scale-95!"
+            [ngClass]="{ 'bg-blue-800! scale-95!' : this.game()!.showingImpostor}"
+            (click)="this.showImpostor()">
+            <span> 🥷 </span>
+            <span>{{(this.game()!.showingImpostor) ? ('manager.buttons.hide-impostor' | translate) : ('manager.buttons.show-impostor' | translate)}}</span>
+          </button>
+
+
+        </div>
+
+      </div>
+
+
+      <!-- AJUSTES DE LA PARTIDA -->
+      <div class="bg-slate-900/70 backdrop-blur border border-slate-700 rounded-2xl p-6">
+
+        <h2 class="text-xl font-semibold mb-4 text-purple-400">
+          <span> 🎮 </span>
+          <span>{{'manager.game' | translate}}</span>
+        </h2>
+
+        <div class="flex flex-col gap-4">
+
+          <button pButton class="border-0! text-white! bg-blue-600! py-3! rounded-xl! font-semibold! transition!"
+            [ngClass]="{ 'active:scale-95! hover:bg-blue-500!' : this.game()!.gameStarted}"
+            [disabled]="!this.game()!.gameStarted"
+            (click)="this.nextRound()">
+            <span> 🔄 </span>
+            <span>{{'manager.buttons.next-round' | translate}}</span>
+          </button>
+
+          <button pButton class="border-0! text-white! bg-green-600! py-3! rounded-xl! font-semibold! transition!"
+            [ngClass]="{ 'active:scale-95! hover:bg-green-500!' : !this.game()!.gameStarted}"
+            [disabled]="this.game()!.gameStarted"
+            (click)="this.startGame()">
+            <span> ▶ </span>
+            <span>{{'manager.buttons.start-game' | translate}}</span>
+          </button>
+
+          <button pButton class="border-0! text-white! bg-red-600!  py-3! rounded-xl! font-semibold! transition!"
+            [ngClass]="{ 'active:scale-95! hover:bg-red-500!' : this.game()!.gameStarted}"
+            [disabled]="!this.game()!.gameStarted"
+            (click)="this.endGame()">
+            <span> ⏸️ </span>
+            <span>{{'manager.buttons.end-game' | translate}}</span>
+          </button>
+
+          <s-exit-button
+              [title]="'common.close-game'"
+              [icon]="'⛔'"
+              [styles]="'btn-close-game'"
+              [toastHeader]="'common.close-game'"
+              [toastMessage]="'common.close-game-confirm'"
+              [toastAcceptLabel]="'common.close-game'"
+              (acceptBtn)="this.closeGame()">
+            </s-exit-button>
+
+        </div>
 
       </div>
 
     </div>
 
 
-    <!-- AJUSTES EN LA RONDA -->
-    <div class="bg-slate-900/70 backdrop-blur border border-slate-700 rounded-2xl p-6">
+    <!-- LOG DE EVENTOS -->
+    <div class="max-w-7xl mx-auto mt-6 bg-slate-900/70 backdrop-blur border border-slate-700 rounded-2xl p-6">
 
       <h2 class="text-xl font-semibold mb-4 text-purple-400">
-        <span> 🎮 </span>
-        <span>{{'manager.round' | translate}}</span>
+        <span> 📝 </span>
+        <span>{{'manager.events' | translate}}</span>
       </h2>
 
-      <div class="flex flex-col gap-4">
+      <div class="space-y-2 text-sm text-slate-300 max-h-48 overflow-y-auto">
 
-
-        <button pButton class="border-0! text-white! bg-blue-600!  hover:bg-blue-500! py-3! rounded-xl! font-semibold! transition! active:scale-95!"
-          (click)="this.changeWord()">
-          <span> 🔃 </span>
-          <span>{{'manager.buttons.change-word' | translate}}</span>
-        </button>
-
-        <button pButton class="border-0! text-white! bg-blue-600!  hover:bg-blue-500! py-3! rounded-xl! font-semibold! transition! active:scale-95!"
-          (click)="this.changeCategory()">
-          <span> 🔃 </span>
-          <span>{{'manager.buttons.change-category' | translate}}</span>
-        </button>
-
-        <button pButton class="border-0! text-white! bg-blue-600!  hover:bg-blue-500! py-3! rounded-xl! font-semibold! transition! active:scale-95!"
-          [ngClass]="{ 'bg-blue-800! scale-95!' : this.game!.showingWord}"
-          (click)="this.showWord()">
-          <span> 💡 </span>
-          <span>{{(this.game!.showingWord) ? ('manager.buttons.hide-word' | translate) : ('manager.buttons.show-word' | translate)}}</span>
-        </button>
-
-        <button pButton class="border-0! text-white! bg-blue-600!  hover:bg-blue-500! py-3! rounded-xl! font-semibold! transition! active:scale-95!"
-          [ngClass]="{ 'bg-blue-800! scale-95!' : this.game!.showingImpostor}"
-          (click)="this.showImpostor()">
-          <span> 🥷 </span>
-          <span>{{(this.game!.showingImpostor) ? ('manager.buttons.hide-impostor' | translate) : ('manager.buttons.show-impostor' | translate)}}</span>
-        </button>
-
-
-      </div>
-
-    </div>
-
-
-    <!-- AJUSTES DE LA PARTIDA -->
-    <div class="bg-slate-900/70 backdrop-blur border border-slate-700 rounded-2xl p-6">
-
-      <h2 class="text-xl font-semibold mb-4 text-purple-400">
-        <span> 🎮 </span>
-        <span>{{'manager.game' | translate}}</span>
-      </h2>
-
-      <div class="flex flex-col gap-4">
-
-        <button pButton class="border-0! text-white! bg-blue-600! py-3! rounded-xl! font-semibold! transition!"
-          [ngClass]="{ 'active:scale-95! hover:bg-blue-500!' : this.game!.gameStarted}"
-          [disabled]="!this.game!.gameStarted"
-          (click)="this.nextRound()">
-          <span> 🔄 </span>
-          <span>{{'manager.buttons.next-round' | translate}}</span>
-        </button>
-
-        <button pButton class="border-0! text-white! bg-green-600! py-3! rounded-xl! font-semibold! transition!"
-          [ngClass]="{ 'active:scale-95! hover:bg-green-500!' : !this.game!.gameStarted}"
-          [disabled]="this.game!.gameStarted"
-          (click)="this.startGame()">
-          <span> ▶ </span>
-          <span>{{'manager.buttons.start-game' | translate}}</span>
-        </button>
-
-        <button pButton class="border-0! text-white! bg-red-600!  py-3! rounded-xl! font-semibold! transition!"
-          [ngClass]="{ 'active:scale-95! hover:bg-red-500!' : this.game!.gameStarted}"
-          [disabled]="!this.game!.gameStarted"
-          (click)="this.closeGame()">
-          <span> ⛔ </span>
-          <span>{{'manager.buttons.close-game' | translate}}</span>
-        </button>
+        <p>[10:03] Ana se unió</p>
+        <p>[10:04] Luis se unió</p>
+        <p>[10:05] Marta se unió</p>
+        <p>[10:06] Juan creó la partida</p>
 
       </div>
 
     </div>
 
   </div>
+}
 
 
-  <!-- LOG DE EVENTOS -->
-  <div class="max-w-7xl mx-auto mt-6 bg-slate-900/70 backdrop-blur border border-slate-700 rounded-2xl p-6">
-
-    <h2 class="text-xl font-semibold mb-4 text-purple-400">
-      <span> 📝 </span>
-      <span>{{'manager.events' | translate}}</span>
-    </h2>
-
-    <div class="space-y-2 text-sm text-slate-300 max-h-48 overflow-y-auto">
-
-      <p>[10:03] Ana se unió</p>
-      <p>[10:04] Luis se unió</p>
-      <p>[10:05] Marta se unió</p>
-      <p>[10:06] Juan creó la partida</p>
-
-    </div>
-
-  </div>
-
-</div>

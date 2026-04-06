@@ -1,6 +1,11 @@
-<p-button class="form-btn w-full btn-secondary btn-exit"
+<p-button [className]="this.styles()"
   (click)="confirmExit($event)">
-  <span> 🏃‍♂️ </span><span>{{'common.exit' | translate }}</span>
-  <p-toast />
-  <p-confirmdialog />
+  @if (this.icon().length > 0) {
+    <span>{{ this.icon() }}</span>
+  }
+  <span>{{ this.title() | translate }}</span>
+
 </p-button>
+
+<p-toast />
+<p-confirmdialog />

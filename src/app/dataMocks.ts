@@ -19,7 +19,6 @@ export const mockConfigGame: ConfigurationApp = {
 export const mockedPlayers: Player[] = [
   {
     name: 'Cesar',
-    img: 'https://primefaces.org/cdn/primeng/images/demo/avatar/amyelsner.png',
     impostor: true,
     id: '1',
     avatarImg: false,
@@ -46,7 +45,6 @@ export const mockedPlayers: Player[] = [
   },
   {
     name: 'Mario',
-    img: 'https://primefaces.org/cdn/primeng/images/demo/avatar/asiyajavayant.png',
     impostor: true,
     id: '2',
     avatarImg: false,
@@ -73,7 +71,6 @@ export const mockedPlayers: Player[] = [
   },
   {
     name: 'Fran',
-    img: '',
     impostor: false,
     id: '3',
     avatarImg: false,
@@ -100,7 +97,6 @@ export const mockedPlayers: Player[] = [
   },
   {
     name: 'Ibai',
-    img: 'https://www.gravatar.com/avatar/05dfd4b41340d09cae045235eb0893c3?d=mp',
     impostor: false,
     id: '4',
     avatarImg: false,
@@ -127,7 +123,6 @@ export const mockedPlayers: Player[] = [
   },
   {
     name: 'Xokas',
-    img: 'https://primefaces.org/cdn/primeng/images/demo/avatar/walter.jpg',
     impostor: false,
     id: '5',
     avatarImg: false,

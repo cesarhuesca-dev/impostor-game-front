@@ -119,7 +119,8 @@
       "game-settings" : "Configuración del juego",
       "ban-player" : "Eliminar jugador",
       "start-game" : "Iniciar partida",
-      "close-game" : "Terminar partida"
+      "end-game" : "Terminar partida",
+      "close-game" : "Cerrar sala"
     }
   },
   "about-me" : {
@@ -148,14 +149,24 @@
     "no-image" : "Sin imagen",
     "cancel" : "Cancelar",
     "continue": "Continuar",
+    "ban" : "Expulsar",
+    "ban-player" : "Expulsar jugador",
+    "banned" : "Has sido expulado",
     "exit": "Salir",
-    "exit-confirm" : "Estas seguro de que quieres salir"
+    "close-game" : "Cerrar sala",
+    "closed-game" : "El juego se ha terminado",
+    "exit-confirm" : "Estas seguro de que quieres salir",
+    "ban-player-confirm" : "Estas seguro de que quieres exuplsar al jugador",
+    "close-game-confirm" : "Estas seguro de que quieres cerrar la sala"
+
+
   },
   "success": {
     "create-game" : "Has creado la sala de juego",
     "login-game-verify" : "Sala encontrada",
     "login-game" : "Te has unido a la sala",
     "uploaded-image" : "Se ha creado correctamente la imagen",
+    "ban-player" : "Jugador expulsado",
     "exit": "Te has salido de la sala"
   },
   "error" : {

@@ -5,7 +5,6 @@ import { ChangeDetectionStrategy, Component, computed, effect, HostListener, inj
 import { TranslatePipe } from '@ngx-translate/core';
 import { AvatarModule } from 'primeng/avatar';
 import { Button } from "primeng/button";
-import { MessageService, ConfirmationService } from 'primeng/api';
 import { ExitButton } from "@/shared/components/exit-button/exit-button";
 import { LoaderService } from '@/services/loader.service';
 import { HandleResponseService } from '@/services/handle-response.service';
@@ -16,7 +15,7 @@ import { SocketResponse } from '@/interfaces/socket-response.interface';
 @Component({
   selector: 'app-game',
   imports: [AvatarModule, TranslatePipe, PlayerImagePipe, Button, ExitButton],
-  providers: [ConfirmationService, MessageService],
+  providers: [],
   templateUrl: './game.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
@@ -52,22 +51,11 @@ export default class GameComponent implements OnInit {
   ready: boolean = false;
 
   ngOnInit(): void {
-    this.startGameConfig();
-  }
-
-  startGameConfig(){
     this.startWsGameConnection();
   }
 
   startWsGameConnection(){
     this.gameSocketService.connect();
-    this.gameSocketService.listen(GameSocketTopic.PLAYER_MESSAGE)?.subscribe((msg) => this.handleGameMsg(msg))
-  }
-
-  handleGameMsg(msg: SocketResponse){
-    if(msg.topic === GameSocketTopic.UPDATE_GAME_STATUS && msg.success){
-      this.gameService.setGameData(msg.data[0])
-    }
   }
 
   startGame(){
@@ -75,7 +63,7 @@ export default class GameComponent implements OnInit {
     this.gameService.startGame().subscribe({
       next: (res: any) => this.handleResponseService.handleResposne(res),
       error: (error) => this.handleResponseService.handleError(error, 'error.warning')
-    })
+    });
   }
 
   exitPlayer(){

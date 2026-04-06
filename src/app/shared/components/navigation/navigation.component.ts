@@ -30,6 +30,9 @@ export class NavigationComponent implements OnInit {
   navigationItems = signal<NavigationPages[]>([]);
   classMenuIcon = signal<string>('');
 
+  isLogged = computed(() => this.playerService.isLogged)
+  isHost = computed(() => this.playerService.playerData?.host ? true : false )
+
   constructor(){
     effect(() => {
       this.setNavigationData();
@@ -42,10 +45,25 @@ export class NavigationComponent implements OnInit {
   }
 
   setNavigationData(){
-    const alwaysItems = this.URLS.filter(x => x.login === undefined);
-    const items: NavigationPages[] = this.URLS.filter(x => x.login !== undefined && x.login === this.playerService.isLogged);
-    // const items: NavigationPages[] = this.URLS;
-    this.navigationItems.update(() => [...items, ...alwaysItems]);
+
+    const filteredNav = this.URLS.filter(item => {
+
+      // Items que siempre aparece
+      if(item.login === undefined && item.needHost === undefined) return true;
+
+      // Si no requiere loguien y lo esta  → fuera
+      if (!item.login && this.isLogged()) return false;
+
+      // Si requiere login y no esta logueado → fuera
+      if (item.login && !this.isLogged()) return false;
+
+      // Si requiere host y no lo es → fuera
+      if (item.needHost && !this.isHost()) return false;
+
+      return true;
+    });
+
+    this.navigationItems.update(() => [...filteredNav]);
   }
 
   setUrlListerner(){

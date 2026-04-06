@@ -95,25 +95,19 @@ export class GameService {
       .pipe(delay(1000))
   }
 
-  closeGame(){
-    //TODO AQUI HABRA QUE CONECTARLO CON BACK
-    // this.game.update(game => ({
-    //   ...game,
-    //   isGameStarted: false
-    // }));
+  endGame(){
+    return this.httpClient.post<HttpResponse<any>>(`${environment.URL_API}${this.apiGameTopic}/end`, {})
+      .pipe(delay(1000))
+  }
 
-    console.log('Cerrando juego');
+  closeGame(idGame: string){
+    return this.httpClient.delete<HttpResponse<any>>(`${environment.URL_API}${this.apiGameTopic}/${idGame}`, {})
+      .pipe(delay(1000))
   }
 
   nextRound(){
-    //TODO AQUI HABRA QUE CONECTARLO CON BACK
-
-    // this.gameData.update(game => ({
-    //   ...game,
-    //   round : game.round + 1
-    // }));
-
-    // console.log('Siguiente ronda', this.gameData().round);
+    return this.httpClient.post<HttpResponse<any>>(`${environment.URL_API}${this.apiGameTopic}/round`, {})
+      .pipe(delay(1000))
   }
   //#endregion
 

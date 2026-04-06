@@ -6,12 +6,14 @@ import { PlayerService } from './player.service';
 import { GameSocketTopic } from '@/enums/game-topics.enum';
 import { SocketResponse } from '@/interfaces/socket-response.interface';
 import { LoaderService } from './loader.service';
+import { GameService } from './game.service';
 
 @Injectable({providedIn: 'root'})
 export class GameSocketService {
 
   private readonly playerService = inject(PlayerService);
   private readonly loadingService = inject(LoaderService);
+  private readonly gameService = inject(GameService);
 
   private socket: Socket | null = null;
   private socketNamespace: string = '/game';
@@ -28,6 +30,7 @@ export class GameSocketService {
 
     this.socket = manager.socket(this.socketNamespace);
     this.socket.on('connect', () => this.loadingService.finishLoading());
+    this.listen(GameSocketTopic.PLAYER_MESSAGE)?.subscribe((msg) => this.handleGameMsg(msg));
   }
 
   disconnect(){
@@ -59,6 +62,30 @@ export class GameSocketService {
     }
 
     this.socket.emit(eventName, data);
+  }
+
+  handleGameMsg(msg: SocketResponse){
+
+
+    if(!msg.success){
+      return;
+    }
+
+    switch (msg.topic) {
+      case GameSocketTopic.UPDATE_GAME_STATUS:
+        this.gameService.setGameData(msg.data[0]);
+        break;
+      case GameSocketTopic.PLAYER_ELIMINATED:
+        this.playerService.checkBanPlayer(msg.data[0]);
+        break;
+      case GameSocketTopic.CLOSE_GAME:
+        this.playerService.closeGame();
+        break;
+
+      default:
+        break;
+    }
+
   }
 
 }

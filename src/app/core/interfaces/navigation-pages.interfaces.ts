@@ -6,4 +6,5 @@ export interface NavigationPages extends MenuItem {
   name: string;
   permission : UserRole[];
   login?: boolean; //true -> necesita estar logueado, false -> no necesita estar logueado, (undefined) -> siempre esta
+  needHost?: boolean; //true -> necesita ser host, false -> no necesita ser host
 }

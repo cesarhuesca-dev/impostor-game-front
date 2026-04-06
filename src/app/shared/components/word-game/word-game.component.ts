@@ -10,10 +10,8 @@ import { TranslatePipe } from '@ngx-translate/core';
 })
 export class WordGameComponent {
 
-  private gameService = inject(GameService)
-
-  game = computed( () => this.gameService.gameData);
-
+  private gameService = inject(GameService);
+  game = computed(() => this.gameService.gameData);
 
 }
 

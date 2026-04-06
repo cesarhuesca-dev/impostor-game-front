@@ -3,37 +3,43 @@
     "label": "pages.home",
     "icon": "pi pi-home",
     "routerLink": "/home",
-    "login" : false
+    "login" : false,
+    "needHost": false
   },
   {
     "label": "pages.create",
     "icon": "pi pi-plus-circle",
     "routerLink": "/create",
-    "login" : false
+    "login" : false,
+    "needHost": false
   },
   {
     "label": "pages.join",
     "icon": "pi pi-sign-in",
     "routerLink": "/join",
-    "login" : false
+    "login" : false,
+    "needHost": false
   },
   {
     "label": "pages.game",
     "icon": "pi pi-play-circle",
     "routerLink": "/game",
-    "login" : true
+    "login" : true,
+    "needHost": false
   },
   {
     "label": "pages.overlay",
     "icon": "pi pi-video",
     "routerLink": "/overlay",
-    "login" : true
+    "login" : true,
+    "needHost": true
   },
   {
     "label": "pages.manager",
     "icon": "pi pi-desktop",
     "routerLink": "/manager",
-    "login" : true
+    "login" : true,
+    "needHost": true
   },
   {
     "label": "pages.settings",

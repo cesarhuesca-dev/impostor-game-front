@@ -29,11 +29,10 @@ export interface Player {
   name: string;
   avatarImg: boolean;
   host: boolean;
+  impostor:boolean;
+
 
   game: Game
-
-  impostor:boolean; //FALTA BACK
-  img: string; //MAPEAR EN BACK O TRASNFORMAR EN FRONT
 }
 
 export interface WordGame {
