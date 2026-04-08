@@ -5,16 +5,17 @@ import { ChangeDetectionStrategy, Component, computed, effect, HostListener, inj
 import { TranslatePipe } from '@ngx-translate/core';
 import { AvatarModule } from 'primeng/avatar';
 import { Button } from "primeng/button";
-import { ExitButton } from "@/shared/components/exit-button/exit-button";
+import { ConfirmButton } from "@/shared/components/exit-button/confirm-button";
 import { LoaderService } from '@/services/loader.service';
 import { HandleResponseService } from '@/services/handle-response.service';
 import { GameSocketService } from '@/services/game-socket.service';
 import { GameSocketTopic } from '@/enums/game-topics.enum';
 import { SocketResponse } from '@/interfaces/socket-response.interface';
+import { NgClass } from '@angular/common';
 
 @Component({
   selector: 'app-game',
-  imports: [AvatarModule, TranslatePipe, PlayerImagePipe, Button, ExitButton],
+  imports: [AvatarModule, TranslatePipe, PlayerImagePipe, Button, ConfirmButton, NgClass],
   providers: [],
   templateUrl: './game.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -44,7 +45,13 @@ export default class GameComponent implements OnInit {
 
 
   player = computed(() => this.playerService.playerData)
-  game = computed(() => this.gameService.gameData);
+
+  game = computed(() => {
+    this.ready = false;
+    this.showWord = false;
+    return this.gameService.gameData;
+  });
+  gamePlayer = computed(() => this.gameService.gameData?.players?.find(x => x.id === this.player()?.id));
 
 
   showWord: boolean = false;
@@ -61,6 +68,18 @@ export default class GameComponent implements OnInit {
   startGame(){
     this.loaderService.addLoading();
     this.gameService.startGame().subscribe({
+      next: (res) => {
+        if(this.handleResponseService.handleResposne(res) &&  res.data && res.data[0]!.gameStarted && res.data![0].round === 0){
+          this.nextRound();
+        }
+      },
+      error: (error) => this.handleResponseService.handleError(error, 'error.warning')
+    });
+  }
+
+  nextRound() {
+    this.loaderService.addLoading();
+    this.gameService.nextRound().subscribe({
       next: (res: any) => this.handleResponseService.handleResposne(res),
       error: (error) => this.handleResponseService.handleError(error, 'error.warning')
     });

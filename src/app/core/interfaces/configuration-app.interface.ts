@@ -3,7 +3,6 @@ import { UserRole } from "src/app/core/enums/user-roles.enum";
 
 export interface ConfigurationApp {
 
-  user: User;
   globalSettings : GlobalSettings, // => ESTA ES LA VARIABLE QUE SE GUARDA EN LAS COOKIES
   gameConfiguration : GameConfiguration
 
@@ -19,7 +18,6 @@ export interface GlobalSettings {
 
 export interface GameConfiguration {
   boxPlayersPosition: BoxPlayerPosition
-  players : number;
 }
 
 export enum BoxPlayerPosition {

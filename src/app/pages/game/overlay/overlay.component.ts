@@ -18,6 +18,6 @@ export default class OverlayComponent {
 
   private gameService = inject(GameService);
 
-  configuration = computed(() => this.gameService.configuration())
+  configuration = computed(() => this.gameService.configurationData())
 
 }

@@ -1,16 +1,18 @@
 
 
-@if (this.game() && this.game()?.word) {
+@if (this.game()) {
   <div class="flex flex-col gap-2 text-shadow-lg/50 text-2xl italic font-bold text-white">
-    @if (this.game()!.word.category && this.game()!.word!.category!.length > 0 ) {
-      <div>
-        <span>{{ 'game.category' | translate }}: </span>
-        <span>{{this.game()!.word.category}}</span>
-      </div>
-    }
+    <div>
+      <span>{{ 'game.category' | translate }}: </span>
+      @if (this.game()!.category) {
+        <span>{{this.game()!.category}}</span>
+      }
+    </div>
     <div>
       <span>{{ 'game.word' | translate }}: </span>
-      <span>{{this.game()!.word.word}}</span>
+      @if (this.game()!.word) {
+        <span>{{this.game()!.word}}</span>
+      }
     </div>
   </div>
 }

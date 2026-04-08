@@ -12,16 +12,10 @@ export interface Game {
   multipleImpostors: boolean;
   overlay: boolean;
   gameStarted: boolean;
-  showingImpostor: boolean;
-  showingWord: boolean;
   roomPlayersJoined: number;
   round: number;
-
+  word: string | null
   players?: Player[];
-
-  //Propiedades que faltan por mapear o quitar
-  word: WordGame;
-
 }
 
 export interface Player {
@@ -34,9 +28,3 @@ export interface Player {
 
   game: Game
 }
-
-export interface WordGame {
-  category?:string;
-  word: string;
-}
-

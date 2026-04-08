@@ -73,7 +73,12 @@ export class GameSocketService {
 
     switch (msg.topic) {
       case GameSocketTopic.UPDATE_GAME_STATUS:
+        console.log('GAME ACTUALIZADO', msg.data[0])
         this.gameService.setGameData(msg.data[0]);
+        break;
+      case GameSocketTopic.UPDATE_PLAYER_STATUS:
+        console.log('PLAYER ACTUALIZADO', msg.data[0])
+        this.playerService.setPlayerData(msg.data[0]);
         break;
       case GameSocketTopic.PLAYER_ELIMINATED:
         this.playerService.checkBanPlayer(msg.data[0]);

@@ -6,13 +6,13 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { Toast } from 'primeng/toast';
 
 @Component({
-  selector: 's-exit-button',
+  selector: 's-confirm-button',
   imports: [Button, Toast, ConfirmDialogModule, TranslateModule],
   providers: [ConfirmationService, MessageService],
-  templateUrl: './exit-button.html',
+  templateUrl: './confirm-button.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ExitButton {
+export class ConfirmButton {
 
   private readonly confirmationService = inject(ConfirmationService);
   private readonly messageService = inject(MessageService);

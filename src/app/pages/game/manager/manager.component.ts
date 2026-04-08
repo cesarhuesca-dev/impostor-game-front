@@ -2,18 +2,17 @@ import { ChangeDetectionStrategy, Component, computed, inject, OnInit } from '@a
 import { ButtonModule } from 'primeng/button';
 import { TranslatePipe } from '@ngx-translate/core';
 import { GameService } from '@/services/game.service';
-import { WordGame } from 'src/app/core/interfaces/game.interface';
 import { AvatarModule } from 'primeng/avatar';
 import { NgClass } from '@angular/common';
 import { PlayerImagePipe } from '@/shared/pipes/player-image.pipe';
 import { PlayerService } from '@/services/player.service';
 import { LoaderService } from '@/services/loader.service';
 import { HandleResponseService } from '@/services/handle-response.service';
-import { ExitButton } from "@/shared/components/exit-button/exit-button";
+import { ConfirmButton } from "@/shared/components/exit-button/confirm-button";
 
 @Component({
   selector: 'app-manager',
-  imports: [ButtonModule, TranslatePipe, AvatarModule, NgClass, PlayerImagePipe, ExitButton],
+  imports: [ButtonModule, TranslatePipe, AvatarModule, NgClass, PlayerImagePipe, ConfirmButton],
   templateUrl: './manager.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
@@ -51,7 +50,11 @@ export default class ManagerComponent implements OnInit {
   startGame() {
     this.loaderService.addLoading();
     this.gameService.startGame().subscribe({
-      next: (res: any) => this.handleResponseService.handleResposne(res),
+      next: (res: any) => {
+        if(this.handleResponseService.handleResposne(res) &&  res.data && res.data[0]!.gameStarted && res.data![0].round === 0){
+          this.nextRound();
+        }
+      },
       error: (error) => this.handleResponseService.handleError(error, 'error.warning')
     });
   }
@@ -86,30 +89,22 @@ export default class ManagerComponent implements OnInit {
   //#region CONTROLES DE RONDA
 
   changeWord() {
-    const newWord : WordGame = {
-      word: 'Pruebas',
-      category: ''
-    }
-
-    this.gameService.changeWordGame(newWord);
+    this.loaderService.addLoading();
+    this.gameService.changeWordGame().subscribe({
+      next: (res: any) => this.handleResponseService.handleResposne(res),
+      error: (error) => this.handleResponseService.handleError(error, 'error.warning')
+    });
   }
 
   changeCategory() {
-    const newCategory : WordGame = {
+    const newCategory = {
       word: '',
       category: 'Pruebas'
     }
 
-    this.gameService.changeWordGame(newCategory);
+    // this.gameService.changeWordGame(newCategory);
   }
 
-  showWord() {
-    this.gameService.toggleShowWord();
-  }
-
-  showImpostor() {
-    this.gameService.toggleShowImpostor();
-  }
 
   //#endregion
 

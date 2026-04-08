@@ -62,20 +62,22 @@ p-button.home-btn-xl{
   }
 }
 
-p-button.btn-ban {
+p-button.btn {
+  button {
+    @apply w-full border-0! text-white! bg-purple-600!  py-3! rounded-xl! font-semibold! transition! active:scale-95! hover:hover:bg-purple-500!;
+  }
+}
 
+p-button.btn-ban {
   button {
     @apply text-red-400  text-sm bg-transparent! border-0!  hover:text-red-300!;
   }
-
 }
 
 p-button.btn-close-game {
-
   button {
     @apply w-full border-0! text-white! bg-red-600!  py-3! rounded-xl! font-semibold! transition! active:scale-95! hover:bg-red-500!;
   }
-
 }
 
 

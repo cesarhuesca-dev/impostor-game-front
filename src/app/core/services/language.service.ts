@@ -19,14 +19,14 @@ export class LanguageService {
   private defaultLanguage: SupportedLanguages = SupportedLanguages.ES;
   private supportedLangugaes = SupportedLanguages;
 
-  globalSettings = computed(() => this.gameService.configuration().globalSettings);
+  globalSettings = computed(() =>  this.gameService.configurationData().globalSettings );
 
   get supportedLanguages() {
     return this.supportedLangugaes;
   }
 
   get currentLanguage(): SupportedLanguages{
-    return this.globalSettings().language;
+    return this.gameService.configurationData().globalSettings.language;
   }
 
   loadLanguage(){
@@ -39,12 +39,14 @@ export class LanguageService {
 
   setLanguage( lng : SupportedLanguages ){
 
-    let config = {...this.gameService.configuration()};
+    let config = {...this.gameService.configurationData()};
+
+    if(!config) return;
 
     config.globalSettings.language = lng;
 
     this.gameService.setNewconfigurationApp(config)
-    this.cookieService.set('settings', JSON.stringify(this.globalSettings()));
+    this.cookieService.set('settings', JSON.stringify(this.gameService.configurationData().globalSettings));
 
     this.translateService.setFallbackLang(lng);
     this.translateService.use(lng);

@@ -157,8 +157,8 @@
     "closed-game" : "El juego se ha terminado",
     "exit-confirm" : "Estas seguro de que quieres salir",
     "ban-player-confirm" : "Estas seguro de que quieres exuplsar al jugador",
-    "close-game-confirm" : "Estas seguro de que quieres cerrar la sala"
-
+    "close-game-confirm" : "Estas seguro de que quieres cerrar la sala",
+    "round-confirm" : "Estas seguro de que quieres una nueva ronda"
 
   },
   "success": {

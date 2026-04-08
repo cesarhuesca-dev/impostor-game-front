@@ -1,6 +1,6 @@
 import { inject, Injectable, Signal, signal } from '@angular/core';
-import { ConfigurationApp } from 'src/app/core/interfaces/configuration-app.interface';
-import { Game, Player, WordGame } from 'src/app/core/interfaces/game.interface';
+import { BoxPlayerPosition, ConfigurationApp } from 'src/app/core/interfaces/configuration-app.interface';
+import { Game, Player } from 'src/app/core/interfaces/game.interface';
 import { CreateGameInterface, LoginGameInterface } from 'src/app/core/interfaces/forms/game.interface';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '@/assets/environments/environment.development';
@@ -8,7 +8,7 @@ import { HttpResponse } from 'src/app/core/interfaces/http-response.interfaces';
 import { delay } from 'rxjs';
 import { LoaderService } from './loader.service';
 import { HandleResponseService } from './handle-response.service';
-import { mockConfigGame } from 'src/app/dataMocks';
+import { SupportedLanguages } from '@/enums/languages.enum';
 
 
 @Injectable({
@@ -22,21 +22,25 @@ export class GameService {
   private readonly loaderService = inject(LoaderService);
   private readonly handleResponseService = inject(HandleResponseService);
 
+  private readonly defaultConfiguration: ConfigurationApp = {
+    gameConfiguration : { boxPlayersPosition: BoxPlayerPosition.BOTTOM_RIGHT},
+    globalSettings: {language: SupportedLanguages.ES}
+  }
+
 
   //!TODO QUITAR LOS DATA MOCKS
-  private configurationGame = signal<ConfigurationApp>(mockConfigGame);
+  private configurationGame = signal<ConfigurationApp>(this.defaultConfiguration);
   private game = signal<Game | null >(null);
 
   get gameData() {
     return this.game();
   }
 
-  get configuration() : Signal<ConfigurationApp> {
+  get configurationData() {
     return this.configurationGame;
   }
 
   setNewconfigurationApp(configuration : ConfigurationApp){
-
     this.configurationGame.update(oldConfig => ({
       ...oldConfig,
       ...configuration
@@ -113,43 +117,11 @@ export class GameService {
 
   //#region Controles de ronda
 
-  changeWordGame(newWord : WordGame){
-    //TODO AQUI HABRA QUE CONECTARLO CON BACK
-    // this.game.update(game => ({
-    //   ...game,
-    //   word: newWord
-    // }));
-
-    console.log('Cambiando palabra/categoria', this.game()!.word)
+  changeWordGame(){
+    return this.httpClient.post<HttpResponse<any>>(`${environment.URL_API}${this.apiGameTopic}/word`, {})
+      .pipe(delay(1000))
   }
 
-  toggleShowWord(){
-    //TODO AQUI HABRA QUE CONECTARLO CON BACK
-    // this.gameData.update(game => ({
-    //   ...game,
-    //   isShowingWord: !game.isShowingWord
-    // }));
-
-    // if(this.gameData().isShowingWord){
-    //   console.log('Mostrando la palabra', this.gameData().isShowingWord)
-    // }else{
-    //   console.log('Ocultando la palabra',this.gameData().isShowingWord)
-    // }
-  }
-
-  toggleShowImpostor(){
-    //TODO AQUI HABRA QUE CONECTARLO CON BACK
-    // this.gameData.update(game => ({
-    //   ...game,
-    //   isShowingImpostor: !game.isShowingImpostor
-    // }));
-
-    // if(this.gameData().isShowingImpostor){
-    //   console.log('Mostrando al impostor', this.gameData().isShowingImpostor)
-    // }else{
-    //   console.log('Ocultando al impostor',this.gameData().isShowingImpostor)
-    // }
-  }
 
   //#endregion
 

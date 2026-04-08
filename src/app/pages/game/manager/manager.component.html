@@ -21,15 +21,15 @@
 
         <div class="bg-slate-800 px-4 py-2 rounded-lg border border-slate-700">
           <span>{{'manager.category' | translate}}: </span>
-          @if (this.game()!.word) {
-            <span class="text-blue-300 font-semibold">{{this.game()!.word.category}}</span>
+          @if (this.game()!.category) {
+            <span class="text-blue-300 font-semibold">{{this.game()!.category}}</span>
           }
         </div>
 
         <div class="bg-slate-800 px-4 py-2 rounded-lg border border-slate-700">
           <span>{{'manager.word' | translate}}: </span>
           @if (this.game()!.word) {
-            <span class="text-purple-300 font-semibold">{{this.game()!.word.word}}</span>
+            <span class="text-purple-300 font-semibold">{{this.game()!.word}}</span>
           }
         </div>
 
@@ -63,7 +63,7 @@
               </div>
 
               @if(!player.host){
-                <s-exit-button
+                <s-confirm-button
                   [title]="'common.ban'"
                   [icon]="''"
                   [styles]="'btn-ban'"
@@ -71,7 +71,7 @@
                   [toastMessage]="'common.ban-player-confirm'"
                   [toastAcceptLabel]="'common.ban'"
                   (acceptBtn)="this.banPlayer(player.id)">
-                </s-exit-button>
+                </s-confirm-button>
               }
             </div>
           }
@@ -91,6 +91,13 @@
 
         <div class="flex flex-col gap-4">
 
+          <button pButton class="border-0! text-white! bg-blue-600! py-3! rounded-xl! font-semibold! transition!"
+            [ngClass]="{ 'active:scale-95! hover:bg-blue-500!' : this.game()!.gameStarted}"
+            [disabled]="!this.game()!.gameStarted"
+            (click)="this.nextRound()">
+            <span> 🔄 </span>
+            <span>{{'manager.buttons.next-round' | translate}}</span>
+          </button>
 
           <button pButton class="border-0! text-white! bg-blue-600!  hover:bg-blue-500! py-3! rounded-xl! font-semibold! transition! active:scale-95!"
             (click)="this.changeWord()">
@@ -102,20 +109,6 @@
             (click)="this.changeCategory()">
             <span> 🔃 </span>
             <span>{{'manager.buttons.change-category' | translate}}</span>
-          </button>
-
-          <button pButton class="border-0! text-white! bg-blue-600!  hover:bg-blue-500! py-3! rounded-xl! font-semibold! transition! active:scale-95!"
-            [ngClass]="{ 'bg-blue-800! scale-95!' : this.game()!.showingWord}"
-            (click)="this.showWord()">
-            <span> 💡 </span>
-            <span>{{(this.game()!.showingWord) ? ('manager.buttons.hide-word' | translate) : ('manager.buttons.show-word' | translate)}}</span>
-          </button>
-
-          <button pButton class="border-0! text-white! bg-blue-600!  hover:bg-blue-500! py-3! rounded-xl! font-semibold! transition! active:scale-95!"
-            [ngClass]="{ 'bg-blue-800! scale-95!' : this.game()!.showingImpostor}"
-            (click)="this.showImpostor()">
-            <span> 🥷 </span>
-            <span>{{(this.game()!.showingImpostor) ? ('manager.buttons.hide-impostor' | translate) : ('manager.buttons.show-impostor' | translate)}}</span>
           </button>
 
 
@@ -134,14 +127,6 @@
 
         <div class="flex flex-col gap-4">
 
-          <button pButton class="border-0! text-white! bg-blue-600! py-3! rounded-xl! font-semibold! transition!"
-            [ngClass]="{ 'active:scale-95! hover:bg-blue-500!' : this.game()!.gameStarted}"
-            [disabled]="!this.game()!.gameStarted"
-            (click)="this.nextRound()">
-            <span> 🔄 </span>
-            <span>{{'manager.buttons.next-round' | translate}}</span>
-          </button>
-
           <button pButton class="border-0! text-white! bg-green-600! py-3! rounded-xl! font-semibold! transition!"
             [ngClass]="{ 'active:scale-95! hover:bg-green-500!' : !this.game()!.gameStarted}"
             [disabled]="this.game()!.gameStarted"
@@ -158,7 +143,7 @@
             <span>{{'manager.buttons.end-game' | translate}}</span>
           </button>
 
-          <s-exit-button
+          <s-confirm-button
               [title]="'common.close-game'"
               [icon]="'⛔'"
               [styles]="'btn-close-game'"
@@ -166,7 +151,7 @@
               [toastMessage]="'common.close-game-confirm'"
               [toastAcceptLabel]="'common.close-game'"
               (acceptBtn)="this.closeGame()">
-            </s-exit-button>
+            </s-confirm-button>
 
         </div>
 
