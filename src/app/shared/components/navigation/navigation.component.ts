@@ -30,8 +30,9 @@ export class NavigationComponent implements OnInit {
   navigationItems = signal<NavigationPages[]>([]);
   classMenuIcon = signal<string>('');
 
-  isLogged = computed(() => this.playerService.isLogged)
-  isHost = computed(() => this.playerService.playerData?.host ? true : false )
+  isLogged = computed(() => this.playerService.isLogged);
+  isHost = computed(() => this.playerService.playerData?.host ? true : false);
+  overlay = computed(() => this.playerService.playerData?.game.overlay ? true : false);
 
   constructor(){
     effect(() => {
@@ -59,6 +60,12 @@ export class NavigationComponent implements OnInit {
 
       // Si requiere host y no lo es → fuera
       if (item.needHost && !this.isHost()) return false;
+
+      // Si requiere host y no lo es → fuera
+      if (item.needHost && !this.isHost()) return false;
+
+      // Si es el overlay y no lo quiere → fuera
+      if(item.overlay && !this.overlay()) return false;
 
       return true;
     });

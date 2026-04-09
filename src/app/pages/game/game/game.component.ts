@@ -1,7 +1,7 @@
 import { GameService } from '@/services/game.service';
 import { PlayerService } from '@/services/player.service';
 import { PlayerImagePipe } from '@/shared/pipes/player-image.pipe';
-import { ChangeDetectionStrategy, Component, computed, effect, HostListener, inject, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, HostListener, inject, OnInit } from '@angular/core';
 import { TranslatePipe } from '@ngx-translate/core';
 import { AvatarModule } from 'primeng/avatar';
 import { Button } from "primeng/button";
@@ -9,13 +9,10 @@ import { ConfirmButton } from "@/shared/components/exit-button/confirm-button";
 import { LoaderService } from '@/services/loader.service';
 import { HandleResponseService } from '@/services/handle-response.service';
 import { GameSocketService } from '@/services/game-socket.service';
-import { GameSocketTopic } from '@/enums/game-topics.enum';
-import { SocketResponse } from '@/interfaces/socket-response.interface';
-import { NgClass } from '@angular/common';
 
 @Component({
   selector: 'app-game',
-  imports: [AvatarModule, TranslatePipe, PlayerImagePipe, Button, ConfirmButton, NgClass],
+  imports: [AvatarModule, TranslatePipe, PlayerImagePipe, Button, ConfirmButton],
   providers: [],
   templateUrl: './game.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,

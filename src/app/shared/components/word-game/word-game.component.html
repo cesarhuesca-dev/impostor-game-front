@@ -2,17 +2,20 @@
 
 @if (this.game()) {
   <div class="flex flex-col gap-2 text-shadow-lg/50 text-2xl italic font-bold text-white">
-    <div>
-      <span>{{ 'game.category' | translate }}: </span>
-      @if (this.game()!.category) {
-        <span>{{this.game()!.category}}</span>
-      }
-    </div>
-    <div>
-      <span>{{ 'game.word' | translate }}: </span>
-      @if (this.game()!.word) {
-        <span>{{this.game()!.word}}</span>
-      }
+    <div [ngClass]="{'opacity-0' : !this.game()!.gameStarted}">
+
+        <div>
+          <span>{{ 'game.category' | translate }}: </span>
+          @if (this.titleCategoryGame() && this.titleWordGame()) {
+            <span>{{this.titleCategoryGame()}}</span>
+          }
+        </div>
+        <div>
+          <span>{{ 'game.word' | translate }}: </span>
+          @if (this.titleCategoryGame() && this.titleWordGame()) {
+            <span>{{this.titleWordGame()}}</span>
+          }
+        </div>
     </div>
   </div>
 }

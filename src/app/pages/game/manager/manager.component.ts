@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, computed, inject, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, inject, OnInit, signal } from '@angular/core';
 import { ButtonModule } from 'primeng/button';
 import { TranslatePipe } from '@ngx-translate/core';
 import { GameService } from '@/services/game.service';
@@ -9,10 +9,14 @@ import { PlayerService } from '@/services/player.service';
 import { LoaderService } from '@/services/loader.service';
 import { HandleResponseService } from '@/services/handle-response.service';
 import { ConfirmButton } from "@/shared/components/exit-button/confirm-button";
+import { ItemListInterface } from '@/interfaces/list.interface';
+import { AuxiliarService } from '@/services/auxiliar.service';
+import { Dialog } from "primeng/dialog";
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-manager',
-  imports: [ButtonModule, TranslatePipe, AvatarModule, NgClass, PlayerImagePipe, ConfirmButton],
+  imports: [ButtonModule, TranslatePipe, AvatarModule, NgClass, PlayerImagePipe, ConfirmButton, Dialog, FormsModule],
   templateUrl: './manager.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
@@ -20,17 +24,35 @@ export default class ManagerComponent implements OnInit {
 
   private readonly gameService = inject(GameService);
   private readonly playerService = inject(PlayerService);
+  private readonly auxiliarService = inject(AuxiliarService);
   private readonly loaderService = inject(LoaderService);
   private readonly handleResponseService = inject(HandleResponseService);
 
   game = computed(() => this.gameService.gameData);
   player = computed(() => this.playerService.playerData!);
+  gameCategories = signal<ItemListInterface[]>([]);
+  titleCategoryGame = computed<string>(() => this.gameCategories().find(x => x.value === this.game()?.category)?.label ?? '');
 
+  customWord = signal<string>('');
+  visibleChangeWord: boolean = false
+  customWordRound: boolean = false
+
+  category = signal<string>('');
+  visible: boolean = false;
 
   ngOnInit(): void {
+    this.setGameCategories()
 
     console.log('this.game', this.game())
 
+  }
+
+  setGameCategories(){
+    this.loaderService.addLoading();
+    this.auxiliarService.getCategories().subscribe(categories => {
+      this.gameCategories.update(() => categories)
+      this.loaderService.finishLoading();
+    });
   }
 
   //#region CONTROLES CON JUGADORES
@@ -75,9 +97,20 @@ export default class ManagerComponent implements OnInit {
     });
   }
 
-  nextRound() {
+  clickNextRound() {
+    if(this.game()?.customWords){
+      this.customWord.update(() => '');
+      this.customWordRound = true;
+      this.visibleChangeWord = true;
+    }else{
+      this.nextRound(null);
+    }
+  }
+
+  nextRound(word: string | null = null){
+    this.visibleChangeWord = false;
     this.loaderService.addLoading();
-    this.gameService.nextRound().subscribe({
+    this.gameService.nextRound(word).subscribe({
       next: (res: any) => this.handleResponseService.handleResposne(res),
       error: (error) => this.handleResponseService.handleError(error, 'error.warning')
     });
@@ -88,21 +121,47 @@ export default class ManagerComponent implements OnInit {
 
   //#region CONTROLES DE RONDA
 
-  changeWord() {
+  clickChangeWord() {
+    if(this.game()?.customWords){
+      this.customWord.update(() => '');
+      this.customWordRound = false
+      this.visibleChangeWord = true;
+    }else{
+      this.changeWord(null);
+    }
+  }
+
+  changeWord(word: string | null = null){
+    this.visibleChangeWord = false;
     this.loaderService.addLoading();
-    this.gameService.changeWordGame().subscribe({
+    this.gameService.changeWordGame(word).subscribe({
       next: (res: any) => this.handleResponseService.handleResposne(res),
       error: (error) => this.handleResponseService.handleError(error, 'error.warning')
     });
   }
 
-  changeCategory() {
-    const newCategory = {
-      word: '',
-      category: 'Pruebas'
-    }
+  openChangeCategory() {
 
-    // this.gameService.changeWordGame(newCategory);
+    this.category.update(() => {
+      const category = this.gameCategories().find((x) => x.value === this.game()?.category);
+      return (category) ? category.value : '';
+    });
+
+    this.visible = true;
+  }
+
+  clickCategory(event: Event){
+    const target = event?.target as HTMLSelectElement
+    this.category.update(() => target.value ?? '')
+  }
+
+  changeCategory() {
+    this.visible = false;
+    this.loaderService.addLoading();
+    this.gameService.changeCategoryGame(this.game()!.id, this.category()).subscribe({
+      next: (res: any) => this.handleResponseService.handleResposne(res),
+      error: (error) => this.handleResponseService.handleError(error, 'error.warning')
+    });
   }
 
 
@@ -110,3 +169,5 @@ export default class ManagerComponent implements OnInit {
 
 
 }
+
+

@@ -32,7 +32,8 @@
     "icon": "pi pi-video",
     "routerLink": "/overlay",
     "login" : true,
-    "needHost": true
+    "needHost": true,
+    "overlay" : true
   },
   {
     "label": "pages.manager",

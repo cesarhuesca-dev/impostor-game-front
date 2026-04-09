@@ -109,16 +109,21 @@ export class GameService {
       .pipe(delay(1000))
   }
 
-  nextRound(){
-    return this.httpClient.post<HttpResponse<any>>(`${environment.URL_API}${this.apiGameTopic}/round`, {})
+  nextRound(newWord: string | null = null){
+    return this.httpClient.post<HttpResponse<any>>(`${environment.URL_API}${this.apiGameTopic}/round`, { word: newWord })
       .pipe(delay(1000))
   }
   //#endregion
 
   //#region Controles de ronda
 
-  changeWordGame(){
-    return this.httpClient.post<HttpResponse<any>>(`${environment.URL_API}${this.apiGameTopic}/word`, {})
+  changeWordGame( newWord: string | null = null ){
+    return this.httpClient.post<HttpResponse<any>>(`${environment.URL_API}${this.apiGameTopic}/word`, { word: newWord })
+      .pipe(delay(1000))
+  }
+
+   changeCategoryGame(idGame: string, category: string) {
+    return this.httpClient.patch<HttpResponse<any>>(`${environment.URL_API}${this.apiGameTopic}/${idGame}/category`, { category })
       .pipe(delay(1000))
   }
 

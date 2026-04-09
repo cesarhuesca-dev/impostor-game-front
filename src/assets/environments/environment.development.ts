@@ -1,5 +1,5 @@
 export const environment = {
-
+  production: false,
   URL_GMAIL: "mailto:cesarhuesca.dev@gmail.com",
   URL_LINKEDIN: "https://www.linkedin.com/in/cesarhuesca-dev/",
   URL_GITHUB: "https://github.com/cesarhuesca-dev",

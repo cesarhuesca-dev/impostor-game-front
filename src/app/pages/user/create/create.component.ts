@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, inject, OnInit, signal, viewChild } from '@angular/core';
 import { ToggleSwitchModule } from 'primeng/toggleswitch';
-import { form, FormField, required, min, minLength, validate } from '@angular/forms/signals';
+import { form, FormField, required, min, minLength, validate, pattern } from '@angular/forms/signals';
 import { ButtonModule } from 'primeng/button';
 import { CreateGameInterface, LoginGameInterface } from 'src/app/core/interfaces/forms/game.interface';
 import { GameService } from '@/services/game.service';
@@ -11,6 +11,8 @@ import { HandleResponseService } from '@/services/handle-response.service';
 import { PlayerService } from '@/services/player.service';
 import { Router } from '@angular/router';
 import { UserModalInterface } from 'src/app/core/interfaces/forms/user-modal.interface';
+import { AuxiliarService } from '@/services/auxiliar.service';
+import { ItemListInterface } from '@/interfaces/list.interface';
 
 @Component({
   selector: 'app-create',
@@ -28,6 +30,7 @@ export default class CreateComponent implements OnInit {
   private readonly loadingService = inject(LoaderService);
   private readonly handleResponseService = inject(HandleResponseService);
   private readonly playerService = inject(PlayerService)
+  private readonly auxiliarService = inject(AuxiliarService)
   private readonly router = inject(Router)
 
   createGameModel = signal<CreateGameInterface>({
@@ -46,7 +49,8 @@ export default class CreateComponent implements OnInit {
     minLength(schemaPath.roomName, 3, { message: 'forms.error.room-name-min-length' });
 
     required(schemaPath.roomPassword, { message: 'forms.error.room-password-required' });
-    minLength(schemaPath.roomPassword, 3, { message: 'forms.error.room-password-min-length' });
+    minLength(schemaPath.roomPassword, 5, { message: 'forms.error.room-password-min-length' });
+    pattern(schemaPath.roomPassword, /^[A-Za-z0-9]{5,}$/, { message: 'forms.error.room-password-pattern' });
 
     required(schemaPath.roomPlayers, { message: 'room-players-required' });
     min(schemaPath.roomPlayers, 3,{ message: 'forms.error.room-players-min' });
@@ -65,7 +69,7 @@ export default class CreateComponent implements OnInit {
     });
   });
 
-  gameCategories = signal<{code: string, value: string}[]>([]);
+  gameCategories = signal<ItemListInterface[]>([]);
 
   ngOnInit(): void {
     this.setGameCategories();
@@ -85,20 +89,19 @@ export default class CreateComponent implements OnInit {
   }
 
   setGameCategories(){
-    this.translateService.get('game.categories').subscribe((res) => {
 
-      const options = Object.keys(res).map( x => ({
-        code : x,
-        value : res[x]
-      }));
+    this.loadingService.addLoading();
+    this.auxiliarService.getCategories().subscribe(categories => {
 
-      this.gameCategories.update(() => options)
-    })
+       this.gameCategories.update(() => categories)
+      this.loadingService.finishLoading();
+
+    });
   }
 
   categoryToggle(){
 
-    if(!this.createGameForm.category().value()){
+    if(!this.createGameForm.specificCategory().value()){
       this.createGameModel.update(x => ({
         ...x,
         category: ''
@@ -114,7 +117,7 @@ export default class CreateComponent implements OnInit {
 
     const data = this.createGameForm().value();
 
-    this.loadingService.addLoading()
+    this.loadingService.addLoading();
     this.gameService.createGame(data)
       .subscribe({
       next: (res) => {

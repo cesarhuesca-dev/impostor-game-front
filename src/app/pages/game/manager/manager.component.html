@@ -9,7 +9,7 @@
           <span> 🎮 </span>
           <span>{{'manager.panel' | translate}}</span>
         </h1>
-        <p class="text-slate-400">{{'manager.name' | translate}}: Noche de Impostores</p>
+        <p class="text-slate-400">{{'manager.name' | translate}}: <span class="capitalize">{{this.game()?.roomName}}</span></p>
       </div>
 
       <div class="flex gap-6 text-sm">
@@ -22,7 +22,7 @@
         <div class="bg-slate-800 px-4 py-2 rounded-lg border border-slate-700">
           <span>{{'manager.category' | translate}}: </span>
           @if (this.game()!.category) {
-            <span class="text-blue-300 font-semibold">{{this.game()!.category}}</span>
+            <span class="text-blue-300 font-semibold">{{this.titleCategoryGame()}}</span>
           }
         </div>
 
@@ -94,23 +94,23 @@
           <button pButton class="border-0! text-white! bg-blue-600! py-3! rounded-xl! font-semibold! transition!"
             [ngClass]="{ 'active:scale-95! hover:bg-blue-500!' : this.game()!.gameStarted}"
             [disabled]="!this.game()!.gameStarted"
-            (click)="this.nextRound()">
+            (click)="this.clickNextRound()">
             <span> 🔄 </span>
             <span>{{'manager.buttons.next-round' | translate}}</span>
           </button>
 
           <button pButton class="border-0! text-white! bg-blue-600!  hover:bg-blue-500! py-3! rounded-xl! font-semibold! transition! active:scale-95!"
-            (click)="this.changeWord()">
+            [disabled]="!this.game()!.gameStarted"
+            (click)="this.clickChangeWord()">
             <span> 🔃 </span>
             <span>{{'manager.buttons.change-word' | translate}}</span>
           </button>
 
           <button pButton class="border-0! text-white! bg-blue-600!  hover:bg-blue-500! py-3! rounded-xl! font-semibold! transition! active:scale-95!"
-            (click)="this.changeCategory()">
+            (click)="openChangeCategory()">
             <span> 🔃 </span>
             <span>{{'manager.buttons.change-category' | translate}}</span>
           </button>
-
 
         </div>
 
@@ -128,8 +128,8 @@
         <div class="flex flex-col gap-4">
 
           <button pButton class="border-0! text-white! bg-green-600! py-3! rounded-xl! font-semibold! transition!"
-            [ngClass]="{ 'active:scale-95! hover:bg-green-500!' : !this.game()!.gameStarted}"
-            [disabled]="this.game()!.gameStarted"
+            [ngClass]="{ 'active:scale-95! hover:bg-green-500!' : !this.game()!.gameStarted && (this.game()!.roomPlayersJoined === this.game()!.roomPlayers) }"
+            [disabled]="this.game()!.gameStarted || (this.game()!.roomPlayersJoined < this.game()!.roomPlayers)"
             (click)="this.startGame()">
             <span> ▶ </span>
             <span>{{'manager.buttons.start-game' | translate}}</span>
@@ -160,26 +160,54 @@
     </div>
 
 
-    <!-- LOG DE EVENTOS -->
-    <div class="max-w-7xl mx-auto mt-6 bg-slate-900/70 backdrop-blur border border-slate-700 rounded-2xl p-6">
-
+    <!-- TODO LOG DE EVENTOS -->
+    <!-- <div class="max-w-7xl mx-auto mt-6 bg-slate-900/70 backdrop-blur border border-slate-700 rounded-2xl p-6">
       <h2 class="text-xl font-semibold mb-4 text-purple-400">
         <span> 📝 </span>
         <span>{{'manager.events' | translate}}</span>
       </h2>
-
       <div class="space-y-2 text-sm text-slate-300 max-h-48 overflow-y-auto">
-
         <p>[10:03] Ana se unió</p>
         <p>[10:04] Luis se unió</p>
         <p>[10:05] Marta se unió</p>
         <p>[10:06] Juan creó la partida</p>
-
       </div>
-
-    </div>
+    </div> -->
 
   </div>
+
+  <p-dialog [header]="(this.customWordRound) ? ('manager.buttons.change-word-round' | translate) : ('manager.buttons.change-word' | translate)" [(visible)]="visibleChangeWord" [modal]="true" (onHide)="visibleChangeWord = false">
+    <div class="w-full">
+      <input class="w-full mt-1 bg-slate-800 border border-slate-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-purple-500 transition"
+          type="text" [(ngModel)]="this.customWord">
+    </div>
+    <div class="flex flex-col gap-3 items-center justify-center mt-5">
+        <button class="w-3/4 border-0! text-white! bg-purple-600!  hover:bg-purple-500! py-3! rounded-xl! font-semibold! transition! active:scale-95!"
+          (click)="(this.customWordRound) ? nextRound(this.customWord()) : changeWord(this.customWord())">
+          <span>{{'common.save' | translate}}</span>
+        </button>
+
+        <button class="w-3/4 border-0! text-white! bg-purple-600!  hover:bg-purple-500! py-3! rounded-xl! font-semibold! transition! active:scale-95!"
+          (click)="(this.customWordRound) ? nextRound(null) : changeWord(null)">
+          <span>{{'common.random' | translate}}</span>
+        </button>
+    </div>
+  </p-dialog>
+
+  <p-dialog header="{{'manager.buttons.change-category' | translate}}" [(visible)]="visible" [modal]="true" (onHide)="visible = false">
+    <div class="w-full">
+      <select class="custom-picker w-full mt-2 bg-slate-800 border border-slate-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-purple-500"
+        (change)="this.clickCategory($event)">
+        @for (category of gameCategories(); track category.value) {
+          <option [value]="category.value">{{category.label | translate }}</option>
+        }
+      </select>
+    </div>
+    <div class="flex items-center justify-center mt-5">
+        <button class="w-3/4 border-0! text-white! bg-purple-600!  hover:bg-purple-500! py-3! rounded-xl! font-semibold! transition! active:scale-95!"
+          (click)="changeCategory()">
+          <span>{{'common.save' | translate}}</span>
+        </button>
+    </div>
+  </p-dialog>
 }
-
-
