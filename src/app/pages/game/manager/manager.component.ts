@@ -8,10 +8,10 @@ import { PlayerImagePipe } from '@/shared/pipes/player-image.pipe';
 import { PlayerService } from '@/services/player.service';
 import { LoaderService } from '@/services/loader.service';
 import { HandleResponseService } from '@/services/handle-response.service';
-import { ConfirmButton } from "@/shared/components/exit-button/confirm-button";
+import { ConfirmButton } from '@/shared/components/exit-button/confirm-button';
 import { ItemListInterface } from '@/interfaces/list.interface';
 import { AuxiliarService } from '@/services/auxiliar.service';
-import { Dialog } from "primeng/dialog";
+import { Dialog } from 'primeng/dialog';
 import { FormsModule } from '@angular/forms';
 
 @Component({
@@ -21,36 +21,34 @@ import { FormsModule } from '@angular/forms';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export default class ManagerComponent implements OnInit {
-
   private readonly gameService = inject(GameService);
   private readonly playerService = inject(PlayerService);
   private readonly auxiliarService = inject(AuxiliarService);
   private readonly loaderService = inject(LoaderService);
   private readonly handleResponseService = inject(HandleResponseService);
 
-  game = computed(() => this.gameService.gameData);
-  player = computed(() => this.playerService.playerData!);
-  gameCategories = signal<ItemListInterface[]>([]);
-  titleCategoryGame = computed<string>(() => this.gameCategories().find(x => x.value === this.game()?.category)?.label ?? '');
+  readonly game = computed(() => this.gameService.gameData);
+  readonly player = computed(() => this.playerService.playerData!);
+  readonly gameCategories = signal<ItemListInterface[]>([]);
+  readonly titleCategoryGame = computed<string>(() => this.gameCategories().find((x) => x.value === this.game()?.category)?.label ?? '');
 
-  customWord = signal<string>('');
-  visibleChangeWord: boolean = false
-  customWordRound: boolean = false
+  readonly customWord = signal<string>('');
+  visibleChangeWord = false;
+  customWordRound = false;
 
-  category = signal<string>('');
-  visible: boolean = false;
+  readonly category = signal<string>('');
+  visible = false;
 
   ngOnInit(): void {
-    this.setGameCategories()
+    this.setGameCategories();
 
-    console.log('this.game', this.game())
-
+    console.log('this.game', this.game());
   }
 
-  setGameCategories(){
+  setGameCategories() {
     this.loaderService.addLoading();
-    this.auxiliarService.getCategories().subscribe(categories => {
-      this.gameCategories.update(() => categories)
+    this.auxiliarService.getCategories().subscribe((categories) => {
+      this.gameCategories.update(() => categories);
       this.loaderService.finishLoading();
     });
   }
@@ -61,7 +59,7 @@ export default class ManagerComponent implements OnInit {
     this.loaderService.addLoading();
     this.playerService.playerExit(idPlayer).subscribe({
       next: (res: any) => this.handleResponseService.handleResposne(res, 'success.ban-player'),
-      error: (error) => this.handleResponseService.handleError(error, 'error.warning')
+      error: (error) => this.handleResponseService.handleError(error, 'error.warning'),
     });
   }
 
@@ -73,11 +71,11 @@ export default class ManagerComponent implements OnInit {
     this.loaderService.addLoading();
     this.gameService.startGame().subscribe({
       next: (res: any) => {
-        if(this.handleResponseService.handleResposne(res) &&  res.data && res.data[0]!.gameStarted && res.data![0].round === 0){
+        if (this.handleResponseService.handleResposne(res) && res.data && res.data[0]!.gameStarted && res.data![0].round === 0) {
           this.nextRound();
         }
       },
-      error: (error) => this.handleResponseService.handleError(error, 'error.warning')
+      error: (error) => this.handleResponseService.handleError(error, 'error.warning'),
     });
   }
 
@@ -85,7 +83,7 @@ export default class ManagerComponent implements OnInit {
     this.loaderService.addLoading();
     this.gameService.endGame().subscribe({
       next: (res: any) => this.handleResponseService.handleResposne(res),
-      error: (error) => this.handleResponseService.handleError(error, 'error.warning')
+      error: (error) => this.handleResponseService.handleError(error, 'error.warning'),
     });
   }
 
@@ -93,66 +91,64 @@ export default class ManagerComponent implements OnInit {
     this.loaderService.addLoading();
     this.gameService.closeGame(this.game()!.id).subscribe({
       next: (res: any) => this.handleResponseService.handleResposne(res, 'common.closed-game'),
-      error: (error) => this.handleResponseService.handleError(error, 'error.warning')
+      error: (error) => this.handleResponseService.handleError(error, 'error.warning'),
     });
   }
 
   clickNextRound() {
-    if(this.game()?.customWords){
+    if (this.game()?.customWords) {
       this.customWord.update(() => '');
       this.customWordRound = true;
       this.visibleChangeWord = true;
-    }else{
+    } else {
       this.nextRound(null);
     }
   }
 
-  nextRound(word: string | null = null){
+  nextRound(word: string | null = null) {
     this.visibleChangeWord = false;
     this.loaderService.addLoading();
     this.gameService.nextRound(word).subscribe({
       next: (res: any) => this.handleResponseService.handleResposne(res),
-      error: (error) => this.handleResponseService.handleError(error, 'error.warning')
+      error: (error) => this.handleResponseService.handleError(error, 'error.warning'),
     });
   }
-
 
   //#endregion
 
   //#region CONTROLES DE RONDA
 
   clickChangeWord() {
-    if(this.game()?.customWords){
+    if (this.game()?.customWords) {
       this.customWord.update(() => '');
-      this.customWordRound = false
+      this.customWordRound = false;
       this.visibleChangeWord = true;
-    }else{
+    } else {
       this.changeWord(null);
     }
   }
 
-  changeWord(word: string | null = null){
+  changeWord(word: string | null = null) {
     this.visibleChangeWord = false;
     this.loaderService.addLoading();
     this.gameService.changeWordGame(word).subscribe({
       next: (res: any) => this.handleResponseService.handleResposne(res),
-      error: (error) => this.handleResponseService.handleError(error, 'error.warning')
+      error: (error) => this.handleResponseService.handleError(error, 'error.warning'),
     });
   }
 
   openChangeCategory() {
-
     this.category.update(() => {
       const category = this.gameCategories().find((x) => x.value === this.game()?.category);
-      return (category) ? category.value : '';
+      return category ? category.value : '';
     });
 
     this.visible = true;
   }
 
-  clickCategory(event: Event){
-    const target = event?.target as HTMLSelectElement
-    this.category.update(() => target.value ?? '')
+  clickCategory(event: Event) {
+    const target = event?.target as HTMLSelectElement;
+    this.category.update(() => target.value ?? '');
   }
 
   changeCategory() {
@@ -160,14 +156,9 @@ export default class ManagerComponent implements OnInit {
     this.loaderService.addLoading();
     this.gameService.changeCategoryGame(this.game()!.id, this.category()).subscribe({
       next: (res: any) => this.handleResponseService.handleResposne(res),
-      error: (error) => this.handleResponseService.handleError(error, 'error.warning')
+      error: (error) => this.handleResponseService.handleError(error, 'error.warning'),
     });
   }
 
-
   //#endregion
-
-
 }
-
-

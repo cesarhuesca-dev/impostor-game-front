@@ -1,5 +1,5 @@
 import { environment } from '@/assets/environments/environment.development';
-import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { inject, Injectable, signal } from '@angular/core';
 
 import { CookieService } from 'ngx-cookie-service';
@@ -12,15 +12,12 @@ import { ToastMessageService } from './toast-message.service';
 import { ToastPosition, ToastType } from '@/enums/toast.enum';
 import { TranslateService } from '@ngx-translate/core';
 
-
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class PlayerService {
-
-
-  private readonly apiPlayerTopic : string = '/game/player';
-  private readonly playerCookieTopic : string = 'player';
+  private readonly apiPlayerTopic: string = '/game/player';
+  private readonly playerCookieTopic: string = 'player';
 
   private readonly httpClient = inject(HttpClient);
   private readonly cookieService = inject(CookieService);
@@ -30,9 +27,8 @@ export class PlayerService {
   private readonly translateService = inject(TranslateService);
   private readonly router = inject(Router);
 
-  private jwt = signal<string>('');
-  private player = signal<Player | null>(null);
-
+  private readonly jwt = signal<string>('');
+  private readonly player = signal<Player | null>(null);
 
   get jwtPlayer() {
     return this.jwt();
@@ -47,74 +43,70 @@ export class PlayerService {
   }
 
   //#region GESTION DE COOKIE DEL PLAYER
-  loadPlayerCookie(){
-    const payloadUser = this.cookieService.check(this.playerCookieTopic)
-      ? this.cookieService.get(this.playerCookieTopic)
-      : null;
+  loadPlayerCookie() {
+    const payloadUser = this.cookieService.check(this.playerCookieTopic) ? this.cookieService.get(this.playerCookieTopic) : null;
 
-    if(!payloadUser){
+    if (!payloadUser) {
       return;
     }
 
     this.setPlayerCookie(payloadUser);
   }
 
-  setPlayerCookie( payload : string ){
+  setPlayerCookie(payload: string) {
     this.cookieService.set(this.playerCookieTopic, payload);
     this.jwt.update(() => payload);
   }
 
-  deletePlayerCookie(){
+  deletePlayerCookie() {
     this.cookieService.delete(this.playerCookieTopic);
   }
   //#endregion
 
   //#region GESTION INFORMACION DEL PLAYER
 
-  setPlayerData(newData : Player){
-    this.player.update(() => ({...newData}));
+  setPlayerData(newData: Player) {
+    this.player.update(() => ({ ...newData }));
   }
 
-  deletePlayerData(){
+  deletePlayerData() {
     this.deletePlayerCookie();
-    this.player.update(() => (null));
-    this.router.navigate(['/home'])
+    this.player.update(() => null);
+    this.router.navigate(['/home']);
   }
 
   checkBanPlayer(id: string) {
-
-    if(this.playerData?.id === id){
+    if (this.playerData?.id === id) {
       this.deletePlayerData();
       this.toastMessageService.addMessage({
         key: ToastPosition.TOP_RIGHT,
         severity: ToastType.ERROR,
-        summary: this.translateService.instant('common.banned')
+        summary: this.translateService.instant('common.banned'),
       });
     }
   }
 
-  closeGame(){
+  closeGame() {
     this.deletePlayerData();
     this.toastMessageService.addMessage({
       key: ToastPosition.TOP_RIGHT,
       severity: ToastType.INFO,
-      summary: this.translateService.instant('common.closed-game')
+      summary: this.translateService.instant('common.closed-game'),
     });
   }
 
   //#endregion
 
-  startPlayer(token: string){
+  startPlayer(token: string) {
     this.setPlayerCookie(token);
     this.setPlayerInfo();
   }
 
-
-  setPlayerInfo(){
+  setPlayerInfo() {
     this.loaderService.addLoading();
     this.loadPlayerCookie();
 
-    if(!this.jwt() || this.jwt().length === 0){
+    if (!this.jwt() || this.jwt().length === 0) {
       this.deletePlayerData();
       this.loaderService.finishLoading();
       return;
@@ -122,45 +114,38 @@ export class PlayerService {
 
     this.getPlayerByToken().subscribe({
       next: (res: any) => {
-        if(this.handleResponseService.handleResposne(res)){
+        if (this.handleResponseService.handleResposne(res)) {
           this.setPlayerData(res.data[0]);
-          this.router.navigate(['/game'])
-        }else{
+          this.router.navigate(['/game']);
+        } else {
           this.deletePlayerData();
         }
       },
       error: (error) => {
-        this.handleResponseService.handleError(error, 'error.warning')
+        this.handleResponseService.handleError(error, 'error.warning');
         this.deletePlayerData();
-      }
+      },
     });
   }
 
   //API CALLS
 
-  private getPlayerByToken(){
-    return  this.httpClient.get(`${environment.URL_API}${this.apiPlayerTopic}/token`).pipe(delay(1000));
+  private getPlayerByToken() {
+    return this.httpClient.get(`${environment.URL_API}${this.apiPlayerTopic}/token`).pipe(delay(1000));
   }
 
-  getPlayer(id: string){
-    return  this.httpClient.get(`${environment.URL_API}${this.apiPlayerTopic}/${id}`);
+  getPlayer(id: string) {
+    return this.httpClient.get(`${environment.URL_API}${this.apiPlayerTopic}/${id}`);
   }
 
-  uploadPlayerImage(idPlayer : string, file: File ) {
+  uploadPlayerImage(idPlayer: string, file: File) {
     const formData = new FormData();
     formData.append('file', file);
-    const headers = new HttpHeaders({ 'enctype': 'multipart/form-data' });
+    const headers = new HttpHeaders({ enctype: 'multipart/form-data' });
     return this.httpClient.post(`${environment.URL_API}${this.apiPlayerTopic}/image/${idPlayer}`, formData, { headers: headers });
   }
 
-  playerExit(idPlayer: string){
-    return  this.httpClient.delete(`${environment.URL_API}${this.apiPlayerTopic}/${idPlayer}`).pipe(delay(1000));
+  playerExit(idPlayer: string) {
+    return this.httpClient.delete(`${environment.URL_API}${this.apiPlayerTopic}/${idPlayer}`).pipe(delay(1000));
   }
-
-
 }
-
-
-
-
-

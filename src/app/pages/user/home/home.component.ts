@@ -1,11 +1,8 @@
 import { environment } from '@/assets/environments/environment.development';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { TranslatePipe } from '@ngx-translate/core';
-import { RouterLink } from "@angular/router";
+import { RouterLink } from '@angular/router';
 import { ButtonModule } from 'primeng/button';
-
-
-
 
 @Component({
   selector: 'page-home',
@@ -14,7 +11,5 @@ import { ButtonModule } from 'primeng/button';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export default class HomeComponent {
-
   environment = environment;
-
 }

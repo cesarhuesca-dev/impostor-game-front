@@ -12,10 +12,6 @@ export interface CreateGameInterface {
 export interface LoginGameInterface {
   roomName: string;
   roomPassword: string;
-  playerName? : string
+  playerName?: string;
   host?: boolean;
-}
-
-export interface CreatePlayerInterface {
-
 }

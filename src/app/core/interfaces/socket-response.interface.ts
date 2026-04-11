@@ -1,8 +1,8 @@
-import { GameSocketTopic } from "@/enums/game-topics.enum";
+import { GameSocketTopic } from '@/enums/game-topics.enum';
 
-export interface SocketResponse {
+export interface SocketResponse<T> {
   topic: GameSocketTopic;
-  data: any[];
+  data: T;
   success: boolean;
-  error?: any;
+  error?: unknown;
 }

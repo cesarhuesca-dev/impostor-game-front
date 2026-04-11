@@ -1,6 +1,4 @@
-
 export interface Game {
-
   //Propiedades que viene de back
   id: string;
   roomName: string;
@@ -14,7 +12,7 @@ export interface Game {
   gameStarted: boolean;
   roomPlayersJoined: number;
   round: number;
-  word: string | null
+  word: string | null;
   players?: Player[];
 }
 
@@ -23,8 +21,7 @@ export interface Player {
   name: string;
   avatarImg: boolean;
   host: boolean;
-  impostor:boolean;
+  impostor: boolean;
 
-
-  game: Game
+  game: Game;
 }

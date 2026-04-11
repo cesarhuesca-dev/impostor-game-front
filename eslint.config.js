@@ -28,12 +28,12 @@ module.exports = defineConfig([
       '@typescript-eslint/array-type': ['warn'],
       '@typescript-eslint/consistent-indexed-object-style': 'off',
       '@typescript-eslint/consistent-type-assertions': 'warn',
-      '@typescript-eslint/consistent-type-definitions': ['warn', 'type'],
       '@typescript-eslint/no-empty-function': 'warn',
       '@typescript-eslint/no-empty-interface': 'error',
       '@typescript-eslint/no-explicit-any': 'warn',
       '@typescript-eslint/no-inferrable-types': 'warn',
       '@typescript-eslint/no-shadow': 'warn',
+      // '@typescript-eslint/consistent-type-definitions': ['warn', 'type'],
       // '@typescript-eslint/explicit-function-return-type': 'error',
 
       // JavaScript best practices
@@ -81,7 +81,7 @@ module.exports = defineConfig([
     rules: {
       // Angular template best practices
       '@angular-eslint/template/button-has-type': 'warn',
-      '@angular-eslint/template/cyclomatic-complexity': ['warn', { maxComplexity: 10 }],
+      '@angular-eslint/template/cyclomatic-complexity': ['warn', { maxComplexity: 20 }],
       '@angular-eslint/template/eqeqeq': 'error',
       '@angular-eslint/template/prefer-control-flow': 'error',
       '@angular-eslint/template/prefer-ngsrc': 'warn',

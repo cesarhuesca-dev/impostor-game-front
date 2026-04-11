@@ -1,23 +1,16 @@
 import { ChangeDetectionStrategy, Component, computed, inject } from '@angular/core';
-import { AvatarsComponent } from "@/shared/components/avatars/avatars.component";
-import { WordGameComponent } from "@/shared/components/word-game/word-game.component";
+import { AvatarsComponent } from '@/shared/components/avatars/avatars.component';
+import { WordGameComponent } from '@/shared/components/word-game/word-game.component';
 import { CommonModule } from '@angular/common';
 import { GameService } from '@/services/game.service';
 
 @Component({
   selector: 'page-overlay',
-  imports: [
-    AvatarsComponent,
-    WordGameComponent,
-    CommonModule
-  ],
+  imports: [AvatarsComponent, WordGameComponent, CommonModule],
   templateUrl: './overlay.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export default class OverlayComponent {
-
   private gameService = inject(GameService);
-
-  configuration = computed(() => this.gameService.configurationData())
-
+  readonly configuration = computed(() => this.gameService.configurationData());
 }

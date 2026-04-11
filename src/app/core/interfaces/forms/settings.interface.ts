@@ -1,3 +1,3 @@
 export interface SettingsForm {
-  language: string
+  language: string;
 }

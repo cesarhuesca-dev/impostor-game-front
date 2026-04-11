@@ -41,13 +41,13 @@
             <div class="text-center">
               <div class="cursor-pointer transition transform hover:scale-105" >
                 @if (!this.showWord) {
-                  <button class="w-3/4 border border-purple-500/40 rounded-xl p-8 bg-purple-500/10 transition active:scale-95"
+                  <button type="button" class="w-3/4 border border-purple-500/40 rounded-xl p-8 bg-purple-500/10 transition active:scale-95"
                     (click)="this.showWord = !this.showWord">
                     <span> 👆 </span>
                     <span>{{'game.touch-show-word' | translate}}</span>
                   </button>
                 }@else {
-                  <button class="w-3/4 border border-purple-500/40 rounded-xl p-8 bg-purple-500/10 transition active:scale-95"
+                  <button type="button" class="w-3/4 border border-purple-500/40 rounded-xl p-8 bg-purple-500/10 transition active:scale-95"
                     (click)="this.showWord = !this.showWord">
                     <span class="font-bold text-3xl">{{this.game()!.word}}</span>
                   </button>
@@ -83,7 +83,7 @@
           </div>
         }
         <div class="mt-10 text-center">
-          <button class="w-2/4 border-0! text-white! bg-purple-600!  hover:bg-purple-500! py-3! rounded-xl! font-semibold! transition! active:scale-95!"
+          <button type="button" class="w-2/4 border-0! text-white! bg-purple-600!  hover:bg-purple-500! py-3! rounded-xl! font-semibold! transition! active:scale-95!"
             (click)="this.ready = !this.ready">
             <span>{{(this.ready) ? ('game.ready' | translate) : ('game.show-info' | translate)}}</span>
           </button>
@@ -99,8 +99,7 @@
                 [toastHeader]="'manager.buttons.next-round'"
                 [toastMessage]="'common.round-confirm'"
                 [toastAcceptLabel]="'manager.buttons.next-round'"
-                (acceptBtn)="this.nextRound()">
-              </s-confirm-button>
+                (acceptBtn)="this.nextRound()" />
             </div>
 
 
@@ -112,7 +111,7 @@
 
         <div class="flex justify-center items-center gap-3 mt-5">
           <div class="w-2/4">
-            <s-confirm-button (acceptBtn)="exitPlayer()"></s-confirm-button>
+            <s-confirm-button (acceptBtn)="exitPlayer()" />
           </div>
         </div>
 
@@ -181,7 +180,7 @@
             </p-button>
 
             <div class="w-2/4">
-              <s-confirm-button (acceptBtn)="exitPlayer()"></s-confirm-button>
+              <s-confirm-button (acceptBtn)="exitPlayer()" />
             </div>
 
           </div>
@@ -194,7 +193,7 @@
 
           <div class="flex justify-center items-center mt-5">
             <div class="w-2/3">
-              <s-confirm-button (acceptBtn)="exitPlayer()"></s-confirm-button>
+              <s-confirm-button (acceptBtn)="exitPlayer()" />
             </div>
           </div>
         }

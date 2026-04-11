@@ -1,4 +1,4 @@
 export interface UserModalInterface {
-  name : string;
+  name: string;
   playerImg: File | null;
 }

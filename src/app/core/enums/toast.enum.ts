@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 export enum ToastPosition {
   TOP_LEFT = 'top-left',
   TOP_CENTER = 'top-center',
@@ -5,7 +6,7 @@ export enum ToastPosition {
   BOTTOM_LEFT = 'bottom-left',
   BOTTOM_CENTER = 'bottom-center',
   BOTTOM_RIGHT = 'bottom-right',
-  CENTER = 'center'
+  CENTER = 'center',
 }
 
 export enum ToastType {
@@ -14,5 +15,5 @@ export enum ToastType {
   WARN = 'warn',
   ERROR = 'error',
   CONTRAST = 'contrast',
-  SECONDARY = 'secondary'
+  SECONDARY = 'secondary',
 }

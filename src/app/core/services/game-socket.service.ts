@@ -1,31 +1,29 @@
 import { environment } from '@/assets/environments/environment.development';
 import { inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { io, Manager, Socket } from 'socket.io-client';
+import { Manager, Socket } from 'socket.io-client';
 import { PlayerService } from './player.service';
 import { GameSocketTopic } from '@/enums/game-topics.enum';
 import { SocketResponse } from '@/interfaces/socket-response.interface';
 import { LoaderService } from './loader.service';
 import { GameService } from './game.service';
 
-@Injectable({providedIn: 'root'})
+@Injectable({ providedIn: 'root' })
 export class GameSocketService {
-
   private readonly playerService = inject(PlayerService);
   private readonly loadingService = inject(LoaderService);
   private readonly gameService = inject(GameService);
 
   private socket: Socket | null = null;
-  private socketNamespace: string = '/game';
+  private readonly socketNamespace = '/game';
 
   connect() {
-
     this.loadingService.addLoading();
 
     const manager = new Manager(`${environment.URL_WS}/socket.io/socket.io.js`, {
-      extraHeaders : {
-        authorization: this.playerService.jwtPlayer
-      }
+      extraHeaders: {
+        authorization: this.playerService.jwtPlayer,
+      },
     });
 
     this.socket = manager.socket(this.socketNamespace);
@@ -33,8 +31,8 @@ export class GameSocketService {
     this.listen(GameSocketTopic.PLAYER_MESSAGE)?.subscribe((msg) => this.handleGameMsg(msg));
   }
 
-  disconnect(){
-    if(!this.socket){
+  disconnect() {
+    if (!this.socket) {
       return;
     }
 
@@ -43,41 +41,29 @@ export class GameSocketService {
   }
 
   listen(eventName: string) {
-
-    if(!this.socket){
+    if (!this.socket) {
       return;
     }
 
-    return new Observable<SocketResponse>(observer => {
-      this.socket!.on(eventName, data => {
+    return new Observable<SocketResponse>((observer) => {
+      this.socket!.on(eventName, (data) => {
         observer.next(JSON.parse(data));
       });
     });
   }
 
-  emit(eventName: string, data: any) {
-
-    if(!this.socket){
-      return;
-    }
-
-    this.socket.emit(eventName, data);
-  }
-
-  handleGameMsg(msg: SocketResponse){
-
-
-    if(!msg.success){
+  handleGameMsg(msg: SocketResponse) {
+    if (!msg.success) {
       return;
     }
 
     switch (msg.topic) {
       case GameSocketTopic.UPDATE_GAME_STATUS:
-        console.log('GAME ACTUALIZADO', msg.data[0])
+        console.log('GAME ACTUALIZADO', msg.data[0]);
         this.gameService.setGameData(msg.data[0]);
         break;
       case GameSocketTopic.UPDATE_PLAYER_STATUS:
-        console.log('PLAYER ACTUALIZADO', msg.data[0])
+        console.log('PLAYER ACTUALIZADO', msg.data[0]);
         this.playerService.setPlayerData(msg.data[0]);
         break;
       case GameSocketTopic.PLAYER_ELIMINATED:
@@ -90,7 +76,5 @@ export class GameSocketService {
       default:
         break;
     }
-
   }
-
 }
