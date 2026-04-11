@@ -1,3 +1,4 @@
+<!-- eslint-disable @angular-eslint/template/prefer-ngsrc -->
 <div class="fixed inset-0 flex items-center justify-center bg-black/70 backdrop-blur-sm transition-opacity duration-300"
   [class.opacity-0]="!isOpen()"
   [class.opacity-100]="isOpen()"
@@ -29,7 +30,7 @@
         <div class="w-24 h-24 rounded-full bg-slate-800 border border-slate-700 flex items-center justify-center overflow-hidden">
 
           @if (playerImage()) {
-            <img [ngSrc]="playerImage()!" class="w-full h-full object-cover"/>
+            <img [src]="playerImage()" class="w-full h-full object-cover"/>
           }@else {
             <span class="text-slate-500 text-sm">{{'common.no-image' | translate }}</span>
           }

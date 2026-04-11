@@ -1,5 +1,5 @@
 import { UserModalInterface } from 'src/app/core/interfaces/forms/user-modal.interface';
-import { NgClass, NgOptimizedImage } from '@angular/common';
+import { NgClass } from '@angular/common';
 import { ChangeDetectionStrategy, Component, output, signal } from '@angular/core';
 import { form, FormField, minLength, required } from '@angular/forms/signals';
 import { TranslatePipe } from '@ngx-translate/core';
@@ -7,7 +7,7 @@ import { ButtonModule } from 'primeng/button';
 
 @Component({
   selector: 's-user-modal',
-  imports: [FormField, NgClass, TranslatePipe, ButtonModule, NgOptimizedImage],
+  imports: [FormField, NgClass, TranslatePipe, ButtonModule],
   templateUrl: './user-modal.template.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
