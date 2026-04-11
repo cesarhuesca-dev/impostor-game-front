@@ -10,11 +10,9 @@ import { ToastPosition, ToastType } from 'src/app/core/enums/toast.enum';
   templateUrl: './messages.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [ToastModule],
-  providers: [MessageService]
-
+  providers: [MessageService],
 })
 export class MessagesComponent {
-
   private messageService = inject(MessageService);
   private toastService = inject(ToastMessageService);
 
@@ -22,11 +20,11 @@ export class MessagesComponent {
     this.setEffectToast();
   }
 
-  private setEffectToast(){
+  private setEffectToast() {
     effect(() => {
       const message = this.toastService.toastSignal();
 
-      if(!message || Object.keys(message).length === 0){
+      if (!message || Object.keys(message).length === 0) {
         return;
       }
 
@@ -34,9 +32,8 @@ export class MessagesComponent {
     });
   }
 
-  private displayToast(message: ToastMessage){
-
-    if(!message ||Object.keys(message).length === 0){
+  private displayToast(message: ToastMessage) {
+    if (!message || Object.keys(message).length === 0) {
       return;
     }
 
@@ -44,7 +41,7 @@ export class MessagesComponent {
       this.messageService.add({
         ...message,
         severity: message['severity'] ?? ToastType.SUCCESS,
-        key: message['key'] ?? ToastPosition.TOP_RIGHT
+        key: message['key'] ?? ToastPosition.TOP_RIGHT,
       });
     }
   }

@@ -2,7 +2,7 @@ import { ItemListInterface } from '@/interfaces/list.interface';
 import { AuxiliarService } from '@/services/auxiliar.service';
 import { GameService } from '@/services/game.service';
 import { NgClass } from '@angular/common';
-import { ChangeDetectionStrategy, Component, computed, inject, OnInit, signal} from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, inject, OnInit, signal } from '@angular/core';
 import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
@@ -12,24 +12,21 @@ import { TranslatePipe } from '@ngx-translate/core';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class WordGameComponent implements OnInit {
-
   private gameService = inject(GameService);
   private readonly auxiliarService = inject(AuxiliarService);
 
-  game = computed(() => this.gameService.gameData);
-  gameCategories = signal<ItemListInterface[]>([]);
-  titleCategoryGame = computed<string>(() => this.gameCategories().find(x => x.value === this.game()?.category)?.label ?? '');
-  titleWordGame = computed<string>(() => this.game()?.word ?? '');
+  readonly game = computed(() => this.gameService.gameData);
+  readonly gameCategories = signal<ItemListInterface[]>([]);
+  readonly titleCategoryGame = computed<string>(() => this.gameCategories().find((x) => x.value === this.game()?.category)?.label ?? '');
+  readonly titleWordGame = computed<string>(() => this.game()?.word ?? '');
 
   ngOnInit(): void {
-    this.setGameCategories()
+    this.setGameCategories();
   }
 
-  setGameCategories(){
-    this.auxiliarService.getCategories().subscribe(categories => {
-      this.gameCategories.update(() => categories)
+  setGameCategories() {
+    this.auxiliarService.getCategories().subscribe((categories) => {
+      this.gameCategories.update(() => categories);
     });
   }
-
 }
-

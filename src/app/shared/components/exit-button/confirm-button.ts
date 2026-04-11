@@ -13,32 +13,30 @@ import { Toast } from 'primeng/toast';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ConfirmButton {
-
   private readonly confirmationService = inject(ConfirmationService);
   private readonly messageService = inject(MessageService);
   private readonly translate = inject(TranslateService);
 
-  title = input<string>('common.exit');
-  styles = input<string>('form-btn w-full btn-secondary btn-exit');
-  icon = input<string>('🏃‍♂️');
+  readonly title = input<string>('common.exit');
+  readonly styles = input<string>('form-btn w-full btn-secondary btn-exit');
+  readonly icon = input<string>('🏃‍♂️');
 
-  toastMessage = input<string>('common.exit-confirm');
-  toastHeader = input<string>('common.exit');
-  toastRejectLabel = input<string>('common.cancel');
-  toastAcceptLabel = input<string>('common.exit');
+  readonly toastMessage = input<string>('common.exit-confirm');
+  readonly toastHeader = input<string>('common.exit');
+  readonly toastRejectLabel = input<string>('common.cancel');
+  readonly toastAcceptLabel = input<string>('common.exit');
 
-  acceptBtn = output<void>();
-  cancelBtn = output<void>();
+  readonly acceptBtn = output<void>();
+  readonly cancelBtn = output<void>();
 
   confirmExit(event: Event) {
-
     const obj = {
       target: event.target as EventTarget,
       icon: 'pi pi-info-circle',
 
-      acceptButtonStyleClass : 'btn-exit',
+      acceptButtonStyleClass: 'btn-exit',
       rejectButtonStyleClass: 'btn-exit btn-exit-secondary',
-      styleClass: "btn-exit",
+      styleClass: 'btn-exit',
 
       message: this.translate.instant(this.toastMessage()),
       header: this.translate.instant(this.toastHeader()),
@@ -51,8 +49,8 @@ export class ConfirmButton {
         severity: 'danger',
       },
       accept: () => this.acceptBtn.emit(),
-      reject: () => this.cancelBtn.emit()
-    }
+      reject: () => this.cancelBtn.emit(),
+    };
 
     this.confirmationService.confirm(obj);
   }

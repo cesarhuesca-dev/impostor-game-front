@@ -29,7 +29,7 @@
         <div class="w-24 h-24 rounded-full bg-slate-800 border border-slate-700 flex items-center justify-center overflow-hidden">
 
           @if (playerImage()) {
-            <img [src]="playerImage()" class="w-full h-full object-cover"/>
+            <img [ngSrc]="playerImage()!" class="w-full h-full object-cover"/>
           }@else {
             <span class="text-slate-500 text-sm">{{'common.no-image' | translate }}</span>
           }

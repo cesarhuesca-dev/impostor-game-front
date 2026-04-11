@@ -1,45 +1,43 @@
 import { UserModalInterface } from 'src/app/core/interfaces/forms/user-modal.interface';
-import { NgClass } from '@angular/common';
+import { NgClass, NgOptimizedImage } from '@angular/common';
 import { ChangeDetectionStrategy, Component, output, signal } from '@angular/core';
-import {form, FormField, minLength, required} from '@angular/forms/signals';
+import { form, FormField, minLength, required } from '@angular/forms/signals';
 import { TranslatePipe } from '@ngx-translate/core';
 import { ButtonModule } from 'primeng/button';
 
 @Component({
   selector: 's-user-modal',
-  imports: [FormField, NgClass, TranslatePipe, ButtonModule],
+  imports: [FormField, NgClass, TranslatePipe, ButtonModule, NgOptimizedImage],
   templateUrl: './user-modal.template.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class UserModal {
-
-  playerModel = signal<UserModalInterface>({ name: '', playerImg: null });
-  playerImage = signal<string | ArrayBuffer | null>(null);
+  readonly playerModel = signal<UserModalInterface>({ name: '', playerImg: null });
+  readonly playerImage = signal<string | ArrayBuffer | null>(null);
 
   playerForm = form(this.playerModel, (schemaPath) => {
-    required(schemaPath.name, { message: 'forms.error.player-name-required'});
-    minLength(schemaPath.name, 3, { message: 'forms.error.player-name-min-length'});
-  })
+    required(schemaPath.name, { message: 'forms.error.player-name-required' });
+    minLength(schemaPath.name, 3, { message: 'forms.error.player-name-min-length' });
+  });
 
-  isOpen = signal<boolean>(false);
+  readonly isOpen = signal<boolean>(false);
 
-  newPlayer = output<UserModalInterface>();
-  cancelButton = output();
+  readonly newPlayer = output<UserModalInterface>();
+  readonly cancelButton = output();
 
-  openModal(){
-    this.playerModel.update(() => ({ name: '', playerImg: null}));
-    this.isOpen.update(()=> true);
+  openModal() {
+    this.playerModel.update(() => ({ name: '', playerImg: null }));
+    this.isOpen.update(() => true);
   }
 
   closeModal() {
-    this.playerModel.update(() => ({ name: '', playerImg: null}));
+    this.playerModel.update(() => ({ name: '', playerImg: null }));
     this.isOpen.update(() => false);
     this.cancelButton.emit();
   }
 
   sendNewPlayer() {
-
-    if(this.playerForm().invalid()){
+    if (this.playerForm().invalid()) {
       return;
     }
 
@@ -47,13 +45,13 @@ export class UserModal {
     this.closeModal();
   }
 
+  onFileSelected(event: Event) {
+    const input = event.target as HTMLInputElement;
 
-  onFileSelected(event: any) {
-    const file = event.target.files[0];
+    const file = input.files && input.files[0] ? input.files[0] : null;
 
     if (file) {
-
-      this.playerModel.update((value) => ({...value, playerImg: file }))
+      this.playerModel.update((value) => ({ ...value, playerImg: file }));
 
       const reader = new FileReader();
       reader.onload = () => this.playerImage.update(() => reader.result);

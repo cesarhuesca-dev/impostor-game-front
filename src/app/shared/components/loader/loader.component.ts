@@ -9,7 +9,6 @@ import { TranslatePipe } from '@ngx-translate/core';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LoaderComponent {
-
   private loaderService = inject(LoaderService);
-  loading = computed(() => this.loaderService.loading);
+  readonly loading = computed(() => this.loaderService.loading);
 }

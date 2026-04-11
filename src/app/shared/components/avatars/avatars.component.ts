@@ -11,9 +11,6 @@ import { PlayerImagePipe } from '@/shared/pipes/player-image.pipe';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AvatarsComponent {
-
   private gameService = inject(GameService);
-
-  game = computed(() => this.gameService.gameData);
-
+  readonly game = computed(() => this.gameService.gameData);
 }
