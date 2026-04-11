@@ -7,6 +7,7 @@ import { GameSocketTopic } from '@/enums/game-topics.enum';
 import { SocketResponse } from '@/interfaces/socket-response.interface';
 import { LoaderService } from './loader.service';
 import { GameService } from './game.service';
+import { Game, Player } from '@/interfaces/game.interface';
 
 @Injectable({ providedIn: 'root' })
 export class GameSocketService {
@@ -45,34 +46,39 @@ export class GameSocketService {
       return;
     }
 
-    return new Observable<SocketResponse>((observer) => {
+    return new Observable<SocketResponse<unknown>>((observer) => {
       this.socket!.on(eventName, (data) => {
         observer.next(JSON.parse(data));
       });
     });
   }
 
-  handleGameMsg(msg: SocketResponse) {
+  handleGameMsg(msg: SocketResponse<unknown>) {
     if (!msg.success) {
       return;
     }
 
     switch (msg.topic) {
-      case GameSocketTopic.UPDATE_GAME_STATUS:
-        console.log('GAME ACTUALIZADO', msg.data[0]);
-        this.gameService.setGameData(msg.data[0]);
+      case GameSocketTopic.UPDATE_GAME_STATUS: {
+        const msgInfo = msg as SocketResponse<Game[]>;
+        this.gameService.setGameData(msgInfo.data[0]);
+        console.log('GAME ACTUALIZADO', msgInfo.data[0]);
         break;
-      case GameSocketTopic.UPDATE_PLAYER_STATUS:
-        console.log('PLAYER ACTUALIZADO', msg.data[0]);
-        this.playerService.setPlayerData(msg.data[0]);
+      }
+      case GameSocketTopic.UPDATE_PLAYER_STATUS: {
+        const msgInfo = msg as SocketResponse<Player[]>;
+        this.playerService.setPlayerData(msgInfo.data[0]);
+        console.log('PLAYER ACTUALIZADO', msgInfo.data[0]);
         break;
-      case GameSocketTopic.PLAYER_ELIMINATED:
-        this.playerService.checkBanPlayer(msg.data[0]);
+      }
+      case GameSocketTopic.PLAYER_ELIMINATED: {
+        const msgInfo = msg as SocketResponse<string[]>;
+        this.playerService.checkBanPlayer(msgInfo.data[0]);
         break;
+      }
       case GameSocketTopic.CLOSE_GAME:
         this.playerService.closeGame();
         break;
-
       default:
         break;
     }

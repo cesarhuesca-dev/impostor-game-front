@@ -11,6 +11,7 @@ import { delay } from 'rxjs';
 import { ToastMessageService } from './toast-message.service';
 import { ToastPosition, ToastType } from '@/enums/toast.enum';
 import { TranslateService } from '@ngx-translate/core';
+import { HttpResponse } from '@/interfaces/http-response.interfaces';
 
 @Injectable({
   providedIn: 'root',
@@ -113,9 +114,9 @@ export class PlayerService {
     }
 
     this.getPlayerByToken().subscribe({
-      next: (res: any) => {
+      next: (res) => {
         if (this.handleResponseService.handleResposne(res)) {
-          this.setPlayerData(res.data[0]);
+          this.setPlayerData(res.data![0]);
           this.router.navigate(['/game']);
         } else {
           this.deletePlayerData();
@@ -131,21 +132,23 @@ export class PlayerService {
   //API CALLS
 
   private getPlayerByToken() {
-    return this.httpClient.get(`${environment.URL_API}${this.apiPlayerTopic}/token`).pipe(delay(1000));
+    return this.httpClient.get<HttpResponse<Player>>(`${environment.URL_API}${this.apiPlayerTopic}/token`).pipe(delay(1000));
   }
 
   getPlayer(id: string) {
-    return this.httpClient.get(`${environment.URL_API}${this.apiPlayerTopic}/${id}`);
+    return this.httpClient.get<HttpResponse<Player>>(`${environment.URL_API}${this.apiPlayerTopic}/${id}`);
   }
 
   uploadPlayerImage(idPlayer: string, file: File) {
     const formData = new FormData();
     formData.append('file', file);
     const headers = new HttpHeaders({ enctype: 'multipart/form-data' });
-    return this.httpClient.post(`${environment.URL_API}${this.apiPlayerTopic}/image/${idPlayer}`, formData, { headers: headers });
+    return this.httpClient.post<HttpResponse<unknown>>(`${environment.URL_API}${this.apiPlayerTopic}/image/${idPlayer}`, formData, {
+      headers: headers,
+    });
   }
 
   playerExit(idPlayer: string) {
-    return this.httpClient.delete(`${environment.URL_API}${this.apiPlayerTopic}/${idPlayer}`).pipe(delay(1000));
+    return this.httpClient.delete<HttpResponse<unknown>>(`${environment.URL_API}${this.apiPlayerTopic}/${idPlayer}`).pipe(delay(1000));
   }
 }

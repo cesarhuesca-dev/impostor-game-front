@@ -12,6 +12,7 @@ import { HandleResponseService } from '@/services/handle-response.service';
 import { PlayerService } from '@/services/player.service';
 import { Router } from '@angular/router';
 import { UserModalInterface } from 'src/app/core/interfaces/forms/user-modal.interface';
+import { Join } from '@/interfaces/join.interface';
 
 @Component({
   selector: 'app-join',
@@ -81,10 +82,11 @@ export default class JoinComponent {
     this.gameService.loginGame(data).subscribe({
       next: (res) => {
         if (this.handleResponseService.handleResposne(res, 'success.login-game', false)) {
-          this.playerService.startPlayer(res.data![0].token);
+          const player = res.data![0];
+          this.playerService.startPlayer(player.token);
 
           if (playerImg !== null) {
-            this.createPlayerImage(res.data![0], playerImg);
+            this.createPlayerImage(player, playerImg);
           } else {
             this.loadingService.finishLoading();
             this.goGame();
@@ -95,9 +97,9 @@ export default class JoinComponent {
     });
   }
 
-  createPlayerImage(data: any, file: File) {
+  createPlayerImage(data: Join, file: File) {
     this.playerService.uploadPlayerImage(data.player.id, file).subscribe({
-      next: (res: any) => {
+      next: (res) => {
         if (this.handleResponseService.handleResposne(res, 'success.uploaded-image', true, this.clearForm)) {
           this.playerService.startPlayer(data.token);
           this.goGame();

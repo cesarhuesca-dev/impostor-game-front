@@ -72,7 +72,7 @@ export default class GameComponent implements OnInit {
   nextRound() {
     this.loaderService.addLoading();
     this.gameService.nextRound().subscribe({
-      next: (res: any) => this.handleResponseService.handleResposne(res),
+      next: (res) => this.handleResponseService.handleResposne(res),
       error: (error) => this.handleResponseService.handleError(error, 'error.warning'),
     });
   }
@@ -80,7 +80,7 @@ export default class GameComponent implements OnInit {
   exitPlayer() {
     this.loaderService.addLoading();
     this.playerService.playerExit(this.player()!.id).subscribe({
-      next: (res: any) => {
+      next: (res) => {
         if (this.handleResponseService.handleResposne(res, 'success.exit')) {
           this.playerService.deletePlayerData();
           this.gameSocketService.disconnect();

@@ -58,7 +58,7 @@ export default class ManagerComponent implements OnInit {
   banPlayer(idPlayer: string) {
     this.loaderService.addLoading();
     this.playerService.playerExit(idPlayer).subscribe({
-      next: (res: any) => this.handleResponseService.handleResposne(res, 'success.ban-player'),
+      next: (res) => this.handleResponseService.handleResposne(res, 'success.ban-player'),
       error: (error) => this.handleResponseService.handleError(error, 'error.warning'),
     });
   }
@@ -70,7 +70,7 @@ export default class ManagerComponent implements OnInit {
   startGame() {
     this.loaderService.addLoading();
     this.gameService.startGame().subscribe({
-      next: (res: any) => {
+      next: (res) => {
         if (this.handleResponseService.handleResposne(res) && res.data && res.data[0]!.gameStarted && res.data![0].round === 0) {
           this.nextRound();
         }
@@ -82,7 +82,7 @@ export default class ManagerComponent implements OnInit {
   endGame() {
     this.loaderService.addLoading();
     this.gameService.endGame().subscribe({
-      next: (res: any) => this.handleResponseService.handleResposne(res),
+      next: (res) => this.handleResponseService.handleResposne(res),
       error: (error) => this.handleResponseService.handleError(error, 'error.warning'),
     });
   }
@@ -90,7 +90,7 @@ export default class ManagerComponent implements OnInit {
   closeGame() {
     this.loaderService.addLoading();
     this.gameService.closeGame(this.game()!.id).subscribe({
-      next: (res: any) => this.handleResponseService.handleResposne(res, 'common.closed-game'),
+      next: (res) => this.handleResponseService.handleResposne(res, 'common.closed-game'),
       error: (error) => this.handleResponseService.handleError(error, 'error.warning'),
     });
   }
@@ -109,7 +109,7 @@ export default class ManagerComponent implements OnInit {
     this.visibleChangeWord = false;
     this.loaderService.addLoading();
     this.gameService.nextRound(word).subscribe({
-      next: (res: any) => this.handleResponseService.handleResposne(res),
+      next: (res) => this.handleResponseService.handleResposne(res),
       error: (error) => this.handleResponseService.handleError(error, 'error.warning'),
     });
   }
@@ -132,7 +132,7 @@ export default class ManagerComponent implements OnInit {
     this.visibleChangeWord = false;
     this.loaderService.addLoading();
     this.gameService.changeWordGame(word).subscribe({
-      next: (res: any) => this.handleResponseService.handleResposne(res),
+      next: (res) => this.handleResponseService.handleResposne(res),
       error: (error) => this.handleResponseService.handleError(error, 'error.warning'),
     });
   }
@@ -155,7 +155,7 @@ export default class ManagerComponent implements OnInit {
     this.visible = false;
     this.loaderService.addLoading();
     this.gameService.changeCategoryGame(this.game()!.id, this.category()).subscribe({
-      next: (res: any) => this.handleResponseService.handleResposne(res),
+      next: (res) => this.handleResponseService.handleResposne(res),
       error: (error) => this.handleResponseService.handleError(error, 'error.warning'),
     });
   }

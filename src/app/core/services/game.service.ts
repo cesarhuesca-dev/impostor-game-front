@@ -9,6 +9,7 @@ import { delay } from 'rxjs';
 import { LoaderService } from './loader.service';
 import { HandleResponseService } from './handle-response.service';
 import { SupportedLanguages } from '@/enums/languages.enum';
+import { Join } from '@/interfaces/join.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -53,56 +54,47 @@ export class GameService {
   }
 
   getGame(idGame: string) {
-    return this.httpClient.get<HttpResponse<any>>(`${environment.URL_API}${this.apiGameTopic}/${idGame}`).pipe(delay(1000));
+    return this.httpClient.get<HttpResponse<Game>>(`${environment.URL_API}${this.apiGameTopic}/${idGame}`).pipe(delay(1000));
   }
 
   createGame(data: CreateGameInterface) {
-    return this.httpClient.post<HttpResponse<any>>(`${environment.URL_API}${this.apiGameTopic}`, data).pipe(delay(1000));
+    return this.httpClient.post<HttpResponse<Game>>(`${environment.URL_API}${this.apiGameTopic}`, data).pipe(delay(1000));
   }
 
   loginVerifyGame(data: LoginGameInterface) {
-    return this.httpClient.post<HttpResponse<any>>(`${environment.URL_API}${this.apiGameTopic}/join/verify`, data).pipe(delay(1000));
+    return this.httpClient.post<HttpResponse<unknown>>(`${environment.URL_API}${this.apiGameTopic}/join/verify`, data).pipe(delay(1000));
   }
 
   loginGame(data: LoginGameInterface) {
-    return this.httpClient.post<HttpResponse<any>>(`${environment.URL_API}${this.apiGameTopic}/join`, data).pipe(delay(1000));
+    return this.httpClient.post<HttpResponse<Join>>(`${environment.URL_API}${this.apiGameTopic}/join`, data).pipe(delay(1000));
   }
-
-  //#region CONTROLES CON JUGADORES
-
-  banPlayer(idPlayer: string) {
-    //TODO AQUI HABRA QUE CONECTARLO CON BACK
-    console.log('Banear al jugador con el id ', idPlayer);
-  }
-
-  //#endregion
 
   //#region CONTROLES DE PARTIDA
   startGame() {
-    return this.httpClient.post<HttpResponse<any>>(`${environment.URL_API}${this.apiGameTopic}/start`, {}).pipe(delay(1000));
+    return this.httpClient.post<HttpResponse<Game>>(`${environment.URL_API}${this.apiGameTopic}/start`, {}).pipe(delay(1000));
   }
 
   endGame() {
-    return this.httpClient.post<HttpResponse<any>>(`${environment.URL_API}${this.apiGameTopic}/end`, {}).pipe(delay(1000));
+    return this.httpClient.post<HttpResponse<Game>>(`${environment.URL_API}${this.apiGameTopic}/end`, {}).pipe(delay(1000));
   }
 
   closeGame(idGame: string) {
-    return this.httpClient.delete<HttpResponse<any>>(`${environment.URL_API}${this.apiGameTopic}/${idGame}`, {}).pipe(delay(1000));
+    return this.httpClient.delete<HttpResponse<unknown>>(`${environment.URL_API}${this.apiGameTopic}/${idGame}`, {}).pipe(delay(1000));
   }
 
   nextRound(newWord: string | null = null) {
-    return this.httpClient.post<HttpResponse<any>>(`${environment.URL_API}${this.apiGameTopic}/round`, { word: newWord }).pipe(delay(1000));
+    return this.httpClient.post<HttpResponse<Game>>(`${environment.URL_API}${this.apiGameTopic}/round`, { word: newWord }).pipe(delay(1000));
   }
   //#endregion
 
   //#region Controles de ronda
 
   changeWordGame(newWord: string | null = null) {
-    return this.httpClient.post<HttpResponse<any>>(`${environment.URL_API}${this.apiGameTopic}/word`, { word: newWord }).pipe(delay(1000));
+    return this.httpClient.post<HttpResponse<Game>>(`${environment.URL_API}${this.apiGameTopic}/word`, { word: newWord }).pipe(delay(1000));
   }
 
   changeCategoryGame(idGame: string, category: string) {
-    return this.httpClient.patch<HttpResponse<any>>(`${environment.URL_API}${this.apiGameTopic}/${idGame}/category`, { category }).pipe(delay(1000));
+    return this.httpClient.patch<HttpResponse<Game>>(`${environment.URL_API}${this.apiGameTopic}/${idGame}/category`, { category }).pipe(delay(1000));
   }
 
   //#endregion

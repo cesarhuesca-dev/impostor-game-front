@@ -12,7 +12,7 @@ export class AuxiliarService {
   private readonly apiAuxiliarTopic: string = '/auxiliar';
 
   getCategories(): Observable<ItemListInterface[]> {
-    return this.httpClient.get<HttpResponse<ItemListInterface[]>>(`${environment.URL_API}${this.apiAuxiliarTopic}/categories`).pipe(
+    return this.httpClient.get<HttpResponse<ItemListInterface>>(`${environment.URL_API}${this.apiAuxiliarTopic}/categories`).pipe(
       map((res) => {
         if (!res.success) {
           return [];
