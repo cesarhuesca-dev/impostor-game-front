@@ -2,8 +2,8 @@ import { inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '@/assets/environments/environment';
 import { delay, map, Observable } from 'rxjs';
-import { ItemListInterface } from '@/interfaces/list.interface';
-import { HttpResponse } from '@/interfaces/http-response.interfaces';
+import { ItemListInterface } from '@/interfaces/utilities/list.interface';
+import { HttpResponse } from '@/interfaces/response/http-response.interfaces';
 
 @Injectable({ providedIn: 'root' })
 export class AuxiliarService {

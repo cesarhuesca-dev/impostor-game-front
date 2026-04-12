@@ -4,7 +4,7 @@ import { ToastMessageService } from './toast-message.service';
 import { ToastPosition, ToastType } from 'src/app/core/enums/toast.enum';
 import { LoaderService } from './loader.service';
 import { TranslateService } from '@ngx-translate/core';
-import { HttpResponse } from 'src/app/core/interfaces/http-response.interfaces';
+import { HttpResponse } from '@/interfaces/response/http-response.interfaces';
 
 @Injectable({
   providedIn: 'root',

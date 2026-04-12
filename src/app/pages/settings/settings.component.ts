@@ -20,7 +20,7 @@ export default class SettingsComponent implements OnInit {
   private languageService = inject(LanguageService);
 
   private readonly settingsModel = signal<SettingsForm>({
-    language: this.languageService.currentLanguage,
+    language: this.languageService.language!,
   });
 
   settingsForm = form(this.settingsModel, () => {
@@ -28,7 +28,7 @@ export default class SettingsComponent implements OnInit {
   });
 
   readonly supportedLanguages = computed(() => {
-    const codeLng = Object.keys(this.languageService.supportedLanguages);
+    const codeLng = Object.keys(this.languageService.suportedLanguages);
 
     return codeLng.map((lng) => ({
       name: `languages.${SupportedLanguages[lng as keyof typeof SupportedLanguages]}`,

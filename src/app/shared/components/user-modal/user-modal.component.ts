@@ -42,7 +42,7 @@ export class UserModal {
     }
 
     this.newPlayer.emit(this.playerForm().value());
-    this.closeModal();
+    this.isOpen.update(() => false);
   }
 
   onFileSelected(event: Event) {

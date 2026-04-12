@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, computed, inject } from '@angular/c
 import { AvatarsComponent } from '@/shared/components/avatars/avatars.component';
 import { WordGameComponent } from '@/shared/components/word-game/word-game.component';
 import { CommonModule } from '@angular/common';
-import { GameService } from '@/services/game.service';
+import { SettingsService } from '@/services/settings.service';
 
 @Component({
   selector: 'page-overlay',
@@ -11,6 +11,6 @@ import { GameService } from '@/services/game.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export default class OverlayComponent {
-  private gameService = inject(GameService);
-  readonly configuration = computed(() => this.gameService.configurationData());
+  private settingsService = inject(SettingsService);
+  readonly configuration = computed(() => this.settingsService.getSettings());
 }

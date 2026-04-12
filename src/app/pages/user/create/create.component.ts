@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, inject, OnInit, signal, viewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, HostListener, inject, OnInit, signal, viewChild } from '@angular/core';
 import { ToggleSwitchModule } from 'primeng/toggleswitch';
 import { form, FormField, required, min, minLength, validate, pattern } from '@angular/forms/signals';
 import { ButtonModule } from 'primeng/button';
@@ -12,8 +12,9 @@ import { PlayerService } from '@/services/player.service';
 import { Router } from '@angular/router';
 import { UserModalInterface } from 'src/app/core/interfaces/forms/user-modal.interface';
 import { AuxiliarService } from '@/services/auxiliar.service';
-import { ItemListInterface } from '@/interfaces/list.interface';
+import { ItemListInterface } from '@/interfaces/utilities/list.interface';
 import { Join } from '@/interfaces/join.interface';
+import { Game } from '@/interfaces/game.interface';
 
 @Component({
   selector: 'app-create',
@@ -70,6 +71,8 @@ export default class CreateComponent implements OnInit {
 
   readonly gameCategories = signal<ItemListInterface[]>([]);
 
+  readonly game = signal<Game | null>(null);
+
   ngOnInit(): void {
     this.setGameCategories();
   }
@@ -115,6 +118,7 @@ export default class CreateComponent implements OnInit {
     this.gameService.createGame(data).subscribe({
       next: (res) => {
         if (this.handleResponseService.handleResposne(res, 'success.create-game')) {
+          this.game.update(() => res.data![0]);
           this.userModal().openModal();
         }
       },
@@ -162,6 +166,24 @@ export default class CreateComponent implements OnInit {
       },
       error: (error) => this.handleResponseService.handleError(error, 'error.warning', this.clearForm),
     });
+  }
+
+  playerCanceled() {
+    this.clearForm();
+
+    if (!this.game()) {
+      return;
+    }
+
+    this.loadingService.addLoading();
+    this.gameService.closeGame(this.game()!.id).subscribe({
+      next: (res) => this.handleResponseService.handleResposne(res, 'success.delete-game', true, this.clearForm),
+      error: (error) => this.handleResponseService.handleError(error, 'error.warning', this.clearForm),
+    });
+  }
+
+  @HostListener('window:beforeunload') handleBeforeUnload() {
+    this.playerCanceled();
   }
 
   goGame() {

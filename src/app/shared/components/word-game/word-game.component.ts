@@ -1,4 +1,4 @@
-import { ItemListInterface } from '@/interfaces/list.interface';
+import { ItemListInterface } from '@/interfaces/utilities/list.interface';
 import { AuxiliarService } from '@/services/auxiliar.service';
 import { GameService } from '@/services/game.service';
 import { NgClass } from '@angular/common';

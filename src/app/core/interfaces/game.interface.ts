@@ -1,3 +1,5 @@
+import { Player } from './player.interface';
+
 export interface Game {
   //Propiedades que viene de back
   id: string;
@@ -14,14 +16,4 @@ export interface Game {
   round: number;
   word: string | null;
   players?: Player[];
-}
-
-export interface Player {
-  id: string;
-  name: string;
-  avatarImg: boolean;
-  host: boolean;
-  impostor: boolean;
-
-  game: Game;
 }

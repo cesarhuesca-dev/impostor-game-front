@@ -9,7 +9,7 @@ import { PlayerService } from '@/services/player.service';
 import { LoaderService } from '@/services/loader.service';
 import { HandleResponseService } from '@/services/handle-response.service';
 import { ConfirmButton } from '@/shared/components/exit-button/confirm-button';
-import { ItemListInterface } from '@/interfaces/list.interface';
+import { ItemListInterface } from '@/interfaces/utilities/list.interface';
 import { AuxiliarService } from '@/services/auxiliar.service';
 import { Dialog } from 'primeng/dialog';
 import { FormsModule } from '@angular/forms';

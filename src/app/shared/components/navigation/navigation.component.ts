@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, computed, DestroyRef, effect, inject, OnInit, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, DestroyRef, effect, HostListener, inject, OnInit, signal } from '@angular/core';
 import { TieredMenu, TieredMenuModule } from 'primeng/tieredmenu';
 import { ButtonModule } from 'primeng/button';
 import { TranslatePipe } from '@ngx-translate/core';
@@ -7,7 +7,7 @@ import urls from '@/assets/urls/pages.json';
 import { NavigationEnd, Router, RouterLink } from '@angular/router';
 import { MenuItem } from 'primeng/api';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { NavigationPages } from 'src/app/core/interfaces/navigation-pages.interfaces';
+import { NavigationPages } from '@/interfaces/utilities/navigation-pages.interfaces';
 import { PlayerService } from '@/services/player.service';
 
 @Component({
@@ -32,6 +32,12 @@ export class NavigationComponent implements OnInit {
   readonly isLogged = computed(() => this.playerService.isLogged);
   readonly isHost = computed(() => (this.playerService.playerData?.host ? true : false));
   readonly overlay = computed(() => (this.playerService.playerData?.game.overlay ? true : false));
+
+  readonly isOpen = signal<boolean>(true);
+
+  @HostListener('window:dblclick') dblClickWindow() {
+    this.isOpen.update((old) => !old);
+  }
 
   constructor() {
     effect(() => {

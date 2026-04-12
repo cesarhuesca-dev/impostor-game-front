@@ -1,14 +1,10 @@
 import { inject, Injectable, signal } from '@angular/core';
-import { BoxPlayerPosition, ConfigurationApp } from 'src/app/core/interfaces/configuration-app.interface';
 import { Game } from 'src/app/core/interfaces/game.interface';
 import { CreateGameInterface, LoginGameInterface } from 'src/app/core/interfaces/forms/game.interface';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '@/assets/environments/environment.development';
-import { HttpResponse } from 'src/app/core/interfaces/http-response.interfaces';
+import { HttpResponse } from '@/interfaces/response/http-response.interfaces';
 import { delay } from 'rxjs';
-import { LoaderService } from './loader.service';
-import { HandleResponseService } from './handle-response.service';
-import { SupportedLanguages } from '@/enums/languages.enum';
 import { Join } from '@/interfaces/join.interface';
 
 @Injectable({
@@ -18,31 +14,11 @@ export class GameService {
   private readonly apiGameTopic: string = '/game';
 
   private readonly httpClient = inject(HttpClient);
-  private readonly loaderService = inject(LoaderService);
-  private readonly handleResponseService = inject(HandleResponseService);
 
-  private readonly defaultConfiguration: ConfigurationApp = {
-    gameConfiguration: { boxPlayersPosition: BoxPlayerPosition.BOTTOM_RIGHT },
-    globalSettings: { language: SupportedLanguages.ES },
-  };
-
-  //!TODO QUITAR LOS DATA MOCKS
-  private readonly configurationGame = signal<ConfigurationApp>(this.defaultConfiguration);
   private readonly game = signal<Game | null>(null);
 
   get gameData() {
     return this.game();
-  }
-
-  get configurationData() {
-    return this.configurationGame;
-  }
-
-  setNewconfigurationApp(configuration: ConfigurationApp) {
-    this.configurationGame.update((oldConfig) => ({
-      ...oldConfig,
-      ...configuration,
-    }));
   }
 
   setGameData(newData: Game) {

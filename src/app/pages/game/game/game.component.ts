@@ -30,12 +30,12 @@ export default class GameComponent implements OnInit {
     // if (window.performance) {
     //   console.info("window.performance work's fine on this browser");
     // }
-    // if (performance.navigation.type == 1) {
-    //   console.info( "This page is reloaded" );
+    // if (performance.navigation.type === performance.navigation.TYPE_RELOAD) {
+    //   console.info('This page is reloaded');
     // } else {
-    // console.info( "This page is not reloaded");
-    // this.exitPlayer();
+    //   console.info('This page is not reloaded');
     // }
+    console.log(document);
   }
 
   readonly player = computed(() => this.playerService.playerData);

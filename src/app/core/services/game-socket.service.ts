@@ -4,10 +4,11 @@ import { Observable } from 'rxjs';
 import { Manager, Socket } from 'socket.io-client';
 import { PlayerService } from './player.service';
 import { GameSocketTopic } from '@/enums/game-topics.enum';
-import { SocketResponse } from '@/interfaces/socket-response.interface';
+import { SocketResponse } from '@/interfaces/response/socket-response.interface';
 import { LoaderService } from './loader.service';
 import { GameService } from './game.service';
-import { Game, Player } from '@/interfaces/game.interface';
+import { Game } from '@/interfaces/game.interface';
+import { Player } from '@/interfaces/player.interface';
 
 @Injectable({ providedIn: 'root' })
 export class GameSocketService {
@@ -60,19 +61,19 @@ export class GameSocketService {
 
     switch (msg.topic) {
       case GameSocketTopic.UPDATE_GAME_STATUS: {
-        const msgInfo = msg as SocketResponse<Game[]>;
+        const msgInfo = msg as SocketResponse<Game>;
         this.gameService.setGameData(msgInfo.data[0]);
         console.log('GAME ACTUALIZADO', msgInfo.data[0]);
         break;
       }
       case GameSocketTopic.UPDATE_PLAYER_STATUS: {
-        const msgInfo = msg as SocketResponse<Player[]>;
+        const msgInfo = msg as SocketResponse<Player>;
         this.playerService.setPlayerData(msgInfo.data[0]);
         console.log('PLAYER ACTUALIZADO', msgInfo.data[0]);
         break;
       }
       case GameSocketTopic.PLAYER_ELIMINATED: {
-        const msgInfo = msg as SocketResponse<string[]>;
+        const msgInfo = msg as SocketResponse<string>;
         this.playerService.checkBanPlayer(msgInfo.data[0]);
         break;
       }

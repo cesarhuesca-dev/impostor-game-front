@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, effect, inject } from '@angular/cor
 import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
 import { ToastMessageService } from '@/services/toast-message.service';
-import { ToastMessage } from 'src/app/core/interfaces/toast-message.interface';
+import { ToastMessage } from '@/interfaces/utilities/toast-message.interface';
 import { ToastPosition, ToastType } from 'src/app/core/enums/toast.enum';
 
 @Component({

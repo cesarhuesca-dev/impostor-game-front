@@ -167,6 +167,7 @@
   },
   "success": {
     "create-game" : "Has creado la sala de juego",
+    "delete-game" : "Has cerrado la sala de juego",
     "login-game-verify" : "Sala encontrada",
     "login-game" : "Te has unido a la sala",
     "uploaded-image" : "Se ha creado correctamente la imagen",

@@ -1,10 +1,10 @@
-import { GlobalSettings } from 'src/app/core/interfaces/configuration-app.interface';
 import { computed, inject, Injectable } from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
-import { GameService } from '@/services/game.service';
 import { TranslateService } from '@ngx-translate/core';
 import { LoaderService } from './loader.service';
 import { SupportedLanguages } from 'src/app/core/enums/languages.enum';
+import { SettingsService } from './settings.service';
+import { Settings } from '@/interfaces/configuration-app.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -12,40 +12,36 @@ import { SupportedLanguages } from 'src/app/core/enums/languages.enum';
 export class LanguageService {
   private cookieService = inject(CookieService);
   private translateService = inject(TranslateService);
-  private gameService = inject(GameService);
-  private loadingSerice = inject(LoaderService);
+  private settingsService = inject(SettingsService);
+  private loadingService = inject(LoaderService);
 
-  private defaultLanguage: SupportedLanguages = SupportedLanguages.ES;
-  private supportedLangugaes = SupportedLanguages;
+  private readonly settings = computed(() => this.settingsService.getSettings());
 
-  readonly globalSettings = computed(() => this.gameService.configurationData().globalSettings);
-
-  get supportedLanguages() {
-    return this.supportedLangugaes;
+  get language() {
+    return this.settings()?.language;
   }
 
-  get currentLanguage(): SupportedLanguages {
-    return this.gameService.configurationData().globalSettings.language;
+  get suportedLanguages() {
+    return SupportedLanguages;
   }
 
   loadLanguage() {
-    const currentLng = this.cookieService.check('settings')
-      ? (JSON.parse(this.cookieService.get('settings')) as GlobalSettings).language
-      : this.defaultLanguage;
-
-    this.setLanguage(currentLng);
+    if (!this.settings() || !this.settings()!.language) {
+      this.setLanguage(SupportedLanguages.EN);
+    } else {
+      this.setLanguage(this.settings()!.language);
+    }
   }
 
   setLanguage(lng: SupportedLanguages) {
-    const config = { ...this.gameService.configurationData() };
+    if (!this.settings()) return;
 
-    if (!config) return;
+    const newConfig: Settings = {
+      ...this.settings()!,
+      language: lng,
+    };
 
-    config.globalSettings.language = lng;
-
-    this.gameService.setNewconfigurationApp(config);
-    this.cookieService.set('settings', JSON.stringify(this.gameService.configurationData().globalSettings));
-
+    this.settingsService.setSettings(newConfig);
     this.translateService.setFallbackLang(lng);
     this.translateService.use(lng);
   }
