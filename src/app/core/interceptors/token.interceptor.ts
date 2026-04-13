@@ -6,6 +6,7 @@ export function tokenInterceptor(req: HttpRequest<unknown>, next: HttpHandlerFn)
 
   const reqWithHeader = req.clone({
     headers: req.headers.set('Authorization', `Bearer ${token}`),
+    withCredentials: true,
   });
 
   return next(reqWithHeader);

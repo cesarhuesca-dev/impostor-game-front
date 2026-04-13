@@ -117,7 +117,7 @@ export default class CreateComponent implements OnInit {
     this.loadingService.addLoading();
     this.gameService.createGame(data).subscribe({
       next: (res) => {
-        if (this.handleResponseService.handleResposne(res, 'success.create-game')) {
+        if (this.handleResponseService.handleResponse(res, 'success.create-game')) {
           this.game.update(() => res.data![0]);
           this.userModal().openModal();
         }
@@ -139,7 +139,7 @@ export default class CreateComponent implements OnInit {
     this.loadingService.addLoading();
     this.gameService.loginGame(data).subscribe({
       next: (res) => {
-        if (this.handleResponseService.handleResposne(res, 'success.login-game', false)) {
+        if (this.handleResponseService.handleResponse(res, 'success.login-game', false)) {
           const player = res.data![0];
 
           this.playerService.startPlayer(player.token);
@@ -159,7 +159,7 @@ export default class CreateComponent implements OnInit {
   createPlayerImage(data: Join, file: File) {
     this.playerService.uploadPlayerImage(data.player.id, file).subscribe({
       next: (res) => {
-        if (this.handleResponseService.handleResposne(res, 'success.uploaded-image', true, this.clearForm)) {
+        if (this.handleResponseService.handleResponse(res, 'success.uploaded-image', true, this.clearForm)) {
           this.playerService.startPlayer(data.token);
           this.goGame();
         }
@@ -177,7 +177,7 @@ export default class CreateComponent implements OnInit {
 
     this.loadingService.addLoading();
     this.gameService.closeGame(this.game()!.id).subscribe({
-      next: (res) => this.handleResponseService.handleResposne(res, 'success.delete-game', true, this.clearForm),
+      next: (res) => this.handleResponseService.handleResponse(res, 'success.delete-game', true, this.clearForm),
       error: (error) => this.handleResponseService.handleError(error, 'error.warning', this.clearForm),
     });
   }

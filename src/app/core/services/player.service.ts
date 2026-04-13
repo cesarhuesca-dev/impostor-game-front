@@ -100,10 +100,10 @@ export class PlayerService {
 
   startPlayer(token: string) {
     this.setPlayerCookie(token);
-    this.setPlayerInfo();
+    this.loadPlayer();
   }
 
-  setPlayerInfo() {
+  loadPlayer() {
     this.loaderService.addLoading();
     this.loadPlayerCookie();
 
@@ -115,7 +115,7 @@ export class PlayerService {
 
     this.getPlayerByToken().subscribe({
       next: (res) => {
-        if (this.handleResponseService.handleResposne(res)) {
+        if (this.handleResponseService.handleResponse(res)) {
           this.setPlayerData(res.data![0]);
           this.router.navigate(['/game']);
         } else {

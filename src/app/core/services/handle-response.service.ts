@@ -14,7 +14,7 @@ export class HandleResponseService {
   private readonly loadingService = inject(LoaderService);
   private readonly translateService = inject(TranslateService);
 
-  handleResposne(response: HttpResponse<unknown>, title = '', stopLoading = true, fnClearForm: (() => void) | null = null): boolean {
+  handleResponse(response: HttpResponse<unknown>, title = '', stopLoading = true, fnClearForm: (() => void) | null = null): boolean {
     if (fnClearForm) {
       fnClearForm();
     }

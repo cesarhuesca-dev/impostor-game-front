@@ -30,6 +30,6 @@ export class App implements OnInit {
   ngOnInit(): void {
     this.settingsService.loadSettings();
     this.languageService.loadLanguage();
-    this.playerService.setPlayerInfo();
+    this.playerService.loadPlayer();
   }
 }
