@@ -8,6 +8,9 @@ import { Router } from '@angular/router';
 import { LanguageService } from '@/services/language.service';
 import { SettingsForm } from 'src/app/core/interfaces/forms/settings.interface';
 import { SupportedLanguages } from 'src/app/core/enums/languages.enum';
+import { OverlayPosition } from '@/enums/overlay.enum';
+import { SettingsService } from '@/services/settings.service';
+import { Settings } from '@/interfaces/configuration-app.interface';
 
 @Component({
   selector: 'page-settings',
@@ -17,15 +20,18 @@ import { SupportedLanguages } from 'src/app/core/enums/languages.enum';
 })
 export default class SettingsComponent implements OnInit {
   private router = inject(Router);
+  private settingsService = inject(SettingsService);
   private languageService = inject(LanguageService);
 
+  private readonly settings = computed(() => this.settingsService.getSettings());
+
   private readonly settingsModel = signal<SettingsForm>({
-    language: this.languageService.language!,
+    language: this.settings()!.language,
+    overlayPosition: this.settings()!.overlayPosition,
   });
 
-  settingsForm = form(this.settingsModel, () => {
-    /* empty */
-  });
+  private settingsBackup = '';
+  settingsForm = form(this.settingsModel);
 
   readonly supportedLanguages = computed(() => {
     const codeLng = Object.keys(this.languageService.suportedLanguages);
@@ -36,10 +42,18 @@ export default class SettingsComponent implements OnInit {
     }));
   });
 
-  private settingsBackup = '';
+  readonly overlayPositions = computed(() => {
+    return Object.keys(OverlayPosition).map((x) => ({
+      name: `overlay-positions.${OverlayPosition[x as keyof typeof OverlayPosition]}`,
+      code: OverlayPosition[x as keyof typeof OverlayPosition],
+    }));
+  });
 
   ngOnInit(): void {
     this.setBackupForm();
+
+    console.log(this.settingsModel());
+    console.log(this.overlayPositions());
   }
 
   setBackupForm() {
@@ -51,10 +65,8 @@ export default class SettingsComponent implements OnInit {
       return;
     }
 
-    if (this.settingsForm.language().dirty()) {
-      const newLng = this.settingsForm.language().value() as SupportedLanguages;
-      this.changeLanguage(newLng);
-    }
+    this.checkFormLanguage();
+    this.checkFormOverlayPosition();
 
     this.setBackupForm();
     this.resetSettings();
@@ -65,13 +77,39 @@ export default class SettingsComponent implements OnInit {
     this.settingsForm().reset({ ...data });
   }
 
-  closeSettings() {
-    // cerrar modal
-    this.router.navigate(['/home']);
+  checkFormLanguage() {
+    if (this.settingsForm.language().dirty()) {
+      const newLng = this.settingsForm.language().value();
+      this.changeLanguage(newLng);
+    }
+  }
+
+  checkFormOverlayPosition() {
+    if (this.settingsForm.overlayPosition().dirty()) {
+      const newPosition = this.settingsForm.overlayPosition().value();
+      this.changeOverlayPosition(newPosition);
+    }
   }
 
   changeLanguage(lng: SupportedLanguages) {
     if (!lng) return;
     this.languageService.setLanguage(lng);
+  }
+
+  changeOverlayPosition(position: OverlayPosition) {
+    if (!position) return;
+
+    const settings = this.settingsService.getSettings()!;
+
+    const newSettings: Settings = {
+      ...settings,
+      overlayPosition: position,
+    };
+
+    this.settingsService.setSettings(newSettings);
+  }
+
+  closeSettings() {
+    this.router.navigate(['/home']);
   }
 }

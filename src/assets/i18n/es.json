@@ -94,6 +94,7 @@
     "theme" : "Tema de la aplicación",
     "theme-description" : "Colores y apariencia de la aplicación",
     "language" : "Idioma",
+    "overlay" : "Posición del overlay",
     "save" : "Guardar",
     "reset" : "Restablecer"
   },
@@ -177,6 +178,13 @@
   "error" : {
     "warning": "Algo salio mal",
     "login-game" : "No se ha podido unirse a la partida"
+  },
+  "overlay-positions" : {
+    "top-left" : "Arriba izquierda",
+    "top-right" : "Arriba derecha",
+    "bottom-left" : "Abajo izquierda",
+    "bottom-right" : "Abajo derecha",
+    "bottom-center" : "Abajo centrado"
   },
   "languages" : {
     "language" : "Idioma",

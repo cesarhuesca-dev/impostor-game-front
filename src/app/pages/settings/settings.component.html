@@ -17,21 +17,7 @@
     </div>
 
     <form class="space-y-6">
-
-      <!-- TEMA CLARO/OSCURO -->
-       <!--TODO HAY QUE HACER EL TEMA OSCURO Y CLARO -->
-      <!-- <div class="flex items-center justify-between bg-slate-800/70 p-4 rounded-xl border border-slate-700">
-        <div>
-          <p class="text-white font-medium"><span> ✨ </span><span>{{'settings.theme' | translate }}</span></p>
-          <p class="text-sm text-slate-400">{{'settings.theme-description' | translate }}</p>
-        </div>
-
-        <input type="checkbox" class="w-5 h-5 accent-purple-500">
-      </div> -->
-
-      <!-- Idioma -->
       <div>
-
         <label class="text-purple-300 text-sm">
           <span> 🌍 </span><span>{{'settings.language' | translate }}</span>
         </label>
@@ -42,30 +28,19 @@
             <option [value]="lng.code">{{lng.name | translate }}</option>
           }
         </select>
+      </div>
 
+      <div>
+        <label class="text-purple-300 text-sm">
+          <span> 📺 </span><span>{{'settings.overlay' | translate }}</span>
+        </label>
 
-        <!-- <p-select class="w-full"
-          optionLabel="name"
-          optionValue="code"
-          [field]="settingsForm.language"
-          (onChange)="changeLanguage($event)">
-          <ng-template #selectedItem let-selectedOption>
-            @if (selectedOption) {
-              <div>
-                <span>{{ selectedOption.name | translate}}</span>
-              </div>
-            }
-          </ng-template>
-          <ng-template let-lng #item>
-              <div>
-                <span>{{ lng.name | translate }}</span>
-              </div>
-          </ng-template>
-          <ng-template #dropdownicon>
-              <i class="pi pi-language"></i>
-          </ng-template>
-        </p-select> -->
-
+        <select class="custom-picker w-full mt-2 bg-slate-800 border border-slate-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-purple-500"
+          [formField]="this.settingsForm.overlayPosition">
+          @for (position of overlayPositions(); track position.code) {
+            <option [value]="position.code">{{position.name | translate }}</option>
+          }
+        </select>
       </div>
 
       <!-- Botones -->
