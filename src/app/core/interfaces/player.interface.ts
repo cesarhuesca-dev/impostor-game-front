@@ -1,3 +1,4 @@
+import { UserRoles } from '@/enums/user-roles.enum';
 import { Game } from './game.interface';
 
 export interface Player {
@@ -6,6 +7,7 @@ export interface Player {
   avatarImg: boolean;
   host: boolean;
   impostor: boolean;
+  roles: UserRoles[];
 
   game: Game;
 }

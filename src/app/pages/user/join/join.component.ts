@@ -69,6 +69,26 @@ export default class JoinComponent {
     });
   }
 
+  createNewNoPlayer() {
+    const data: LoginGameInterface = {
+      ...this.joinGameForm().value(),
+      host: false,
+    };
+
+    this.loadingService.addLoading();
+    this.gameService.loginWatcher(data).subscribe({
+      next: (res) => {
+        if (this.handleResponseService.handleResponse(res, 'success.login-game', false)) {
+          const player = res.data![0];
+          this.playerService.startPlayer(player.token);
+          this.loadingService.finishLoading();
+          this.goGame();
+        }
+      },
+      error: (error) => this.handleResponseService.handleError(error, 'error.login-game', this.clearForm),
+    });
+  }
+
   createNewPlayer(event: UserModalInterface) {
     const { name, playerImg } = event;
 

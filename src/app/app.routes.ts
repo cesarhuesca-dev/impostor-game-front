@@ -1,6 +1,7 @@
 import { Routes } from '@angular/router';
 import { NoLoggedGuard } from 'src/app/core/guards/no-login.guard';
 import { LoggedGuard } from 'src/app/core/guards/login.guard';
+import { RoleGuard } from '@/guards/role.guard';
 
 export const routes: Routes = [
   {
@@ -21,7 +22,7 @@ export const routes: Routes = [
   {
     path: 'game',
     loadComponent: () => import('@/pages/game/game/game.component'),
-    canActivate: [LoggedGuard],
+    canActivate: [LoggedGuard, RoleGuard],
   },
   {
     path: 'manager',

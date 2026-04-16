@@ -104,5 +104,9 @@
   </div>
 </div>
 
-<s-user-modal (newPlayer)="createNewPlayer($event)" (cancelButton)="playerCanceled()" />
+<s-user-modal
+  [createPage]="true"
+  (newPlayer)="createNewPlayer($event)"
+  (newNoPlayer)="createNoPlayer()"
+  (cancelButton)="playerCanceled()" />
 

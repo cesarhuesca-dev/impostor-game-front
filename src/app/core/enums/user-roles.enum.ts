@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
-export enum UserRole {
-  ADMIN = 'ADMIN',
-  MANAGER = 'MANAGER',
-  PLAYER = 'PLAYER',
+export enum UserRoles {
+  MANAGER = 'manager',
+  PLAYER = 'player',
+  WATCHER = 'watcher',
 }

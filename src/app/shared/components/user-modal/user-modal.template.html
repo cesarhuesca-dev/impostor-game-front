@@ -54,19 +54,29 @@
       </div>
 
       <!-- Botones -->
-      <div class="flex gap-4 pt-4 items-center justify-center">
+      <div class="flex flex-col gap-4 pt-4 items-center justify-center">
 
-        <p-button class="form-btn btn-secondary w-full"
-          (click)="closeModal()">
-          <span>{{'common.cancel' | translate }}</span>
-        </p-button>
+        <div class="flex gap-4 items-center justify-center">
+          <p-button class="form-btn btn-secondary w-full"
+            (click)="closeModal()">
+            <span>{{'common.cancel' | translate }}</span>
+          </p-button>
+          <p-button class="form-btn w-full"
+            [disabled]="playerForm().invalid()"
+            (click)="sendNewPlayer()">
+            <span>{{'common.continue' | translate }}</span>
+          </p-button>
+        </div>
 
-
-        <p-button class="form-btn w-full"
-          [disabled]="playerForm().invalid()"
-          (click)="sendNewPlayer()">
-          <span>{{'common.continue' | translate }}</span>
-        </p-button>
+          <div class="items-center justify-center">
+            <p-button class="form-btn w-full" (click)="sendNoPlayer()">
+              @if (this.createPage()) {
+                <span>{{'create-login-game.manager' | translate }}</span>
+              } @else{
+                <span>{{'create-login-game.watcher' | translate }}</span>
+              }
+            </p-button>
+          </div>
 
       </div>
 

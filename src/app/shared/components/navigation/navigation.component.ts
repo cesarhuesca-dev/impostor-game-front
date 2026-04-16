@@ -32,6 +32,7 @@ export class NavigationComponent implements OnInit {
   readonly isLogged = computed(() => this.playerService.isLogged);
   readonly isHost = computed(() => (this.playerService.playerData?.host ? true : false));
   readonly overlay = computed(() => (this.playerService.playerData?.game.overlay ? true : false));
+  readonly userRoles = computed(() => (this.playerService.playerData?.roles ? this.playerService.playerData?.roles : []));
 
   readonly isOpen = signal<boolean>(true);
 
@@ -64,11 +65,14 @@ export class NavigationComponent implements OnInit {
       // Si requiere host y no lo es → fuera
       if (item.needHost && !this.isHost()) return false;
 
-      // Si requiere host y no lo es → fuera
-      if (item.needHost && !this.isHost()) return false;
-
       // Si es el overlay y no lo quiere → fuera
       if (item.overlay && !this.overlay()) return false;
+
+      //Filtro por roles
+      if (item.roles.length > 0) {
+        const result = item.roles.some((role) => this.userRoles().includes(role));
+        return result;
+      }
 
       return true;
     });

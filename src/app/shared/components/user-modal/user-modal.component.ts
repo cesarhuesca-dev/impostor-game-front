@@ -1,6 +1,6 @@
 import { UserModalInterface } from 'src/app/core/interfaces/forms/user-modal.interface';
 import { NgClass } from '@angular/common';
-import { ChangeDetectionStrategy, Component, output, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, input, output, signal } from '@angular/core';
 import { form, FormField, minLength, required } from '@angular/forms/signals';
 import { TranslatePipe } from '@ngx-translate/core';
 import { ButtonModule } from 'primeng/button';
@@ -22,7 +22,9 @@ export class UserModal {
 
   readonly isOpen = signal<boolean>(false);
 
+  readonly createPage = input<boolean>(false);
   readonly newPlayer = output<UserModalInterface>();
+  readonly newNoPlayer = output();
   readonly cancelButton = output();
 
   openModal() {
@@ -45,10 +47,15 @@ export class UserModal {
     this.isOpen.update(() => false);
   }
 
-  onFileSelected(event: Event) {
-    const input = event.target as HTMLInputElement;
+  sendNoPlayer() {
+    this.newNoPlayer.emit();
+    this.isOpen.update(() => false);
+  }
 
-    const file = input.files && input.files[0] ? input.files[0] : null;
+  onFileSelected(event: Event) {
+    const inputElement = event.target as HTMLInputElement;
+
+    const file = inputElement.files && inputElement.files[0] ? inputElement.files[0] : null;
 
     if (file) {
       this.playerModel.update((value) => ({ ...value, playerImg: file }));

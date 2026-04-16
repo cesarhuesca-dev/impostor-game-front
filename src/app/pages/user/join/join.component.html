@@ -29,7 +29,7 @@
         <label class="text-sm text-purple-300">{{'create-login-game.room-password' | translate }}</label>
 
         <input class="w-full mt-1 bg-slate-800 border border-slate-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-purple-500 transition"
-          type="text"
+          type="password"
           [formField]="this.joinGameForm.roomPassword">
       </div>
 
@@ -47,4 +47,7 @@
 </div>
 
 
-<s-user-modal (newPlayer)="createNewPlayer($event)" (cancelButton)="clearForm()" />
+<s-user-modal
+  (newPlayer)="createNewPlayer($event)"
+  (newNoPlayer)="createNewNoPlayer()"
+  (cancelButton)="clearForm()" />

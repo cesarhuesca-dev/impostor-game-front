@@ -84,10 +84,11 @@
     "room-overlay" : "Overlay para retransmisiones",
     "button-create-submit" : "Crear partida",
     "button-login-submit" : "Unirse a partida",
-    "create-player-title" : "Crear juagador",
+    "create-player-title" : "Crear jugador",
     "create-player-subtitle" : "Dale un poco de vida a tu perfil",
-    "player-name" : "Nombre del jugador"
-
+    "player-name" : "Nombre del jugador",
+    "manager" : "Ser controlador de partida",
+    "watcher" : "Ser espectador"
   },
   "settings" : {
     "title" : "Configuración",

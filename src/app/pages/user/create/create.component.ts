@@ -126,6 +126,27 @@ export default class CreateComponent implements OnInit {
     });
   }
 
+  createNoPlayer() {
+    const data: LoginGameInterface = {
+      roomName: this.createGameForm().value().roomName,
+      roomPassword: this.createGameForm().value().roomPassword,
+      host: true,
+    };
+
+    this.loadingService.addLoading();
+    this.gameService.loginWatcher(data).subscribe({
+      next: (res) => {
+        if (this.handleResponseService.handleResponse(res, 'success.login-game', false)) {
+          const player = res.data![0];
+          this.playerService.startPlayer(player.token);
+          this.loadingService.finishLoading();
+          this.goGame();
+        }
+      },
+      error: (error) => this.handleResponseService.handleError(error, 'error.login-game', this.clearForm),
+    });
+  }
+
   createNewPlayer(event: UserModalInterface) {
     const { name, playerImg } = event;
 

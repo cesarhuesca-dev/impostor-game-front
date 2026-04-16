@@ -4,47 +4,54 @@
     "icon": "pi pi-home",
     "routerLink": "/home",
     "login" : false,
-    "needHost": false
+    "needHost": false,
+    "roles" : []
   },
   {
     "label": "pages.create",
     "icon": "pi pi-plus-circle",
     "routerLink": "/create",
     "login" : false,
-    "needHost": false
+    "needHost": false,
+    "roles" : []
   },
   {
     "label": "pages.join",
     "icon": "pi pi-sign-in",
     "routerLink": "/join",
     "login" : false,
-    "needHost": false
+    "needHost": false,
+    "roles" : []
   },
   {
     "label": "pages.game",
     "icon": "pi pi-play-circle",
     "routerLink": "/game",
     "login" : true,
-    "needHost": false
+    "needHost": false,
+    "roles" : ["player"]
   },
   {
     "label": "pages.overlay",
     "icon": "pi pi-video",
     "routerLink": "/overlay",
     "login" : true,
-    "needHost": true,
-    "overlay" : true
+    "needHost": false,
+    "overlay" : true,
+    "roles" : ["watcher"]
   },
   {
     "label": "pages.manager",
     "icon": "pi pi-desktop",
     "routerLink": "/manager",
     "login" : true,
-    "needHost": true
+    "needHost": true,
+    "roles": ["manager"]
   },
   {
     "label": "pages.settings",
     "icon": "pi pi-wrench",
-    "routerLink": "/settings"
+    "routerLink": "/settings",
+    "roles" : []
   }
 ]

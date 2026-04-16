@@ -45,6 +45,10 @@ export class GameService {
     return this.httpClient.post<HttpResponse<Join>>(`${environment.URL_API}${this.apiGameTopic}/join`, data).pipe(delay(1000));
   }
 
+  loginWatcher(data: LoginGameInterface) {
+    return this.httpClient.post<HttpResponse<Join>>(`${environment.URL_API}${this.apiGameTopic}/join/watcher`, data).pipe(delay(1000));
+  }
+
   //#region CONTROLES DE PARTIDA
   startGame() {
     return this.httpClient.post<HttpResponse<Game>>(`${environment.URL_API}${this.apiGameTopic}/start`, {}).pipe(delay(1000));
