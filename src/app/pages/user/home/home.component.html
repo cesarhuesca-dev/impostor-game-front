@@ -1,26 +1,25 @@
-<div  class="bg-linear-to-br from-slate-950 via-slate-900 to-purple-950">
+<div  class="bg-body-primary">
   <!-- HERO -->
   <section class="text-center px-6 pt-24 md:pb-10 relative">
-    <!-- <div class="absolute inset-0 bg-linear-to-r from-purple-600/20 via-pink-600/20 to-blue-600/20 blur-3xl"></div> -->
 
-    <h1 class="text-6xl md:text-7xl font-extrabold relative text-shadow-black text-shadow-md">
-      <span>{{'home.find' | translate }} </span>
-      <span class="text-red-600 text-shadow-black text-shadow-lg uppercase">{{'home.impostor' | translate }}</span>
+    <h1 class="text-6xl md:text-7xl font-extrabold relative uppercase">
+      <span class="text-primary-light">{{'home.find' | translate }} </span>
+      <span class="text-impostor-secondary">{{'home.impostor' | translate }}</span>
     </h1>
 
-    <p class="mt-6 text-gray-400 text-xl max-w-2xl mx-auto relative">{{'home.game-description' | translate }}</p>
+    <p class="mt-6 text-light-secondary text-xl max-w-2xl mx-auto relative">{{'home.game-description' | translate }}</p>
 
     <div class="mt-10 flex flex-col md:flex-row justify-center gap-6 relative">
 
       <div class="flex items-center justify-center px-10 py-4">
         <p-button class="w-full home-btn home-btn-xl" [routerLink]="['/create']">
-           <span> 🎮 </span><span>{{'home.create' | translate }} </span>
+           <span> 🎮 </span><span class="font-semibold">{{'home.create' | translate }} </span>
         </p-button>
       </div>
 
       <div class="flex items-center justify-center px-10 py-4">
         <p-button class="w-full home-btn home-btn-xl btn-secondary" [routerLink]="['/join']">
-          <span> 👥 </span><span>{{'home.join' | translate }}</span>
+          <span> 👥 </span><span class="font-semibold">{{'home.join' | translate }}</span>
         </p-button>
       </div>
     </div>
@@ -32,22 +31,22 @@
     <h2 class="text-4xl font-bold text-center mb-6">{{'home.how-works' | translate }}</h2>
 
     <div class="grid md:grid-cols-3 gap-10">
-      <div class="bg-gray-900 p-8 rounded-2xl border border-gray-800">
+      <div class=" p-8 rounded-2xl bg-dark border-dark-light">
         <div class="text-4xl mb-4"> 📩 </div>
         <h3 class="text-xl font-bold mb-2">{{'home.illustration-1-title' | translate }}</h3>
-        <p class="text-gray-400">{{'home.illustration-1-description' | translate }}</p>
+        <p class="text-light-secondary">{{'home.illustration-1-description' | translate }}</p>
       </div>
 
-      <div class="bg-gray-900 p-8 rounded-2xl border border-gray-800">
+      <div class="p-8 rounded-2xl bg-dark border-dark-light">
         <div class="text-4xl mb-4"> 💬 </div>
         <h3 class="text-xl font-bold mb-2">{{'home.illustration-2-title' | translate }}</h3>
-        <p class="text-gray-400">{{'home.illustration-2-description' | translate }}</p>
+        <p class="text-light-secondary">{{'home.illustration-2-description' | translate }}</p>
       </div>
 
-      <div class="bg-gray-900 p-8 rounded-2xl border border-gray-800">
+      <div class="p-8 rounded-2xl bg-dark border-dark-light">
         <div class="text-4xl mb-4"> 🕵️ </div>
         <h3 class="text-xl font-bold mb-2">{{'home.illustration-3-title' | translate }}</h3>
-        <p class="text-gray-400">{{'home.illustration-3-description' | translate }}</p>
+        <p class="text-light-secondary">{{'home.illustration-3-description' | translate }}</p>
       </div>
     </div>
   </section>
@@ -57,16 +56,16 @@
     <h2 class="text-4xl font-bold text-center mb-6">{{'home.solutions' | translate }}</h2>
 
     <div class="grid md:grid-cols-2 gap-10">
-      <div class="bg-gray-900 p-8 rounded-2xl border border-gray-800">
+      <div class="p-8 rounded-2xl bg-dark border-dark-light">
         <div class="text-4xl mb-4 flex gap-3"> 🎥 </div>
         <h3 class="text-xl font-bold mb-2">{{'home.illustration-4-title' | translate }}</h3>
-        <p class="text-gray-400">{{'home.illustration-4-description' | translate }}</p>
+        <p class="text-light-secondary">{{'home.illustration-4-description' | translate }}</p>
       </div>
 
-      <div class="bg-gray-900 p-8 rounded-2xl border border-gray-800">
+      <div class="p-8 rounded-2xl bg-dark border-dark-light">
         <div class="text-4xl mb-4"> 📱 </div>
         <h3 class="text-xl font-bold mb-2">{{'home.illustration-5-title' | translate }}</h3>
-        <p class="text-gray-400">{{'home.illustration-5-description' | translate }}</p>
+        <p class="text-light-secondary">{{'home.illustration-5-description' | translate }}</p>
       </div>
 
 
@@ -77,15 +76,14 @@
 
   <!-- SECCION VIRAL -->
   <section class="py-24">
-    <!-- bg-linear-to-r from-purple-600/20 via-pink-600/20 to-blue-600/20 -->
     <div class="max-w-4xl mx-auto text-center px-6">
       <h2 class="text-4xl font-bold mb-6">{{'home.slogan-1' | translate }}</h2>
 
-      <p class="text-gray-300 text-lg mb-10"><span>{{'home.slogan-2' | translate }}</span><span> 😈 </span></p>
+      <p class="text-light-secondary text-lg mb-10"><span>{{'home.slogan-2' | translate }}</span><span> 😈 </span></p>
 
       <div class="flex items-center justify-center px-10 py-4">
         <p-button class="home-btn" [routerLink]="['/join']">
-          <span> 🚀 </span><span>{{'home.start-now' | translate }}</span>
+          <span> 🚀 </span><span class="font-semibold">{{'home.start-now' | translate }}</span>
         </p-button>
       </div>
 
@@ -93,25 +91,25 @@
   </section>
 
   <!-- FOOTER -->
-  <footer class="bg-gray-900 text-gray-300 py-6">
+  <footer class="bg-dark text-light-secondary py-6">
     <div class="max-w-6xl mx-auto px-4 flex flex-col md:flex-row items-center justify-between">
 
       <!-- Nombre / info -->
       <div class="text-center md:text-left mb-4 md:mb-0">
-        <h2 class="text-lg font-semibold text-white">{{'about-me.name' | translate }}</h2>
-        <p class="text-sm text-gray-400">{{'about-me.contact' | translate }}:</p>
+        <h2 class="text-lg font-semibold text-light">{{'about-me.name' | translate }}</h2>
+        <p class="text-sm text-light-secondary">{{'about-me.contact' | translate }}:</p>
       </div>
 
       <!-- Redes sociales -->
       <div class="flex space-x-6">
-        <a [href]="this.environment.URL_GMAIL" class="hover:text-white transition"><i class="pi pi-envelope text-3xl!"></i></a>
-        <a [href]="this.environment.URL_LINKEDIN" target="_blank" class="hover:text-white transition "><i class="pi pi-linkedin text-3xl!"></i></a>
-        <a [href]="this.environment.URL_GITHUB" target="_blank" class="hover:text-white transition"><i class="pi pi-github text-3xl!"></i></a>
-        <a [href]="this.environment.URL_DISCORD" target="_blank" class="hover:text-white transition"><i class="pi pi-discord text-3xl!"></i></a>
+        <a [href]="this.environment.URL_GMAIL" class="hover-text-light transition"><i class="pi pi-envelope text-3xl!"></i></a>
+        <a [href]="this.environment.URL_LINKEDIN" target="_blank" class="hover-text-light transition "><i class="pi pi-linkedin text-3xl!"></i></a>
+        <a [href]="this.environment.URL_GITHUB" target="_blank" class="hover-text-light transition"><i class="pi pi-github text-3xl!"></i></a>
+        <a [href]="this.environment.URL_DISCORD" target="_blank" class="hover-text-light transition"><i class="pi pi-discord text-3xl!"></i></a>
       </div>
 
       <!-- Línea inferior -->
-      <div class="text-center text-xs text-gray-500 mt-4">{{'about-me.copyright' | translate }}</div>
+      <div class="text-center text-xs text-light-secondary mt-4">{{'about-me.copyright' | translate }}</div>
     </div>
   </footer>
 </div>

@@ -1,15 +1,23 @@
 
 @import "tailwindcss";
 
+/* COLOR SETTINGS */
+@import "./color/text-color.css";
+@import "./color/hover.css";
+@import "./color/border.css";
+@import "./color/background.css";
+
 /* PAGES COMPONENTS */
+@import "./components/loader.css";
 @import "./components/p-game.css";
+@import "./components/button.css";
 
 
 /* SHARED COMPONENTS */
 @import "./components/s-navigation.css";
 
 /* FORMS COMPONENTS */
-@import "./forms/select.css";
+@import "./forms/form-components.css";
 
 /* PRIMENG COMPONENTS */
 @import "./primeng/primeng-toggleswitch.css";
@@ -20,9 +28,4 @@
 /* ANIMATIONS */
 @import "./animations/home.css";
 
-
-
-body {
-  @apply bg-slate-500/20;
-}
 

@@ -1,0 +1,8 @@
+.hover-primary {
+  @apply hover:border-purple-500;
+}
+
+.hover-text-light {
+  @apply hover:text-white;
+}
+

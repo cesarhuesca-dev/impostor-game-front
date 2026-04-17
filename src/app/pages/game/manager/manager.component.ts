@@ -3,7 +3,6 @@ import { ButtonModule } from 'primeng/button';
 import { TranslatePipe } from '@ngx-translate/core';
 import { GameService } from '@/services/game.service';
 import { AvatarModule } from 'primeng/avatar';
-import { NgClass } from '@angular/common';
 import { PlayerImagePipe } from '@/shared/pipes/player-image.pipe';
 import { PlayerService } from '@/services/player.service';
 import { LoaderService } from '@/services/loader.service';
@@ -16,7 +15,7 @@ import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-manager',
-  imports: [ButtonModule, TranslatePipe, AvatarModule, NgClass, PlayerImagePipe, ConfirmButton, Dialog, FormsModule],
+  imports: [ButtonModule, TranslatePipe, AvatarModule, PlayerImagePipe, ConfirmButton, Dialog, FormsModule],
   templateUrl: './manager.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
@@ -57,7 +56,7 @@ export default class ManagerComponent implements OnInit {
 
   banPlayer(idPlayer: string) {
     this.loaderService.addLoading();
-    this.playerService.playerExit(idPlayer).subscribe({
+    this.playerService.playerBan(idPlayer).subscribe({
       next: (res) => this.handleResponseService.handleResponse(res, 'success.ban-player'),
       error: (error) => this.handleResponseService.handleError(error, 'error.warning'),
     });

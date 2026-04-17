@@ -1,49 +1,49 @@
 <div
-  class="min-h-screen bg-linear-to-br from-slate-950 via-slate-900 to-purple-950 flex items-center justify-center p-6">
+  class="min-h-screen flex items-center justify-center p-6 bg-body-primary">
 
-  <div class="w-full max-w-lg bg-slate-900/80 backdrop-blur border border-purple-500/20 rounded-3xl shadow-2xl p-8">
+  <div class="w-full max-w-lg rounded-3xl shadow-2xl p-8 bg-card-secondary border-primary">
 
     <!-- Header -->
     <div class="text-center mb-8">
-      <h1 class="text-4xl font-extrabold text-purple-400 tracking-wider">
+      <h1 class="text-4xl font-extrabold text-primary-light tracking-wider">
         <span> 🚀 </span><span>{{'create-login-game.create-title' | translate }}</span>
       </h1>
 
-      <p class="text-slate-400 mt-2">{{'create-login-game.create-subtitle' | translate }}</p>
+      <p class="text-light-secondary mt-2">{{'create-login-game.create-subtitle' | translate }}</p>
     </div>
 
     <form class="space-y-3">
 
       <!-- Nombre -->
       <div>
-        <label class="text-sm text-purple-300">{{'create-login-game.room-name' | translate }}</label>
+        <label class="text-sm text-primary-light">{{'create-login-game.room-name' | translate }}</label>
 
-        <input class="w-full mt-1 bg-slate-800 border border-slate-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-purple-500 transition"
+        <input class="w-full mt-1 custom-input"
           type="text"
           [formField]="this.createGameForm.roomName">
       </div>
 
       <!-- Constraña de la sala -->
       <div>
-        <label class="text-sm text-purple-300">{{'create-login-game.room-password' | translate }}</label>
+        <label class="text-sm text-primary-light">{{'create-login-game.room-password' | translate }}</label>
 
-        <input class="w-full mt-1 bg-slate-800 border border-slate-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-purple-500 transition"
+        <input class="w-full mt-1 custom-input"
           type="password"
           [formField]="this.createGameForm.roomPassword">
       </div>
 
       <!-- Jugadores -->
       <div>
-        <label class="text-sm text-purple-300">{{'create-login-game.room-players' | translate }}</label>
+        <label class="text-sm text-primary-light">{{'create-login-game.room-players' | translate }}</label>
 
-        <input class="w-full mt-1 bg-slate-800 border border-slate-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-purple-500"
+        <input class="w-full mt-1 custom-input"
           type="number"
           [formField]="this.createGameForm.roomPlayers">
       </div>
 
       <!-- Palabras personalizadas -->
       <div>
-        <label class="text-sm text-purple-300">{{'create-login-game.room-custom-words' | translate }}</label>
+        <label class="text-sm text-primary-light">{{'create-login-game.room-custom-words' | translate }}</label>
 
         <div class="px-4 py-1">
           <p-toggleswitch [formField]="this.createGameForm.customWords" />
@@ -52,7 +52,7 @@
 
       <!-- Palabras personalizadas -->
       <div>
-        <label class="text-sm text-purple-300">{{'create-login-game.room-specific-category' | translate }}</label>
+        <label class="text-sm text-primary-light">{{'create-login-game.room-specific-category' | translate }}</label>
 
         <div class="px-4 py-1 flex items-center gap-4">
           <div>
@@ -61,7 +61,7 @@
 
           @if (this.createGameForm().value().specificCategory) {
             <div class="w-full">
-              <select class="custom-picker w-full mt-2 bg-slate-800 border border-slate-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-purple-500"
+              <select class="custom-picker w-full mt-2"
                 [formField]="this.createGameForm.category">
                 @for (category of gameCategories(); track category.value) {
                   <option [value]="category.value">{{category.label | translate }}</option>
@@ -74,7 +74,7 @@
 
       <!-- Impostores -->
       <div>
-        <label class="text-sm text-purple-300">{{'create-login-game.room-impostor' | translate }}</label>
+        <label class="text-sm text-primary-light">{{'create-login-game.room-impostor' | translate }}</label>
 
         <div class="px-4 py-1">
           <p-toggleswitch [formField]="this.createGameForm.multipleImpostors" />
@@ -83,7 +83,7 @@
 
       <!-- Overlay -->
       <div>
-        <label class="text-sm text-purple-300">{{'create-login-game.room-overlay' | translate }}</label>
+        <label class="text-sm text-primary-light">{{'create-login-game.room-overlay' | translate }}</label>
 
         <div class="px-4 py-1">
           <p-toggleswitch [formField]="this.createGameForm.overlay"/>

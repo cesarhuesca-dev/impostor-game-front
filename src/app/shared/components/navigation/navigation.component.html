@@ -2,7 +2,7 @@
 
 <div>
   <p-button (click)="menu.toggle($event)" [hidden]="!isOpen()" >
-    <span class="flex items-center justify-center h-5 w-5 text-gray-400!"><i class="text pi" style="font-size: 1.2rem" [className]="classMenuIcon()"></i></span>
+    <span class="flex items-center justify-center h-5 w-5 text-light-secondary"><i class="text pi" style="font-size: 1.2rem" [className]="classMenuIcon()"></i></span>
   </p-button>
   <p-tieredmenu #menu
     [model]="navigationItems()"

@@ -22,6 +22,8 @@
     "start": "Empezar partida",
     "players": "Jugadores",
     "waiting-host" : "Esperando a que el host empieze la partida",
+    "round-inprogress" : "Ronda en curso",
+    "round-secret" : "Mantén tu palabra y rol en secreto",
     "categories" : {
       "animals": "Animales",
       "fast": "Comida",

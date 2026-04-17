@@ -1,0 +1,10 @@
+
+button.btn-primary {
+  @apply border-purple-500/40 rounded-xl p-8 bg-purple-500/10 transition active:scale-95;
+}
+
+button.btn-word-primary {
+  @apply border border-purple-500/40 rounded-xl p-8 bg-purple-500/10 transition active:scale-95;
+}
+
+

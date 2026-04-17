@@ -1,0 +1,24 @@
+.loader {
+  @apply fixed inset-0 z-50 flex items-center justify-center bg-slate-950/80 backdrop-blur-sm transition-all duration-400;
+
+  .loader-container {
+    @apply flex flex-col items-center gap-6 transform transition-all duration-300;
+  }
+
+  .loader-spinner-container {
+    @apply relative w-16 h-16;
+
+    .loader-spinner {
+      @apply absolute inset-0 rounded-full border-4 border-purple-500/20;
+    }
+
+    .loader-spinner-mark {
+      @apply absolute inset-0 rounded-full border-4 border-transparent border-t-purple-500 animate-spin;
+    }
+
+    .loader-spinner-text {
+      @apply font-semibold tracking-wide animate-pulse text-purple-300;
+    }
+
+  }
+}

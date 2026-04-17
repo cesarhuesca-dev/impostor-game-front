@@ -9,10 +9,13 @@ import { ConfirmButton } from '@/shared/components/exit-button/confirm-button';
 import { LoaderService } from '@/services/loader.service';
 import { HandleResponseService } from '@/services/handle-response.service';
 import { GameSocketService } from '@/services/game-socket.service';
+import { ImpostorInfoComponent } from '@/shared/components/impostor-info/impostor-info.component';
+import { NormalInfoComponent } from '@/shared/components/normal-info/normal-info.component';
+import { InprogressInfoComponent } from '@/shared/components/inprogress-info/inprogress-info.component';
 
 @Component({
   selector: 'app-game',
-  imports: [AvatarModule, TranslatePipe, PlayerImagePipe, Button, ConfirmButton],
+  imports: [AvatarModule, TranslatePipe, PlayerImagePipe, Button, ConfirmButton, ImpostorInfoComponent, NormalInfoComponent, InprogressInfoComponent],
   providers: [],
   templateUrl: './game.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,

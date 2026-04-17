@@ -149,4 +149,8 @@ export class PlayerService {
   playerExit(idPlayer: string) {
     return this.httpClient.delete<HttpResponse<unknown>>(`${environment.URL_API}${this.apiPlayerTopic}/${idPlayer}`).pipe(delay(1000));
   }
+
+  playerBan(idPlayer: string) {
+    return this.httpClient.delete<HttpResponse<unknown>>(`${environment.URL_API}${this.apiPlayerTopic}/${idPlayer}/ban`).pipe(delay(1000));
+  }
 }

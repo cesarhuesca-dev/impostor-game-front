@@ -1,0 +1,32 @@
+
+.text-primary-light {
+  @apply text-purple-300;
+}
+
+.text-light {
+  @apply text-white;
+}
+
+.text-light-secondary {
+  @apply text-gray-400;
+}
+
+.text-round {
+  @apply text-orange-300;
+}
+
+.text-category {
+  @apply text-blue-300;
+}
+
+.text-impostor {
+  @apply text-red-800;
+}
+
+.text-impostor-secondary {
+  @apply text-red-700;
+}
+
+.text-no-impostor {
+  @apply text-blue-600;
+}

@@ -1,0 +1,31 @@
+
+
+.bg-body-primary {
+  @apply bg-linear-to-br from-slate-950 via-slate-900 to-purple-950;
+}
+
+.bg-primary-blur {
+  @apply bg-black/70;
+}
+
+.bg-card-secondary {
+  @apply bg-slate-900;
+}
+
+.bg-dark {
+  @apply bg-slate-900;
+}
+
+.bg-dark-light {
+  @apply bg-slate-800;
+}
+
+
+.bg-primary-light {
+  @apply bg-purple-400;
+}
+
+.bg-primary {
+  @apply bg-purple-950;
+}
+
