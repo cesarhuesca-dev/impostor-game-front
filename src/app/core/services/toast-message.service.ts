@@ -1,3 +1,4 @@
+import { ToastType } from '@/enums/toast.enum';
 import { ToastMessage } from '@/interfaces/utilities/toast-message.interface';
 import { Injectable, signal } from '@angular/core';
 
@@ -10,6 +11,22 @@ export class ToastMessageService {
   }
 
   addMessage(message: ToastMessage) {
-    this.toastSignal.update(() => ({ ...message }));
+    let icon = '';
+
+    switch (message.severity) {
+      case ToastType.INFO:
+        icon = 'ⓘ';
+        break;
+      case ToastType.SUCCESS:
+        icon = '✓';
+        break;
+      case ToastType.ERROR:
+        icon = '✕';
+        break;
+      default:
+        break;
+    }
+
+    this.toastSignal.update(() => ({ ...message, icon }));
   }
 }

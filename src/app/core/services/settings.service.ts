@@ -39,7 +39,14 @@ export class SettingsService {
     const settings = this.getSettings();
 
     if (!settings) {
-      this.setSettings(this.defaultConfiguration);
+      const newSettings = { ...this.defaultConfiguration };
+
+      const navigatorLang = (navigator.language.split('-')[0].toUpperCase() ??
+        SupportedLanguages.EN.toUpperCase()) as keyof typeof SupportedLanguages;
+
+      newSettings.language = SupportedLanguages[navigatorLang];
+
+      this.setSettings(newSettings);
       return;
     }
 

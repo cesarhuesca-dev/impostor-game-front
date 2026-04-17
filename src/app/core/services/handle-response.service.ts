@@ -1,7 +1,7 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { ToastMessageService } from './toast-message.service';
-import { ToastPosition, ToastType } from 'src/app/core/enums/toast.enum';
+import { ToastType } from 'src/app/core/enums/toast.enum';
 import { LoaderService } from './loader.service';
 import { TranslateService } from '@ngx-translate/core';
 import { HttpResponse } from '@/interfaces/response/http-response.interfaces';
@@ -48,7 +48,6 @@ export class HandleResponseService {
     }
 
     this.toastMessageService.addMessage({
-      key: ToastPosition.TOP_RIGHT,
       severity: ToastType.SUCCESS,
       summary: this.translateService.instant(title),
     });
@@ -56,7 +55,6 @@ export class HandleResponseService {
 
   private setToastWarning() {
     this.toastMessageService.addMessage({
-      key: ToastPosition.TOP_RIGHT,
       severity: ToastType.WARN,
       summary: this.translateService.instant('error.warning'),
     });
@@ -68,7 +66,6 @@ export class HandleResponseService {
     }
 
     this.toastMessageService.addMessage({
-      key: ToastPosition.TOP_RIGHT,
       severity: ToastType.ERROR,
       summary: this.translateService.instant(titleError),
       detail: error.error.message,

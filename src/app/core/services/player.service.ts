@@ -8,7 +8,7 @@ import { HandleResponseService } from './handle-response.service';
 import { Router } from '@angular/router';
 import { delay } from 'rxjs';
 import { ToastMessageService } from './toast-message.service';
-import { ToastPosition, ToastType } from '@/enums/toast.enum';
+import { ToastType } from '@/enums/toast.enum';
 import { TranslateService } from '@ngx-translate/core';
 import { HttpResponse } from '@/interfaces/response/http-response.interfaces';
 import { Player } from '@/interfaces/player.interface';
@@ -80,7 +80,6 @@ export class PlayerService {
     if (this.playerData?.id === id) {
       this.deletePlayerData();
       this.toastMessageService.addMessage({
-        key: ToastPosition.TOP_RIGHT,
         severity: ToastType.ERROR,
         summary: this.translateService.instant('common.banned'),
       });
@@ -90,7 +89,6 @@ export class PlayerService {
   closeGame() {
     this.deletePlayerData();
     this.toastMessageService.addMessage({
-      key: ToastPosition.TOP_RIGHT,
       severity: ToastType.INFO,
       summary: this.translateService.instant('common.closed-game'),
     });
