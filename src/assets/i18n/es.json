@@ -24,6 +24,8 @@
     "waiting-host" : "Esperando a que el host empieze la partida",
     "round-inprogress" : "Ronda en curso",
     "round-secret" : "Mantén tu palabra y rol en secreto",
+    "new-round" : "Nueva ronda",
+    "get-ready" : "Prepárate",
     "categories" : {
       "animals": "Animales",
       "fast": "Comida",
@@ -170,17 +172,24 @@
 
   },
   "success": {
+    "game-found" : "Sala encontrada",
     "create-game" : "Has creado la sala de juego",
     "delete-game" : "Has cerrado la sala de juego",
     "login-game-verify" : "Sala encontrada",
     "login-game" : "Te has unido a la sala",
     "uploaded-image" : "Se ha creado correctamente la imagen",
     "ban-player" : "Jugador expulsado",
-    "exit": "Te has salido de la sala"
+    "exit": "Te has salido de la sala",
+    "game-closed" : "Sala de juego cerrada",
+    "game-finish" : "Partida terminada",
+    "game-started" : "Partida iniciada",
+    "game-next-round" : "Nueva ronda inciada",
+    "game-change-category" : "Categoría cambiada",
+    "game-change-word" : "Palabra cambiada"
   },
   "error" : {
     "warning": "Algo salio mal",
-    "login-game" : "No se ha podido unirse a la partida"
+    "login-game" : "No has podido unirte a la sala"
   },
   "overlay-positions" : {
     "top-left" : "Arriba izquierda",

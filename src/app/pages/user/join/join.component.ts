@@ -61,7 +61,7 @@ export default class JoinComponent {
 
     this.gameService.loginVerifyGame(data).subscribe({
       next: (res) => {
-        if (this.handleResponseService.handleResponse(res, 'success.login-game-verify')) {
+        if (this.handleResponseService.handleResponse(res, 'success.game-found')) {
           this.userModal().openModal();
         }
       },
@@ -120,7 +120,7 @@ export default class JoinComponent {
   createPlayerImage(data: Join, file: File) {
     this.playerService.uploadPlayerImage(data.player.id, file).subscribe({
       next: (res) => {
-        if (this.handleResponseService.handleResponse(res, 'success.uploaded-image', true, this.clearForm)) {
+        if (this.handleResponseService.handleResponse(res, '', true, this.clearForm)) {
           this.playerService.startPlayer(data.token);
           this.goGame();
         }

@@ -70,7 +70,12 @@ export default class ManagerComponent implements OnInit {
     this.loaderService.addLoading();
     this.gameService.startGame().subscribe({
       next: (res) => {
-        if (this.handleResponseService.handleResponse(res) && res.data && res.data[0]!.gameStarted && res.data![0].round === 0) {
+        if (
+          this.handleResponseService.handleResponse(res, 'success.game-started') &&
+          res.data &&
+          res.data[0]!.gameStarted &&
+          res.data![0].round === 0
+        ) {
           this.nextRound();
         }
       },
@@ -81,7 +86,7 @@ export default class ManagerComponent implements OnInit {
   endGame() {
     this.loaderService.addLoading();
     this.gameService.endGame().subscribe({
-      next: (res) => this.handleResponseService.handleResponse(res),
+      next: (res) => this.handleResponseService.handleResponse(res, 'success.game-finish'),
       error: (error) => this.handleResponseService.handleError(error, 'error.warning'),
     });
   }
@@ -89,7 +94,7 @@ export default class ManagerComponent implements OnInit {
   closeGame() {
     this.loaderService.addLoading();
     this.gameService.closeGame(this.game()!.id).subscribe({
-      next: (res) => this.handleResponseService.handleResponse(res, 'common.closed-game'),
+      next: (res) => this.handleResponseService.handleResponse(res, 'success.game-closed'),
       error: (error) => this.handleResponseService.handleError(error, 'error.warning'),
     });
   }
@@ -108,7 +113,7 @@ export default class ManagerComponent implements OnInit {
     this.visibleChangeWord = false;
     this.loaderService.addLoading();
     this.gameService.nextRound(word).subscribe({
-      next: (res) => this.handleResponseService.handleResponse(res),
+      next: (res) => this.handleResponseService.handleResponse(res, 'success.game-next-round'),
       error: (error) => this.handleResponseService.handleError(error, 'error.warning'),
     });
   }
@@ -131,7 +136,7 @@ export default class ManagerComponent implements OnInit {
     this.visibleChangeWord = false;
     this.loaderService.addLoading();
     this.gameService.changeWordGame(word).subscribe({
-      next: (res) => this.handleResponseService.handleResponse(res),
+      next: (res) => this.handleResponseService.handleResponse(res, 'success.game-change-word'),
       error: (error) => this.handleResponseService.handleError(error, 'error.warning'),
     });
   }
@@ -154,7 +159,7 @@ export default class ManagerComponent implements OnInit {
     this.visible = false;
     this.loaderService.addLoading();
     this.gameService.changeCategoryGame(this.game()!.id, this.category()).subscribe({
-      next: (res) => this.handleResponseService.handleResponse(res),
+      next: (res) => this.handleResponseService.handleResponse(res, 'success.game-change-category'),
       error: (error) => this.handleResponseService.handleError(error, 'error.warning'),
     });
   }

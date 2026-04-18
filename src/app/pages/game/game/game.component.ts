@@ -12,10 +12,21 @@ import { GameSocketService } from '@/services/game-socket.service';
 import { ImpostorInfoComponent } from '@/shared/components/impostor-info/impostor-info.component';
 import { NormalInfoComponent } from '@/shared/components/normal-info/normal-info.component';
 import { InprogressInfoComponent } from '@/shared/components/inprogress-info/inprogress-info.component';
+import { RoundTransitionComponent } from '@/shared/components/round-transition/round-transition.component';
 
 @Component({
   selector: 'app-game',
-  imports: [AvatarModule, TranslatePipe, PlayerImagePipe, Button, ConfirmButton, ImpostorInfoComponent, NormalInfoComponent, InprogressInfoComponent],
+  imports: [
+    AvatarModule,
+    TranslatePipe,
+    PlayerImagePipe,
+    Button,
+    ConfirmButton,
+    ImpostorInfoComponent,
+    NormalInfoComponent,
+    InprogressInfoComponent,
+    RoundTransitionComponent,
+  ],
   providers: [],
   templateUrl: './game.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -64,7 +75,12 @@ export default class GameComponent implements OnInit {
     this.loaderService.addLoading();
     this.gameService.startGame().subscribe({
       next: (res) => {
-        if (this.handleResponseService.handleResponse(res) && res.data && res.data[0]!.gameStarted && res.data![0].round === 0) {
+        if (
+          this.handleResponseService.handleResponse(res, 'success.game-started') &&
+          res.data &&
+          res.data[0]!.gameStarted &&
+          res.data![0].round === 0
+        ) {
           this.nextRound();
         }
       },
@@ -75,7 +91,7 @@ export default class GameComponent implements OnInit {
   nextRound() {
     this.loaderService.addLoading();
     this.gameService.nextRound().subscribe({
-      next: (res) => this.handleResponseService.handleResponse(res),
+      next: (res) => this.handleResponseService.handleResponse(res, 'success.game-next-round'),
       error: (error) => this.handleResponseService.handleError(error, 'error.warning'),
     });
   }
@@ -92,6 +108,4 @@ export default class GameComponent implements OnInit {
       error: (error) => this.handleResponseService.handleError(error, 'error.warning'),
     });
   }
-
-  //!TODO EN ALGUN MOMENTO CONECTAR CON WS
 }

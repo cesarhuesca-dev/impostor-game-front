@@ -8,6 +8,7 @@ p-button.form-btn {
     transition-all!
     text-white!
     py-3!
+    font-semibold
     rounded-xl!
     shadow-sm!;
 

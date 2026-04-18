@@ -36,7 +36,7 @@ export default class CreateComponent implements OnInit {
   readonly createGameModel = signal<CreateGameInterface>({
     roomName: '',
     roomPassword: '',
-    roomPlayers: 0,
+    roomPlayers: 4,
     customWords: false,
     specificCategory: false,
     category: '',
@@ -53,7 +53,7 @@ export default class CreateComponent implements OnInit {
     pattern(schemaPath.roomPassword, /^[A-Za-z0-9]{5,}$/, { message: 'forms.error.room-password-pattern' });
 
     required(schemaPath.roomPlayers, { message: 'room-players-required' });
-    min(schemaPath.roomPlayers, 3, { message: 'forms.error.room-players-min' });
+    min(schemaPath.roomPlayers, 4, { message: 'forms.error.room-players-min' });
 
     validate(schemaPath.specificCategory, ({ valueOf }) => {
       const specificCategory = valueOf(schemaPath.specificCategory);
@@ -180,7 +180,7 @@ export default class CreateComponent implements OnInit {
   createPlayerImage(data: Join, file: File) {
     this.playerService.uploadPlayerImage(data.player.id, file).subscribe({
       next: (res) => {
-        if (this.handleResponseService.handleResponse(res, 'success.uploaded-image', true, this.clearForm)) {
+        if (this.handleResponseService.handleResponse(res, '', true, this.clearForm)) {
           this.playerService.startPlayer(data.token);
           this.goGame();
         }

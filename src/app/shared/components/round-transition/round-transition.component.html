@@ -1,0 +1,18 @@
+@if (started()) {
+  <div class=" fixed inset-0 z-999 flex items-center justify-center transition-opacity duration-300 bg-primary-blur backdrop-blur-md"
+    [class.opacity-0]="!show()"
+    [class.opacity-100]="show()">
+
+    <div class="text-center transform transition-all duration-500"
+      [class.scale-90]="!show()"
+      [class.scale-100]="show()">
+
+      <!-- Texto -->
+      <p class="text-purple-400 text-lg mb-4 tracking-widest uppercase">{{'game.new-round' | translate }}</p>
+      <!-- Número cuenta atrás -->
+      <div class="text-8xl font-extrabold text-white drop-shadow-lg animate-pulse">{{ this.countdown() }}</div>
+      <!-- Texto secundario -->
+      <p class="text-gray-400 mt-4">{{'game.get-ready' | translate }}...</p>
+    </div>
+  </div>
+}

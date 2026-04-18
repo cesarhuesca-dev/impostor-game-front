@@ -29,6 +29,7 @@ export class UserModal {
 
   openModal() {
     this.playerModel.update(() => ({ name: '', playerImg: null }));
+    this.playerImage.update(() => null);
     this.isOpen.update(() => true);
   }
 

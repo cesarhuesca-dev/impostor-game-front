@@ -9,25 +9,29 @@ import { LoaderService } from './loader.service';
 import { GameService } from './game.service';
 import { Game } from '@/interfaces/game.interface';
 import { Player } from '@/interfaces/player.interface';
+import { RoundService } from './round.service';
 
 @Injectable({ providedIn: 'root' })
 export class GameSocketService {
   private readonly playerService = inject(PlayerService);
   private readonly loadingService = inject(LoaderService);
   private readonly gameService = inject(GameService);
+  private readonly roundService = inject(RoundService);
 
   private socket: Socket | null = null;
   private readonly socketNamespace = '/game';
 
   connect() {
-    this.loadingService.addLoading();
+    if (this.socket?.connected) {
+      return;
+    }
 
+    this.loadingService.addLoading();
     const manager = new Manager(`${environment.URL_WS}/socket.io/socket.io.js`, {
       extraHeaders: {
         authorization: this.playerService.jwtPlayer,
       },
     });
-
     this.socket = manager.socket(this.socketNamespace);
     this.socket.on('connect', () => this.loadingService.finishLoading());
     this.listen(GameSocketTopic.PLAYER_MESSAGE)?.subscribe((msg) => this.handleGameMsg(msg));
@@ -60,6 +64,13 @@ export class GameSocketService {
     }
 
     switch (msg.topic) {
+      case GameSocketTopic.NEW_ROUND_GAME: {
+        const msgInfo = msg as SocketResponse<Game>;
+        this.gameService.setGameData(msgInfo.data[0]);
+        this.roundService.startCountdown();
+        console.log('NEW ROUND', msgInfo.data[0]);
+        break;
+      }
       case GameSocketTopic.UPDATE_GAME_STATUS: {
         const msgInfo = msg as SocketResponse<Game>;
         this.gameService.setGameData(msgInfo.data[0]);
