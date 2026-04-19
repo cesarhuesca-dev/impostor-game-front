@@ -12,25 +12,32 @@
         <p class="text-light-secondary">{{'manager.name' | translate}}: <span class="capitalize">{{this.game()?.roomName}}</span></p>
       </div>
 
-      <div class="flex gap-6 text-sm">
+      <div class="flex gap-2 text-sm flex-col md:flex-row items-center justify-center">
 
-        <div class="px-4 py-2 rounded-lg border-dark-light bg-dark-light">
-          <span>{{'manager.round' | translate}}: </span>
-          <span class="text-round font-semibold">{{this.game()!.round}}</span>
+        <div class="px-4 py-2 rounded-lg border-dark-light bg-dark-light w-2/4 md:self-stretch">
+          <div class="items-center justify-center flex gap-2 w-full h-full">
+            <span>{{'manager.round' | translate}}: </span>
+            <span class="text-round font-semibold">{{this.game()!.round}}</span>
+          </div>
+
         </div>
 
-        <div class="px-4 py-2 rounded-lg border-dark-light bg-dark-light">
-          <span>{{'manager.category' | translate}}: </span>
-          @if (this.game()!.category) {
-            <span class="text-category font-semibold">{{this.titleCategoryGame()}}</span>
-          }
+        <div class="px-4 py-2 rounded-lg border-dark-light bg-dark-light w-2/4 md:self-stretchself-stretch">
+          <div class="items-center justify-center flex gap-2 w-full h-full">
+            <span>{{'manager.category' | translate}}: </span>
+            @if (this.game()!.category) {
+              <span class="text-category font-semibold">{{this.titleCategoryGame()}}</span>
+            }
+          </div>
         </div>
 
-        <div class="px-4 py-2 rounded-lg border-dark-light bg-dark-light">
-          <span>{{'manager.word' | translate}}: </span>
-          @if (this.game()!.word) {
-            <span class="text-primary-light font-semibold">{{this.game()!.word}}</span>
-          }
+        <div class="px-4 py-2 rounded-lg border-dark-light bg-dark-light w-2/4 md:self-stretch">
+          <div class="items-center justify-center flex gap-2 w-full h-full">
+            <span>{{'manager.word' | translate}}: </span>
+            @if (this.game()!.word) {
+              <span class="text-primary-light font-semibold">{{this.game()!.word}}</span>
+            }
+          </div>
         </div>
 
       </div>
@@ -188,7 +195,7 @@
     </div>
   </p-dialog>
 
-  <p-dialog header="{{'manager.buttons.change-category' | translate}}" [(visible)]="visible" [modal]="true" (onHide)="visible = false">
+  <p-dialog header="{{'manager.buttons.change-category' | translate}}" class="custom-dialog" [(visible)]="visible" [modal]="true" (onHide)="visible = false">
     <div class="w-full">
       <select class="custom-picker w-full mt-2"
         (change)="this.clickCategory($event)">

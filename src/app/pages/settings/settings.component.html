@@ -6,7 +6,7 @@
     <!-- Header -->
     <div class="flex items-center justify-between mb-8">
 
-      <h2 class="text-3xl font-extrabold text-primary-light tracking-wide">
+      <h2 class="text-2xl md:text-4xl font-extrabold text-primary-light tracking-wide">
         <span> ⚙️ </span><span>{{'settings.title' | translate}}</span>
       </h2>
 
@@ -30,18 +30,20 @@
         </select>
       </div>
 
-      <div>
-        <label class="text-primary-light text-sm">
-          <span> 📺 </span><span>{{'settings.overlay' | translate }}</span>
-        </label>
+      @if (this.game() && this.game()?.overlay) {
+        <div>
+          <label class="text-primary-light text-sm">
+            <span> 📺 </span><span>{{'settings.overlay' | translate }}</span>
+          </label>
 
-        <select class="custom-picker w-full mt-2"
-          [formField]="this.settingsForm.overlayPosition">
-          @for (position of overlayPositions(); track position.code) {
-            <option [value]="position.code">{{position.name | translate }}</option>
-          }
-        </select>
-      </div>
+          <select class="custom-picker w-full mt-2"
+            [formField]="this.settingsForm.overlayPosition">
+            @for (position of overlayPositions(); track position.code) {
+              <option [value]="position.code">{{position.name | translate }}</option>
+            }
+          </select>
+        </div>
+      }
 
       <!-- Botones -->
       <div class="grid grid-cols-2 gap-4 pt-4">

@@ -28,5 +28,6 @@ export class ToastMessageService {
     }
 
     this.toastSignal.update(() => ({ ...message, icon }));
+    setTimeout(() => this.toastSignal.update(() => null), 2000);
   }
 }

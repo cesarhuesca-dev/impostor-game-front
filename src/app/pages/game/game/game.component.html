@@ -31,7 +31,7 @@
           <s-inprogress-info/>
         }
         <div class="mt-10 text-center flex items-center justify-center">
-          <p-button class="form-btn w-2/4"
+          <p-button class="form-btn w-full md:w-2/4"
             (click)="this.ready = !this.ready">
             <span>{{(this.ready) ? ('game.ready' | translate) : ('game.show-info' | translate)}}</span>
           </p-button>
@@ -39,7 +39,7 @@
 
         @if (this.player()!.host) {
           <div class="flex justify-center items-center gap-3 mt-5">
-            <div class="w-2/4">
+            <div class="w-full md:w-2/4">
               <s-confirm-button
                 [title]="'manager.buttons.next-round'"
                 [icon]="''"
@@ -53,7 +53,7 @@
         }
 
         <div class="flex justify-center items-center gap-3 mt-5">
-          <div class="w-2/4">
+          <div class="w-full md:w-2/4 ">
             <s-confirm-button (acceptBtn)="exitPlayer()" />
           </div>
         </div>
@@ -86,7 +86,7 @@
             <span>({{this.game()?.roomPlayersJoined}}/{{this.game()?.roomPlayers}})</span>
           </h2>
 
-          <div class="grid grid-cols-2 sm:grid-cols-3 gap-4">
+          <div class="grid gap-4 md:grid-cols-2">
 
             <!-- Listado de jugadores -->
             @for (player of this.game()?.players; track player.id) {
@@ -111,14 +111,14 @@
 
         <!-- Botón iniciar -->
         @if (player()!.host) {
-          <div class="flex justify-center items-center gap-3 mt-5">
-            <p-button class="form-btn w-2/4"
+          <div class="flex justify-center items-center gap-3 mt-5 flex-col md:flex-row">
+            <p-button class="form-btn md:w-2/4 w-full"
               [disabled]="this.game()!.roomPlayersJoined < this.game()!.roomPlayers"
               (click)="startGame()">
               <span> 🎮 </span><span>{{'game.start' | translate }}</span>
             </p-button>
 
-            <div class="w-2/4">
+            <div class="md:w-2/4 w-full">
               <s-confirm-button (acceptBtn)="exitPlayer()" />
             </div>
 

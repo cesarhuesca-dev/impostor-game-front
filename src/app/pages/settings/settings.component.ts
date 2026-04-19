@@ -11,6 +11,7 @@ import { SupportedLanguages } from 'src/app/core/enums/languages.enum';
 import { OverlayPosition } from '@/enums/overlay.enum';
 import { SettingsService } from '@/services/settings.service';
 import { Settings } from '@/interfaces/configuration-app.interface';
+import { GameService } from '@/services/game.service';
 
 @Component({
   selector: 'page-settings',
@@ -22,7 +23,9 @@ export default class SettingsComponent implements OnInit {
   private router = inject(Router);
   private settingsService = inject(SettingsService);
   private languageService = inject(LanguageService);
+  private gameService = inject(GameService);
 
+  readonly game = computed(() => this.gameService.gameData);
   private readonly settings = computed(() => this.settingsService.getSettings());
 
   private readonly settingsModel = signal<SettingsForm>({
@@ -51,9 +54,6 @@ export default class SettingsComponent implements OnInit {
 
   ngOnInit(): void {
     this.setBackupForm();
-
-    console.log(this.settingsModel());
-    console.log(this.overlayPositions());
   }
 
   setBackupForm() {
