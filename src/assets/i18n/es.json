@@ -189,7 +189,8 @@
   },
   "error" : {
     "warning": "Algo salio mal",
-    "login-game" : "No has podido unirte a la sala"
+    "login-game" : "No has podido unirte a la sala",
+    "create-game" : "No has podido crear la sala"
   },
   "overlay-positions" : {
     "top-left" : "Arriba izquierda",

@@ -28,6 +28,9 @@ export class GameSocketService {
 
     this.loadingService.addLoading();
     const manager = new Manager(`${environment.URL_WS}/socket.io/socket.io.js`, {
+      reconnection: true,
+      reconnectionAttempts: Infinity,
+      reconnectionDelay: 1000,
       extraHeaders: {
         authorization: this.playerService.jwtPlayer,
       },

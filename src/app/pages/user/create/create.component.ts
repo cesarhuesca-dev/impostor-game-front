@@ -122,7 +122,7 @@ export default class CreateComponent implements OnInit {
           this.userModal().openModal();
         }
       },
-      error: (error) => this.handleResponseService.handleError(error, 'error.login-game', this.clearForm),
+      error: (error) => this.handleResponseService.handleError(error, 'error.create-game', this.clearForm),
     });
   }
 
