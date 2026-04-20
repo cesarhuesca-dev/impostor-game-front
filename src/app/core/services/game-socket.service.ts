@@ -1,4 +1,4 @@
-import { environment } from '@/assets/environments/environment.development';
+import { environment } from '@/assets/environments/environment';
 import { inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Manager, Socket } from 'socket.io-client';
@@ -93,6 +93,7 @@ export class GameSocketService {
       }
       case GameSocketTopic.CLOSE_GAME:
         this.playerService.closeGame();
+        this.disconnect();
         break;
       default:
         break;

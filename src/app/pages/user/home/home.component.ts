@@ -1,4 +1,4 @@
-import { environment } from '@/assets/environments/environment.development';
+import { environment } from '@/assets/environments/environment';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { TranslatePipe } from '@ngx-translate/core';
 import { RouterLink } from '@angular/router';

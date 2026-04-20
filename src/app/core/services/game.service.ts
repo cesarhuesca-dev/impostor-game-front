@@ -2,7 +2,7 @@ import { inject, Injectable, signal } from '@angular/core';
 import { Game } from 'src/app/core/interfaces/game.interface';
 import { CreateGameInterface, LoginGameInterface } from 'src/app/core/interfaces/forms/game.interface';
 import { HttpClient } from '@angular/common/http';
-import { environment } from '@/assets/environments/environment.development';
+import { environment } from '@/assets/environments/environment';
 import { HttpResponse } from '@/interfaces/response/http-response.interfaces';
 import { delay } from 'rxjs';
 import { Join } from '@/interfaces/join.interface';
