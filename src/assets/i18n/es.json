@@ -160,6 +160,7 @@
     "continue": "Continuar",
     "ban" : "Expulsar",
     "ban-player" : "Expulsar jugador",
+    "ban-player-description" : "El administrador de la partida te ha expulsado",
     "banned" : "Has sido expulado",
     "exit": "Salir",
     "close-game" : "Cerrar sala",

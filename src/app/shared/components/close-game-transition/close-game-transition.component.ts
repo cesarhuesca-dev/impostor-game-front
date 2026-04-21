@@ -21,11 +21,12 @@ export class CloseGameTransitionComponent {
   readonly transition = input<boolean>(true);
 
   readonly started = computed(() => this.closeGameService.started());
+  readonly startedBanned = computed(() => this.closeGameService.startedBanned());
   readonly show = computed(() => this.closeGameService.show());
 
   constructor() {
     effect(() => {
-      if (this.started() && !this.transition()) {
+      if ((this.started() || this.startedBanned()) && !this.transition()) {
         this.deleteData();
       }
     });

@@ -6,13 +6,11 @@ import { CookieService } from 'ngx-cookie-service';
 import { LoaderService } from './loader.service';
 import { Router } from '@angular/router';
 import { delay } from 'rxjs';
-import { ToastMessageService } from './utils/toast-message.service';
-import { ToastType } from '@/enums/toast.enum';
-import { TranslateService } from '@ngx-translate/core';
 import { HttpResponse } from '@/interfaces/response/http-response.interfaces';
 import { Player } from '@/interfaces/player.interface';
 import { HandleResponseService } from './utils/handle-response.service';
 import { UserRoles } from '@/enums/user-roles.enum';
+import { CloseGameService } from './close-game.service';
 
 @Injectable({
   providedIn: 'root',
@@ -25,9 +23,8 @@ export class PlayerService {
   private readonly cookieService = inject(CookieService);
   private readonly loaderService = inject(LoaderService);
   private readonly handleResponseService = inject(HandleResponseService);
-  private readonly toastMessageService = inject(ToastMessageService);
-  private readonly translateService = inject(TranslateService);
   private readonly router = inject(Router);
+  private readonly closeGameService = inject(CloseGameService);
 
   private readonly jwt = signal<string>('');
   private readonly player = signal<Player | null>(null);
@@ -79,20 +76,9 @@ export class PlayerService {
 
   checkBanPlayer(id: string) {
     if (this.playerData?.id === id) {
-      this.deletePlayerData();
-      this.toastMessageService.addMessage({
-        severity: ToastType.ERROR,
-        summary: this.translateService.instant('common.banned'),
-      });
+      this.closeGameService.startBannedClosedGame();
+      this.deletePlayerData(false);
     }
-  }
-
-  closeGame() {
-    this.deletePlayerData();
-    this.toastMessageService.addMessage({
-      severity: ToastType.INFO,
-      summary: this.translateService.instant('common.closed-game'),
-    });
   }
 
   //#endregion
