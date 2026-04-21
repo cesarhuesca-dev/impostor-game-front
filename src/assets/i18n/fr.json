@@ -1,10 +1,30 @@
 {
-  "welcome": "Bienvenue",
-  "join": "Rejoindre",
-
   "game": {
     "category": "Catégorie",
     "word": "Mot",
+    "player": "Joueur",
+    "not-impostor": "Tu n'es pas l'imposteur",
+    "are-impostor": "Tu es l'imposteur",
+    "listen-not-impostor": "Écoute les indices des autres et essaie de deviner qui est l'imposteur.",
+    "touch-show-word": "Appuie pour révéler ton mot",
+    "clue": "Donne un indice lié au mot sans le dire directement.",
+    "impostor-clue": "Donne un indice lié au mot sans le dire directement.",
+    "no-word": "Tu n'as pas de mot secret.",
+    "ready": "Je suis prêt",
+    "show-info": "Afficher les infos",
+    "waiting-room": "Salle d'attente",
+    "waiting-room-description": "Partage le code pour que tes amis te rejoignent",
+    "waiting-players": "En attente de plus de joueurs",
+    "waiting": "En attente",
+    "start": "Commencer la partie",
+    "players": "Joueurs",
+    "waiting-host": "En attente que l'hôte lance la partie",
+    "round-inprogress": "Manche en cours",
+    "round-secret": "Garde ton mot et ton rôle secrets",
+    "new-round": "Nouvelle manche",
+    "get-ready": "Prépare-toi",
+    "closed": "Fin de partie",
+    "thanks-for-play": "Merci d'avoir joué. Prêt pour une autre manche ?",
     "categories": {
       "animals": "Animaux",
       "fast": "Nourriture",
@@ -16,26 +36,25 @@
       "movies": "Films",
       "tv-series": "Séries TV",
       "video-games": "Jeux vidéo",
-      "famous": "Personnalités",
+      "famous": "Célébrités",
       "music": "Musique",
       "professions": "Professions",
       "science": "Science"
     }
   },
-
   "pages": {
     "home": "Accueil",
-    "create": "Créer une partie",
+    "create": "Créer partie",
     "join": "Rejoindre",
     "settings": "Paramètres",
-    "game": "Jeu",
-    "manager": "Gestionnaire"
+    "overlay": "Overlay",
+    "manager": "Contrôleur",
+    "game": "Jeu"
   },
-
   "home": {
-    "find": "Trouve",
-    "impostor": "l'imposteur",
-    "game-description": "Tout le monde reçoit un mot... sauf un. Utilise des indices, soupçonne les autres et découvre qui est l'imposteur avant qu'ils ne te découvrent.",
+    "find": "Trouve l'",
+    "impostor": "Imposteur",
+    "game-description": "Tout le monde reçoit un mot... sauf un. Utilise des indices, suspecte les autres et découvre qui est l'imposteur avant d'être découvert.",
     "create": "Créer une partie",
     "join": "Rejoindre une partie",
     "how-works": "Comment ça marche",
@@ -44,17 +63,16 @@
     "illustration-2-title": "Donne un indice",
     "illustration-2-description": "Chaque joueur donne un indice lié à son mot sans le dire directement.",
     "illustration-3-title": "Trouve l'imposteur",
-    "illustration-3-description": "Discutez et votez pour celui que vous pensez être l'imposteur.",
+    "illustration-3-description": "Débattez et votez pour qui vous pensez être l'imposteur.",
     "solutions": "Un produit, plusieurs solutions",
     "illustration-4-title": "Overlay",
-    "illustration-4-description": "Utilisez-le comme modèle pour vos streams afin que vos spectateurs puissent suivre le jeu avec une interface attrayante.",
-    "illustration-5-title": "Joue et amuse-toi",
-    "illustration-5-description": "Peux-tu découvrir l'imposteur avant qu'il ne soit trop tard ? Joue, soupçonne et amuse-toi !",
-    "slogan-1": "Le jeu parfait pour les fêtes",
-    "slogan-2": "Joue avec des amis, la famille ou des collègues. Tout ce dont tu as besoin est un téléphone et l'envie de mentir",
+    "illustration-4-description": "Utilise-le comme modèle pour tes streams, afin que tes spectateurs voient le jeu avec une interface attrayante.",
+    "illustration-5-title": "Joue et profite",
+    "illustration-5-description": "Pourras-tu trouver l'imposteur avant qu'il ne soit trop tard ? Joue, suspecte et amuse-toi !",
+    "slogan-1": "Le jeu de fête parfait",
+    "slogan-2": "Joue avec tes amis, ta famille ou tes collègues. Tu as juste besoin d'un téléphone et d'une envie de mentir",
     "start-now": "Commencer maintenant"
   },
-
   "create-login-game": {
     "create-title": "Créer une partie",
     "login-title": "Rejoindre une partie",
@@ -66,22 +84,26 @@
     "room-custom-words": "Mots personnalisés",
     "room-specific-category": "Catégorie spécifique",
     "room-impostor": "Plusieurs imposteurs",
-    "room-overlay": "Overlay pour streaming",
-    "button-create-submit": "Créer la partie",
-    "button-login-submit": "Rejoindre la partie"
+    "room-overlay": "Overlay de streaming",
+    "button-create-submit": "Créer partie",
+    "button-login-submit": "Rejoindre partie",
+    "create-player-title": "Créer un joueur",
+    "create-player-subtitle": "Donne de la vie à ton profil",
+    "player-name": "Nom du joueur",
+    "manager": "Être gestionnaire de partie",
+    "watcher": "Être spectateur"
   },
-
   "settings": {
     "title": "Paramètres",
     "theme": "Thème de l'application",
     "theme-description": "Couleurs et apparence de l'application",
     "language": "Langue",
-    "save": "Enregistrer",
+    "overlay": "Position de l'overlay",
+    "save": "Sauvegarder",
     "reset": "Réinitialiser"
   },
-
   "manager": {
-    "panel": "Panneau de la partie",
+    "panel": "Panneau de partie",
     "name": "Nom",
     "word": "Mot",
     "category": "Catégorie",
@@ -89,40 +111,101 @@
     "controls": "Contrôles",
     "round": "Manche",
     "settings": "Paramètres",
-    "events": "Événements de la partie",
+    "events": "Événements de partie",
     "game": "Partie",
     "buttons": {
       "next-round": "Nouvelle manche",
       "change-word": "Changer le mot",
-      "change-category": "Changer la catégorie",
+      "change-word-round": "Changer le mot de la manche",
+      "change-category": "Changer de catégorie",
       "show-word": "Afficher le mot",
       "hide-word": "Masquer le mot",
       "show-impostor": "Afficher l'imposteur",
       "hide-impostor": "Masquer l'imposteur",
       "game-settings": "Paramètres du jeu",
       "ban-player": "Supprimer le joueur",
-      "start-game": "Démarrer la partie",
-      "close-game": "Terminer la partie"
+      "start-game": "Lancer la partie",
+      "end-game": "Terminer la partie",
+      "close-game": "Fermer la salle"
     }
   },
-
-  "languages": {
-    "language": "Langue",
-    "de": "German",
-    "es": "Spanish",
-    "en": "English",
-    "fr": "French",
-    "it": "Italian",
-    "pt": "Portuguese"
-  },
-
   "about-me": {
     "name": "Cesar Huesca",
-    "contact": "Développeur du jeu. Si vous avez besoin de contact ou pour signaler des bugs",
+    "contact": "Développeur du jeu. Me contacter ou signaler des bugs",
     "copyright": "© 2026 Impostor Game - Tous droits réservés"
   },
-
   "loader": {
     "loading": "Chargement..."
+  },
+  "forms": {
+    "error": {
+      "room-name-required": "Le nom de la salle est obligatoire",
+      "room-name-min-length": "Le nom doit contenir au moins 3 caractères",
+      "room-password-required": "Le mot de passe de la salle est obligatoire",
+      "room-password-min-length": "Le mot de passe doit contenir au moins 3 caractères",
+      "room-password-pattern": "Mot de passe invalide",
+      "room-players-required": "Le nombre de joueurs est obligatoire",
+      "room-players-min": "Il faut au moins 4 joueurs",
+      "room-specific-category-required": "La catégorie est obligatoire",
+      "player-name-required": "Le nom du joueur est obligatoire",
+      "player-name-min-length": "Le nom du joueur doit contenir au moins 3 caractères"
+    }
+  },
+  "common": {
+    "upload-image": "Charger une image",
+    "no-image": "Aucune image",
+    "cancel": "Annuler",
+    "save": "Sauvegarder",
+    "random": "Aléatoire",
+    "continue": "Continuer",
+    "ban": "Bannir",
+    "ban-player": "Bannir le joueur",
+    "ban-player-description": "Le gestionnaire de la partie vous a banni",
+    "banned": "Vous avez été banni",
+    "exit": "Sortir",
+    "close-game": "Fermer la salle",
+    "closed-game": "Le jeu est terminé",
+    "exit-confirm": "Êtes-vous sûr de vouloir sortir ?",
+    "ban-player-confirm": "Êtes-vous sûr de vouloir bannir le joueur ?",
+    "close-game-confirm": "Êtes-vous sûr de vouloir fermer la salle ?",
+    "round-confirm": "Êtes-vous sûr de vouloir une nouvelle manche ?",
+    "back": "Retour au début"
+  },
+  "success": {
+    "game-found": "Salle trouvée",
+    "create-game": "Vous avez créé la salle de jeu",
+    "delete-game": "Vous avez fermé la salle de jeu",
+    "login-game-verify": "Salle trouvée",
+    "login-game": "Vous avez rejoint la salle",
+    "uploaded-image": "Image créée avec succès",
+    "ban-player": "Joueur banni",
+    "exit": "Vous avez quitté la salle",
+    "game-closed": "Salle de jeu fermée",
+    "game-finish": "Partie terminée",
+    "game-started": "Partie lancée",
+    "game-next-round": "Nouvelle manche lancée",
+    "game-change-category": "Catégorie changée",
+    "game-change-word": "Mot changé"
+  },
+  "error": {
+    "warning": "Quelque chose s'est mal passé",
+    "login-game": "Impossible de rejoindre la salle",
+    "create-game": "Impossible de créer la salle"
+  },
+  "overlay-positions": {
+    "top-left": "Haut gauche",
+    "top-right": "Haut droite",
+    "bottom-left": "Bas gauche",
+    "bottom-right": "Bas droite",
+    "bottom-center": "Bas centre"
+  },
+  "languages": {
+    "language": "Langue",
+    "de": "Allemand",
+    "es": "Espagnol",
+    "en": "Anglais",
+    "fr": "Français",
+    "it": "Italien",
+    "pt": "Portugais"
   }
 }

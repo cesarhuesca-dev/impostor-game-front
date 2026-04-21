@@ -1,10 +1,30 @@
 {
-  "welcome": "Welcome",
-  "join": "Join",
-
   "game": {
     "category": "Category",
     "word": "Word",
+    "player": "Player",
+    "not-impostor": "You are not the impostor",
+    "are-impostor": "You are the impostor",
+    "listen-not-impostor": "Listen to the other players' clues and try to guess who the impostor is.",
+    "touch-show-word": "Tap to reveal your word",
+    "clue": "Give a clue related to the word without saying it directly.",
+    "impostor-clue": "Give a clue related to the word without saying it directly.",
+    "no-word": "You have no secret word.",
+    "ready": "I'm ready",
+    "show-info": "Show info",
+    "waiting-room": "Waiting room",
+    "waiting-room-description": "Share the code so your friends can join",
+    "waiting-players": "Waiting for more players",
+    "waiting": "Waiting",
+    "start": "Start game",
+    "players": "Players",
+    "waiting-host": "Waiting for the host to start the game",
+    "round-inprogress": "Round in progress",
+    "round-secret": "Keep your word and role a secret",
+    "new-round": "New round",
+    "get-ready": "Get ready",
+    "closed": "Game over",
+    "thanks-for-play": "Thanks for playing. Ready for another round?",
     "categories": {
       "animals": "Animals",
       "fast": "Food",
@@ -16,50 +36,48 @@
       "movies": "Movies",
       "tv-series": "TV Series",
       "video-games": "Video Games",
-      "famous": "Famous People",
+      "famous": "Famous people",
       "music": "Music",
       "professions": "Professions",
       "science": "Science"
     }
   },
-
   "pages": {
     "home": "Home",
-    "create": "Create Game",
+    "create": "Create game",
     "join": "Join",
     "settings": "Settings",
-    "game": "Game",
-    "manager": "Manager"
+    "overlay": "Overlay",
+    "manager": "Manager",
+    "game": "Game"
   },
-
   "home": {
     "find": "Find the",
     "impostor": "Impostor",
-    "game-description": "Everyone receives a word... except one. Use clues, suspect others and discover who the impostor is before they discover you.",
-    "create": "Create Game",
-    "join": "Join Game",
+    "game-description": "Everyone gets a word... except one. Use clues, suspect others, and find out who the impostor is before you are discovered.",
+    "create": "Create game",
+    "join": "Join game",
     "how-works": "How it works",
     "illustration-1-title": "Receive your word",
     "illustration-1-description": "All players receive a secret word... except the impostor.",
     "illustration-2-title": "Give a clue",
     "illustration-2-description": "Each player gives a clue related to their word without saying it directly.",
     "illustration-3-title": "Find the impostor",
-    "illustration-3-description": "Discuss and vote who you think the impostor is.",
-    "solutions": "One product, multiple solutions",
+    "illustration-3-description": "Debate and vote on who you think the impostor is.",
+    "solutions": "One product, several solutions",
     "illustration-4-title": "Overlay",
-    "illustration-4-description": "Use it as a template for your streams so your viewers can follow the game with an attractive interface.",
+    "illustration-4-description": "Use it as a template for your streams, so your viewers see the game with an attractive interface.",
     "illustration-5-title": "Play and enjoy",
-    "illustration-5-description": "Can you discover the impostor before it's too late? Play, suspect and have fun!",
-    "slogan-1": "The perfect party game",
-    "slogan-2": "Play with friends, family or coworkers. All you need is a phone and the desire to lie",
+    "illustration-5-description": "Can you find the impostor before it's too late? Play, suspect, and have fun!",
+    "slogan-1": "The perfect game for parties",
+    "slogan-2": "Play with friends, family or colleagues. You only need a phone and a desire to lie",
     "start-now": "Start now"
   },
-
   "create-login-game": {
-    "create-title": "Create Game",
-    "login-title": "Join Game",
+    "create-title": "Create game",
+    "login-title": "Join game",
     "create-subtitle": "Configure your impostor game",
-    "login-subtitle": "Get ready, this is about to begin",
+    "login-subtitle": "Get ready, this is about to start",
     "room-name": "Room name",
     "room-password": "Room password",
     "room-players": "Number of players",
@@ -67,24 +85,25 @@
     "room-specific-category": "Specific category",
     "room-impostor": "Multiple impostors",
     "room-overlay": "Streaming overlay",
-    "button-create-submit": "Create Game",
-    "button-login-submit": "Join Game",
-    "create-player-title" : "Create player",
-    "create-player-subtitle" : "Customize your profile",
-    "player-name" : "Player name"
+    "button-create-submit": "Create game",
+    "button-login-submit": "Join game",
+    "create-player-title": "Create player",
+    "create-player-subtitle": "Give your profile some life",
+    "player-name": "Player name",
+    "manager": "Be game manager",
+    "watcher": "Be spectator"
   },
-
   "settings": {
     "title": "Settings",
-    "theme": "Application theme",
-    "theme-description": "Application colors and appearance",
+    "theme": "App theme",
+    "theme-description": "App colors and appearance",
     "language": "Language",
+    "overlay": "Overlay position",
     "save": "Save",
     "reset": "Reset"
   },
-
   "manager": {
-    "panel": "Game Panel",
+    "panel": "Game panel",
     "name": "Name",
     "word": "Word",
     "category": "Category",
@@ -95,8 +114,9 @@
     "events": "Game events",
     "game": "Game",
     "buttons": {
-      "next-round": "Next round",
+      "next-round": "New round",
       "change-word": "Change word",
+      "change-word-round": "Change word in round",
       "change-category": "Change category",
       "show-word": "Show word",
       "hide-word": "Hide word",
@@ -105,36 +125,80 @@
       "game-settings": "Game settings",
       "ban-player": "Remove player",
       "start-game": "Start game",
-      "close-game": "End game"
+      "end-game": "End game",
+      "close-game": "Close room"
     }
   },
   "about-me": {
     "name": "Cesar Huesca",
-    "contact": "Game developer. If you need contact or want to report bugs",
+    "contact": "Game developer. Contact me or report bugs",
     "copyright": "© 2026 Impostor Game - All rights reserved"
   },
-
   "loader": {
     "loading": "Loading..."
   },
-  "common" : {
-    "upload-image" : "Upload image",
-    "no-image" : "No image",
-    "cancel" : "Cancel",
-    "continue": "Continue"
-
+  "forms": {
+    "error": {
+      "room-name-required": "Room name field is required",
+      "room-name-min-length": "Name field must be at least 3 characters",
+      "room-password-required": "Room password field is required",
+      "room-password-min-length": "Password field must be at least 3 characters",
+      "room-password-pattern": "Invalid password field",
+      "room-players-required": "Players field is required",
+      "room-players-min": "There must be at least 4 players",
+      "room-specific-category-required": "Category field is required",
+      "player-name-required": "Player name is required",
+      "player-name-min-length": "Player name must be at least 3 characters"
+    }
+  },
+  "common": {
+    "upload-image": "Upload image",
+    "no-image": "No image",
+    "cancel": "Cancel",
+    "save": "Save",
+    "random": "Random",
+    "continue": "Continue",
+    "ban": "Ban",
+    "ban-player": "Ban player",
+    "ban-player-description": "The game manager has banned you",
+    "banned": "You have been banned",
+    "exit": "Exit",
+    "close-game": "Close room",
+    "closed-game": "The game has ended",
+    "exit-confirm": "Are you sure you want to exit?",
+    "ban-player-confirm": "Are you sure you want to ban the player?",
+    "close-game-confirm": "Are you sure you want to close the room?",
+    "round-confirm": "Are you sure you want a new round?",
+    "back": "Back to start"
   },
   "success": {
-    "create-game" : "Has creado la sala de juego",
-    "login-game-verify" : "Sala encontrada",
-    "login-game" : "Te has unido a la sala",
-    "uploaded-image" : "Se ha creado correctamente la imagen"
+    "game-found": "Room found",
+    "create-game": "You have created the game room",
+    "delete-game": "You have closed the game room",
+    "login-game-verify": "Room found",
+    "login-game": "You have joined the room",
+    "uploaded-image": "Image created successfully",
+    "ban-player": "Player banned",
+    "exit": "You have left the room",
+    "game-closed": "Game room closed",
+    "game-finish": "Game finished",
+    "game-started": "Game started",
+    "game-next-round": "New round started",
+    "game-change-category": "Category changed",
+    "game-change-word": "Word changed"
   },
-  "error" : {
-    "warning": "Algo salio mal",
-    "login-game" : "No se ha podido unirse a la partida"
+  "error": {
+    "warning": "Something went wrong",
+    "login-game": "Could not join the room",
+    "create-game": "Could not create the room"
   },
-
+  "overlay-positions": {
+    "top-left": "Top left",
+    "top-right": "Top right",
+    "bottom-left": "Bottom left",
+    "bottom-right": "Bottom right",
+    "bottom-center": "Bottom center"
+  },
   "languages": {
     "language": "Language",
     "de": "German",

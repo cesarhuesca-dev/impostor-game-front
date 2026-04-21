@@ -23,4 +23,17 @@ export class AuxiliarService {
       delay(1000),
     );
   }
+
+  getLanguagesSupported(): Observable<ItemListInterface[]> {
+    return this.httpClient.get<HttpResponse<ItemListInterface>>(`${environment.URL_API}${this.apiAuxiliarTopic}/languages`).pipe(
+      map((res) => {
+        if (!res.success) {
+          return [];
+        }
+
+        return res.data!;
+      }),
+      delay(1000),
+    );
+  }
 }

@@ -30,7 +30,7 @@ export default class CreateComponent implements OnInit {
   private readonly playerService = inject(PlayerService);
   private readonly auxiliarService = inject(AuxiliarService);
 
-  readonly createGameModel = signal<CreateGameInterface>({
+  private readonly defaultDataForm = {
     roomName: '',
     roomPassword: '',
     roomPlayers: 4,
@@ -39,7 +39,9 @@ export default class CreateComponent implements OnInit {
     category: '',
     multipleImpostors: false,
     overlay: false,
-  });
+  };
+
+  readonly createGameModel = signal<CreateGameInterface>({ ...this.defaultDataForm });
 
   createGameForm = form(this.createGameModel, (schemaPath) => {
     required(schemaPath.roomName, { message: 'forms.error.room-name-required' });
@@ -75,16 +77,7 @@ export default class CreateComponent implements OnInit {
   }
 
   clearForm = () => {
-    this.createGameModel.update(() => ({
-      roomName: '',
-      roomPassword: '',
-      roomPlayers: 0,
-      customWords: false,
-      specificCategory: false,
-      category: '',
-      multipleImpostors: false,
-      overlay: false,
-    }));
+    this.createGameModel.update(() => ({ ...this.defaultDataForm }));
   };
 
   setGameCategories() {

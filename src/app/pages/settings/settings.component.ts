@@ -4,7 +4,6 @@ import { ButtonModule } from 'primeng/button';
 import { SelectModule } from 'primeng/select';
 import { TranslatePipe } from '@ngx-translate/core';
 import { form, FormField } from '@angular/forms/signals';
-import { Router } from '@angular/router';
 import { LanguageService } from '@/services/language.service';
 import { SettingsForm } from 'src/app/core/interfaces/forms/settings.interface';
 import { SupportedLanguages } from 'src/app/core/enums/languages.enum';
@@ -12,6 +11,10 @@ import { OverlayPosition } from '@/enums/overlay.enum';
 import { SettingsService } from '@/services/utils/settings.service';
 import { Settings } from '@/interfaces/configuration-app.interface';
 import { GameService } from '@/services/game.service';
+import { AuxiliarService } from '@/services/auxiliar.service';
+import { ItemListInterface } from '@/interfaces/utilities/list.interface';
+import { LoaderService } from '@/services/loader.service';
+import { PlayerService } from '@/services/player.service';
 
 @Component({
   selector: 'page-settings',
@@ -20,10 +23,12 @@ import { GameService } from '@/services/game.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export default class SettingsComponent implements OnInit {
-  private router = inject(Router);
-  private settingsService = inject(SettingsService);
-  private languageService = inject(LanguageService);
-  private gameService = inject(GameService);
+  private readonly settingsService = inject(SettingsService);
+  private readonly languageService = inject(LanguageService);
+  private readonly gameService = inject(GameService);
+  private readonly auxiliarService = inject(AuxiliarService);
+  private readonly loaderService = inject(LoaderService);
+  private readonly playerService = inject(PlayerService);
 
   readonly game = computed(() => this.gameService.gameData);
   private readonly settings = computed(() => this.settingsService.getSettings());
@@ -36,14 +41,7 @@ export default class SettingsComponent implements OnInit {
   private settingsBackup = '';
   settingsForm = form(this.settingsModel);
 
-  readonly supportedLanguages = computed(() => {
-    const codeLng = Object.keys(this.languageService.suportedLanguages);
-
-    return codeLng.map((lng) => ({
-      name: `languages.${SupportedLanguages[lng as keyof typeof SupportedLanguages]}`,
-      code: SupportedLanguages[lng as keyof typeof SupportedLanguages],
-    }));
-  });
+  readonly supportedLanguages = signal<ItemListInterface[]>([]);
 
   readonly overlayPositions = computed(() => {
     return Object.keys(OverlayPosition).map((x) => ({
@@ -53,7 +51,16 @@ export default class SettingsComponent implements OnInit {
   });
 
   ngOnInit(): void {
+    this.setLanguagesSupported();
     this.setBackupForm();
+  }
+
+  setLanguagesSupported() {
+    this.loaderService.addLoading();
+    this.auxiliarService.getLanguagesSupported().subscribe((langs) => {
+      this.supportedLanguages.update(() => langs);
+      this.loaderService.finishLoading();
+    });
   }
 
   setBackupForm() {
@@ -81,6 +88,7 @@ export default class SettingsComponent implements OnInit {
     if (this.settingsForm.language().dirty()) {
       const newLng = this.settingsForm.language().value();
       this.changeLanguage(newLng);
+      this.setLanguagesSupported();
     }
   }
 
@@ -110,6 +118,6 @@ export default class SettingsComponent implements OnInit {
   }
 
   closeSettings() {
-    this.router.navigate(['/home']);
+    this.playerService.navigateByRole();
   }
 }

@@ -28,10 +28,12 @@ export default class JoinComponent {
   private readonly handleResponseService = inject(HandleResponseService);
   private readonly playerService = inject(PlayerService);
 
-  readonly joinGameModel = signal<LoginGameInterface>({
+  private readonly defaultDataForm = {
     roomName: '',
     roomPassword: '',
-  });
+  };
+
+  readonly joinGameModel = signal<LoginGameInterface>({ ...this.defaultDataForm });
 
   joinGameForm = form(this.joinGameModel, (schemaPath) => {
     required(schemaPath.roomName, { message: 'forms.error.room-name-required' });
@@ -42,10 +44,7 @@ export default class JoinComponent {
   });
 
   clearForm = () => {
-    this.joinGameModel.update(() => ({
-      roomName: '',
-      roomPassword: '',
-    }));
+    this.joinGameModel.update(() => ({ ...this.defaultDataForm }));
   };
 
   loginGame() {

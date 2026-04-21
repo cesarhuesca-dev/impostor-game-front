@@ -24,8 +24,8 @@
 
         <select class="custom-picker w-full mt-2 "
           [formField]="this.settingsForm.language">
-          @for (lng of supportedLanguages(); track lng.code) {
-            <option [value]="lng.code">{{lng.name | translate }}</option>
+          @for (lng of supportedLanguages(); track lng.label) {
+            <option [value]="lng.value">{{lng.label | translate }}</option>
           }
         </select>
       </div>

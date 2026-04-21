@@ -1,60 +1,78 @@
 {
-  "welcome": "Willkommen",
-  "join": "Beitreten",
-
   "game": {
     "category": "Kategorie",
     "word": "Wort",
+    "player": "Spieler",
+    "not-impostor": "Du bist nicht der Impostor",
+    "are-impostor": "Du bist der Impostor",
+    "listen-not-impostor": "Höre dir die Hinweise der anderen an und versuche zu erraten, wer der Impostor ist.",
+    "touch-show-word": "Tippen, um dein Wort zu enthüllen",
+    "clue": "Gib einen Hinweis zum Wort, ohne es direkt zu nennen.",
+    "impostor-clue": "Gib einen Hinweis zum Wort, ohne es direkt zu nennen.",
+    "no-word": "Du hast kein geheimes Wort.",
+    "ready": "Ich bin bereit",
+    "show-info": "Informationen anzeigen",
+    "waiting-room": "Warteraum",
+    "waiting-room-description": "Teile den Code, damit deine Freunde beitreten können",
+    "waiting-players": "Warten auf weitere Spieler",
+    "waiting": "Warten",
+    "start": "Spiel starten",
+    "players": "Spieler",
+    "waiting-host": "Warten darauf, dass der Host das Spiel startet",
+    "round-inprogress": "Runde läuft",
+    "round-secret": "Halte dein Wort und deine Rolle geheim",
+    "new-round": "Neue Runde",
+    "get-ready": "Mach dich bereit",
+    "closed": "Spiel beendet",
+    "thanks-for-play": "Danke fürs Spielen. Bereit für eine weitere Runde?",
     "categories": {
       "animals": "Tiere",
       "fast": "Essen",
       "countries": "Länder",
-      "world-capitals": "Hauptstädte der Welt",
+      "world-capitals": "Welthauptstädte",
       "car-brands": "Automarken",
       "football": "Fußball",
       "sports": "Sport",
       "movies": "Filme",
-      "tv-series": "Serien",
+      "tv-series": "TV-Serien",
       "video-games": "Videospiele",
-      "famous": "Berühmte Persönlichkeiten",
+      "famous": "Berühmtheiten",
       "music": "Musik",
       "professions": "Berufe",
       "science": "Wissenschaft"
     }
   },
-
   "pages": {
     "home": "Startseite",
     "create": "Spiel erstellen",
     "join": "Beitreten",
     "settings": "Einstellungen",
-    "game": "Spiel",
-    "manager": "Manager"
+    "overlay": "Overlay",
+    "manager": "Kontrolleur",
+    "game": "Spiel"
   },
-
   "home": {
     "find": "Finde den",
     "impostor": "Impostor",
-    "game-description": "Jeder bekommt ein Wort... außer einer Person. Nutze Hinweise, verdächtige andere und finde heraus, wer der Impostor ist, bevor sie dich entdecken.",
+    "game-description": "Jeder erhält ein Wort... außer einer. Nutze Hinweise, verdächtige andere und finde heraus, wer der Impostor ist, bevor du entdeckt wirst.",
     "create": "Spiel erstellen",
     "join": "Spiel beitreten",
-    "how-works": "So funktioniert es",
+    "how-works": "Wie es funktioniert",
     "illustration-1-title": "Erhalte dein Wort",
     "illustration-1-description": "Alle Spieler erhalten ein geheimes Wort... außer dem Impostor.",
     "illustration-2-title": "Gib einen Hinweis",
-    "illustration-2-description": "Jeder Spieler gibt einen Hinweis zu seinem Wort, ohne es direkt zu sagen.",
+    "illustration-2-description": "Jeder Spieler gibt einen Hinweis zu seinem Wort, ohne es direkt zu nennen.",
     "illustration-3-title": "Finde den Impostor",
-    "illustration-3-description": "Diskutiert und stimmt ab, wer der Impostor ist.",
+    "illustration-3-description": "Diskutiert und stimmt ab, wer eurer Meinung nach der Impostor ist.",
     "solutions": "Ein Produkt, mehrere Lösungen",
     "illustration-4-title": "Overlay",
-    "illustration-4-description": "Nutze es als Overlay für deine Streams, damit Zuschauer das Spiel mit einer attraktiven Oberfläche verfolgen können.",
-    "illustration-5-title": "Spielen und Spaß haben",
-    "illustration-5-description": "Kannst du den Impostor finden, bevor es zu spät ist? Spiele, verdächtige und habe Spaß!",
+    "illustration-4-description": "Nutze es als Vorlage für deine Streams, damit deine Zuschauer das Spiel mit einem attraktiven Interface sehen.",
+    "illustration-5-title": "Spielen und genießen",
+    "illustration-5-description": "Kannst du den Impostor finden, bevor es zu spät ist? Spiele, verdächtige und hab Spaß!",
     "slogan-1": "Das perfekte Partyspiel",
-    "slogan-2": "Spiele mit Freunden, Familie oder Kollegen. Alles, was du brauchst, ist ein Handy und Lust zu lügen",
+    "slogan-2": "Spiele mit Freunden, Familie oder Kollegen. Du brauchst nur ein Handy und Lust am Lügen",
     "start-now": "Jetzt starten"
   },
-
   "create-login-game": {
     "create-title": "Spiel erstellen",
     "login-title": "Spiel beitreten",
@@ -64,24 +82,28 @@
     "room-password": "Raumpasswort",
     "room-players": "Anzahl der Spieler",
     "room-custom-words": "Benutzerdefinierte Wörter",
-    "room-specific-category": "Spezifische Kategorie",
+    "room-specific-category": "Spezielle Kategorie",
     "room-impostor": "Mehrere Impostoren",
     "room-overlay": "Streaming-Overlay",
     "button-create-submit": "Spiel erstellen",
-    "button-login-submit": "Spiel beitreten"
+    "button-login-submit": "Spiel beitreten",
+    "create-player-title": "Spieler erstellen",
+    "create-player-subtitle": "Hauche deinem Profil Leben ein",
+    "player-name": "Spielername",
+    "manager": "Spiel-Manager sein",
+    "watcher": "Zuschauer sein"
   },
-
   "settings": {
     "title": "Einstellungen",
     "theme": "App-Thema",
-    "theme-description": "Farben und Erscheinungsbild der Anwendung",
+    "theme-description": "Farben und Aussehen der App",
     "language": "Sprache",
+    "overlay": "Overlay-Position",
     "save": "Speichern",
     "reset": "Zurücksetzen"
   },
-
   "manager": {
-    "panel": "Spielpanel",
+    "panel": "Spiel-Panel",
     "name": "Name",
     "word": "Wort",
     "category": "Kategorie",
@@ -94,35 +116,96 @@
     "buttons": {
       "next-round": "Neue Runde",
       "change-word": "Wort ändern",
+      "change-word-round": "Wort in der Runde ändern",
       "change-category": "Kategorie ändern",
       "show-word": "Wort anzeigen",
-      "hide-word": "Wort verbergen",
+      "hide-word": "Wort ausblenden",
       "show-impostor": "Impostor anzeigen",
-      "hide-impostor": "Impostor verbergen",
+      "hide-impostor": "Impostor ausblenden",
       "game-settings": "Spieleinstellungen",
       "ban-player": "Spieler entfernen",
       "start-game": "Spiel starten",
-      "close-game": "Spiel beenden"
+      "end-game": "Spiel beenden",
+      "close-game": "Raum schließen"
     }
   },
-
-  "languages": {
-    "language": "Sprache",
-    "de": "German",
-    "es": "Spanish",
-    "en": "English",
-    "fr": "French",
-    "it": "Italian",
-    "pt": "Portuguese"
-  },
-
   "about-me": {
     "name": "Cesar Huesca",
-    "contact": "Spielentwickler. Wenn du Kontakt aufnehmen oder Bugs melden möchtest",
+    "contact": "Spielentwickler. Kontaktiere mich oder melde Fehler",
     "copyright": "© 2026 Impostor Game - Alle Rechte vorbehalten"
   },
-
   "loader": {
-    "loading": "Lädt..."
+    "loading": "Laden..."
+  },
+  "forms": {
+    "error": {
+      "room-name-required": "Raumname ist erforderlich",
+      "room-name-min-length": "Name muss mindestens 3 Zeichen lang sein",
+      "room-password-required": "Raumpasswort ist erforderlich",
+      "room-password-min-length": "Passwort muss mindestens 3 Zeichen lang sein",
+      "room-password-pattern": "Ungültiges Passwortfeld",
+      "room-players-required": "Spieleranzahl ist erforderlich",
+      "room-players-min": "Es müssen mindestens 4 Spieler sein",
+      "room-specific-category-required": "Kategorie ist erforderlich",
+      "player-name-required": "Spielername ist erforderlich",
+      "player-name-min-length": "Spielername muss mindestens 3 Zeichen lang sein"
+    }
+  },
+  "common": {
+    "upload-image": "Bild hochladen",
+    "no-image": "Kein Bild",
+    "cancel": "Abbrechen",
+    "save": "Speichern",
+    "random": "Zufällig",
+    "continue": "Weiter",
+    "ban": "Sperren",
+    "ban-player": "Spieler sperren",
+    "ban-player-description": "Der Spiel-Manager hat dich gesperrt",
+    "banned": "Du wurdest gesperrt",
+    "exit": "Verlassen",
+    "close-game": "Raum schließen",
+    "closed-game": "Das Spiel wurde beendet",
+    "exit-confirm": "Bist du sicher, dass du verlassen möchtest?",
+    "ban-player-confirm": "Bist du sicher, dass du den Spieler sperren möchtest?",
+    "close-game-confirm": "Bist du sicher, dass du den Raum schließen möchtest?",
+    "round-confirm": "Bist du sicher, dass du eine neue Runde möchtest?",
+    "back": "Zurück zum Start"
+  },
+  "success": {
+    "game-found": "Raum gefunden",
+    "create-game": "Du hast den Spielraum erstellt",
+    "delete-game": "Du hast den Spielraum geschlossen",
+    "login-game-verify": "Raum gefunden",
+    "login-game": "Du bist dem Raum beigetreten",
+    "uploaded-image": "Bild erfolgreich erstellt",
+    "ban-player": "Spieler gesperrt",
+    "exit": "Du hast den Raum verlassen",
+    "game-closed": "Spielraum geschlossen",
+    "game-finish": "Spiel beendet",
+    "game-started": "Spiel gestartet",
+    "game-next-round": "Neue Runde gestartet",
+    "game-change-category": "Kategorie geändert",
+    "game-change-word": "Wort geändert"
+  },
+  "error": {
+    "warning": "Etwas ist schief gelaufen",
+    "login-game": "Konnte dem Raum nicht beitreten",
+    "create-game": "Konnte den Raum nicht erstellen"
+  },
+  "overlay-positions": {
+    "top-left": "Oben links",
+    "top-right": "Oben rechts",
+    "bottom-left": "Unten links",
+    "bottom-right": "Unten rechts",
+    "bottom-center": "Unten mittig"
+  },
+  "languages": {
+    "language": "Sprache",
+    "de": "Deutsch",
+    "es": "Spanisch",
+    "en": "Englisch",
+    "fr": "Französisch",
+    "it": "Italienisch",
+    "pt": "Portugiesisch"
   }
 }
