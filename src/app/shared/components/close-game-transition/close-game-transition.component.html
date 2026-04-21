@@ -1,4 +1,4 @@
-@if (started()) {
+@if (started() && transition()) {
   <div class="fixed inset-0 z-999 flex items-center justify-center transition-opacity duration-300 bg-primary-blur backdrop-blur-md"
     [class.opacity-0]="!show()"
     [class.opacity-100]="show()">

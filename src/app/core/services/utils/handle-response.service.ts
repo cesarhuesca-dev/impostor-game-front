@@ -1,10 +1,10 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { ToastMessageService } from './toast-message.service';
 import { ToastType } from 'src/app/core/enums/toast.enum';
-import { LoaderService } from './loader.service';
 import { TranslateService } from '@ngx-translate/core';
 import { HttpResponse } from '@/interfaces/response/http-response.interfaces';
+import { LoaderService } from '../loader.service';
+import { ToastMessageService } from './toast-message.service';
 
 @Injectable({
   providedIn: 'root',

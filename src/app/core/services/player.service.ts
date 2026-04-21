@@ -4,14 +4,15 @@ import { inject, Injectable, signal } from '@angular/core';
 
 import { CookieService } from 'ngx-cookie-service';
 import { LoaderService } from './loader.service';
-import { HandleResponseService } from './handle-response.service';
 import { Router } from '@angular/router';
 import { delay } from 'rxjs';
-import { ToastMessageService } from './toast-message.service';
+import { ToastMessageService } from './utils/toast-message.service';
 import { ToastType } from '@/enums/toast.enum';
 import { TranslateService } from '@ngx-translate/core';
 import { HttpResponse } from '@/interfaces/response/http-response.interfaces';
 import { Player } from '@/interfaces/player.interface';
+import { HandleResponseService } from './utils/handle-response.service';
+import { UserRoles } from '@/enums/user-roles.enum';
 
 @Injectable({
   providedIn: 'root',
@@ -70,10 +71,10 @@ export class PlayerService {
     this.player.update(() => ({ ...newData }));
   }
 
-  deletePlayerData() {
+  deletePlayerData(redirect = true) {
     this.deletePlayerCookie();
     this.player.update(() => null);
-    this.router.navigate(['/home']);
+    if (redirect) this.router.navigate(['/home']);
   }
 
   checkBanPlayer(id: string) {
@@ -98,10 +99,10 @@ export class PlayerService {
 
   startPlayer(token: string) {
     this.setPlayerCookie(token);
-    this.loadPlayer();
+    this.loadPlayerData();
   }
 
-  loadPlayer() {
+  loadPlayerData() {
     this.loaderService.addLoading();
     this.loadPlayerCookie();
 
@@ -115,7 +116,7 @@ export class PlayerService {
       next: (res) => {
         if (this.handleResponseService.handleResponse(res)) {
           this.setPlayerData(res.data![0]);
-          this.router.navigate(['/game']);
+          this.navigateByRole();
         } else {
           this.deletePlayerData();
         }
@@ -125,6 +126,21 @@ export class PlayerService {
         this.deletePlayerData();
       },
     });
+  }
+
+  navigateByRole() {
+    if (this.playerData) {
+      if (this.playerData.roles.includes(UserRoles.PLAYER)) {
+        this.router.navigate(['/game']);
+        return;
+      } else if (this.playerData.roles.includes(UserRoles.MANAGER)) {
+        this.router.navigate(['/manager']);
+        return;
+      } else if (this.playerData.roles.includes(UserRoles.WATCHER)) {
+        this.router.navigate(['/overlay']);
+        return;
+      }
+    }
   }
 
   //API CALLS

@@ -4,17 +4,16 @@ import { form, FormField, required, min, minLength, validate, pattern } from '@a
 import { ButtonModule } from 'primeng/button';
 import { CreateGameInterface, LoginGameInterface } from 'src/app/core/interfaces/forms/game.interface';
 import { GameService } from '@/services/game.service';
-import { TranslatePipe, TranslateService } from '@ngx-translate/core';
+import { TranslatePipe } from '@ngx-translate/core';
 import { UserModal } from '@/shared/components/user-modal/user-modal.component';
 import { LoaderService } from '@/services/loader.service';
-import { HandleResponseService } from '@/services/handle-response.service';
 import { PlayerService } from '@/services/player.service';
-import { Router } from '@angular/router';
 import { UserModalInterface } from 'src/app/core/interfaces/forms/user-modal.interface';
 import { AuxiliarService } from '@/services/auxiliar.service';
 import { ItemListInterface } from '@/interfaces/utilities/list.interface';
 import { Join } from '@/interfaces/join.interface';
 import { Game } from '@/interfaces/game.interface';
+import { HandleResponseService } from '@/services/utils/handle-response.service';
 
 @Component({
   selector: 'app-create',
@@ -26,12 +25,10 @@ export default class CreateComponent implements OnInit {
   private readonly userModal = viewChild.required(UserModal);
 
   private readonly gameService = inject(GameService);
-  private readonly translateService = inject(TranslateService);
   private readonly loadingService = inject(LoaderService);
   private readonly handleResponseService = inject(HandleResponseService);
   private readonly playerService = inject(PlayerService);
   private readonly auxiliarService = inject(AuxiliarService);
-  private readonly router = inject(Router);
 
   readonly createGameModel = signal<CreateGameInterface>({
     roomName: '',
@@ -139,8 +136,8 @@ export default class CreateComponent implements OnInit {
         if (this.handleResponseService.handleResponse(res, 'success.login-game', false)) {
           const player = res.data![0];
           this.playerService.startPlayer(player.token);
+          this.playerService.navigateByRole();
           this.loadingService.finishLoading();
-          this.goGame();
         }
       },
       error: (error) => this.handleResponseService.handleError(error, 'error.login-game', this.clearForm),
@@ -169,7 +166,7 @@ export default class CreateComponent implements OnInit {
             this.createPlayerImage(player, playerImg);
           } else {
             this.loadingService.finishLoading();
-            this.goGame();
+            this.playerService.navigateByRole();
           }
         }
       },
@@ -182,7 +179,7 @@ export default class CreateComponent implements OnInit {
       next: (res) => {
         if (this.handleResponseService.handleResponse(res, '', true, this.clearForm)) {
           this.playerService.startPlayer(data.token);
-          this.goGame();
+          this.playerService.navigateByRole();
         }
       },
       error: (error) => this.handleResponseService.handleError(error, 'error.warning', this.clearForm),
@@ -205,9 +202,5 @@ export default class CreateComponent implements OnInit {
 
   @HostListener('window:beforeunload') handleBeforeUnload() {
     this.playerCanceled();
-  }
-
-  goGame() {
-    this.router.navigate(['/game']);
   }
 }

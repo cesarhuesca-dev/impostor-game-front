@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, computed, inject, OnInit, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, inject, OnDestroy, OnInit, signal } from '@angular/core';
 import { ButtonModule } from 'primeng/button';
 import { TranslatePipe } from '@ngx-translate/core';
 import { GameService } from '@/services/game.service';
@@ -6,13 +6,14 @@ import { AvatarModule } from 'primeng/avatar';
 import { PlayerImagePipe } from '@/shared/pipes/player-image.pipe';
 import { PlayerService } from '@/services/player.service';
 import { LoaderService } from '@/services/loader.service';
-import { HandleResponseService } from '@/services/handle-response.service';
 import { ConfirmButton } from '@/shared/components/exit-button/confirm-button';
 import { ItemListInterface } from '@/interfaces/utilities/list.interface';
 import { AuxiliarService } from '@/services/auxiliar.service';
 import { Dialog } from 'primeng/dialog';
 import { FormsModule } from '@angular/forms';
 import { CloseGameTransitionComponent } from '@/shared/components/close-game-transition/close-game-transition.component';
+import { HandleResponseService } from '@/services/utils/handle-response.service';
+import { GameSocketService } from '@/services/websocket/game-socket.service';
 
 @Component({
   selector: 'app-manager',
@@ -20,7 +21,8 @@ import { CloseGameTransitionComponent } from '@/shared/components/close-game-tra
   templateUrl: './manager.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export default class ManagerComponent implements OnInit {
+export default class ManagerComponent implements OnInit, OnDestroy {
+  private readonly gameSocketService = inject(GameSocketService);
   private readonly gameService = inject(GameService);
   private readonly playerService = inject(PlayerService);
   private readonly auxiliarService = inject(AuxiliarService);
@@ -40,9 +42,20 @@ export default class ManagerComponent implements OnInit {
   visible = false;
 
   ngOnInit(): void {
+    this.startConnection();
     this.setGameCategories();
+  }
 
-    console.log('this.game', this.game());
+  ngOnDestroy(): void {
+    this.closeConnection();
+  }
+
+  startConnection() {
+    this.gameSocketService.connect(this.playerService.jwtPlayer);
+  }
+
+  closeConnection() {
+    this.gameSocketService.disconnect();
   }
 
   setGameCategories() {
@@ -53,7 +66,7 @@ export default class ManagerComponent implements OnInit {
     });
   }
 
-  //#region CONTROLES CON JUGADORES
+  //#region CONTROLES DE PARTIDA
 
   banPlayer(idPlayer: string) {
     this.loaderService.addLoading();
@@ -62,10 +75,6 @@ export default class ManagerComponent implements OnInit {
       error: (error) => this.handleResponseService.handleError(error, 'error.warning'),
     });
   }
-
-  //#endregion
-
-  //#region CONTROLES DE PARTIDA
 
   startGame() {
     this.loaderService.addLoading();
@@ -118,10 +127,6 @@ export default class ManagerComponent implements OnInit {
       error: (error) => this.handleResponseService.handleError(error, 'error.warning'),
     });
   }
-
-  //#endregion
-
-  //#region CONTROLES DE RONDA
 
   clickChangeWord() {
     if (this.game()?.customWords) {

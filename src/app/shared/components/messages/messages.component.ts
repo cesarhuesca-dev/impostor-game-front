@@ -1,11 +1,11 @@
 import { ChangeDetectionStrategy, Component, effect, inject, signal } from '@angular/core';
 import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
-import { ToastMessageService } from '@/services/toast-message.service';
+import { ToastMessageService } from '@/services/utils/toast-message.service';
 import { ToastMessage } from '@/interfaces/utilities/toast-message.interface';
 import { ToastPosition, ToastType } from 'src/app/core/enums/toast.enum';
 import { NgTemplateOutlet } from '@angular/common';
-import { DeviceService } from '@/services/device.service';
+import { DeviceService } from '@/services/utils/device.service';
 import { DeviceType } from '@/enums/device-type.enum';
 
 @Component({

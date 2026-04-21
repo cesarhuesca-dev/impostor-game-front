@@ -3,7 +3,7 @@ import { CookieService } from 'ngx-cookie-service';
 import { TranslateService } from '@ngx-translate/core';
 import { LoaderService } from './loader.service';
 import { SupportedLanguages } from 'src/app/core/enums/languages.enum';
-import { SettingsService } from './settings.service';
+import { SettingsService } from './utils/settings.service';
 import { Settings } from '@/interfaces/configuration-app.interface';
 
 @Injectable({

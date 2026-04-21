@@ -1,14 +1,14 @@
 import { GameService } from '@/services/game.service';
 import { PlayerService } from '@/services/player.service';
 import { PlayerImagePipe } from '@/shared/pipes/player-image.pipe';
-import { ChangeDetectionStrategy, Component, computed, inject, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, inject, OnDestroy, OnInit } from '@angular/core';
 import { TranslatePipe } from '@ngx-translate/core';
 import { AvatarModule } from 'primeng/avatar';
 import { Button } from 'primeng/button';
 import { ConfirmButton } from '@/shared/components/exit-button/confirm-button';
 import { LoaderService } from '@/services/loader.service';
-import { HandleResponseService } from '@/services/handle-response.service';
-import { GameSocketService } from '@/services/game-socket.service';
+import { HandleResponseService } from '@/services/utils/handle-response.service';
+import { GameSocketService } from '@/services/websocket/game-socket.service';
 import { ImpostorInfoComponent } from '@/shared/components/impostor-info/impostor-info.component';
 import { NormalInfoComponent } from '@/shared/components/normal-info/normal-info.component';
 import { InprogressInfoComponent } from '@/shared/components/inprogress-info/inprogress-info.component';
@@ -34,7 +34,7 @@ import { CloseGameService } from '@/services/close-game.service';
   templateUrl: './game.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export default class GameComponent implements OnInit {
+export default class GameComponent implements OnInit, OnDestroy {
   private readonly gameService = inject(GameService);
   private readonly gameSocketService = inject(GameSocketService);
   private readonly playerService = inject(PlayerService);
@@ -54,12 +54,19 @@ export default class GameComponent implements OnInit {
   ready = false;
 
   ngOnInit(): void {
-    //TODO CAMBIAR ESTO PARA EVITAR PASAR SIEMPRE POR AUQI
-    this.startWsGameConnection();
+    this.startConnection();
   }
 
-  startWsGameConnection() {
-    this.gameSocketService.connect();
+  ngOnDestroy(): void {
+    this.closeConnection();
+  }
+
+  startConnection() {
+    this.gameSocketService.connect(this.playerService.jwtPlayer);
+  }
+
+  closeConnection() {
+    this.gameSocketService.disconnect();
   }
 
   startGame() {

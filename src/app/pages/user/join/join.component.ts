@@ -8,11 +8,10 @@ import { TranslatePipe } from '@ngx-translate/core';
 import { MessageService } from 'primeng/api';
 import { UserModal } from '@/shared/components/user-modal/user-modal.component';
 import { LoaderService } from '@/services/loader.service';
-import { HandleResponseService } from '@/services/handle-response.service';
 import { PlayerService } from '@/services/player.service';
-import { Router } from '@angular/router';
 import { UserModalInterface } from 'src/app/core/interfaces/forms/user-modal.interface';
 import { Join } from '@/interfaces/join.interface';
+import { HandleResponseService } from '@/services/utils/handle-response.service';
 
 @Component({
   selector: 'app-join',
@@ -28,7 +27,6 @@ export default class JoinComponent {
   private readonly loadingService = inject(LoaderService);
   private readonly handleResponseService = inject(HandleResponseService);
   private readonly playerService = inject(PlayerService);
-  private readonly router = inject(Router);
 
   readonly joinGameModel = signal<LoginGameInterface>({
     roomName: '',
@@ -81,8 +79,8 @@ export default class JoinComponent {
         if (this.handleResponseService.handleResponse(res, 'success.login-game', false)) {
           const player = res.data![0];
           this.playerService.startPlayer(player.token);
+          this.playerService.navigateByRole();
           this.loadingService.finishLoading();
-          this.goGame();
         }
       },
       error: (error) => this.handleResponseService.handleError(error, 'error.login-game', this.clearForm),
@@ -109,7 +107,7 @@ export default class JoinComponent {
             this.createPlayerImage(player, playerImg);
           } else {
             this.loadingService.finishLoading();
-            this.goGame();
+            this.playerService.navigateByRole();
           }
         }
       },
@@ -122,14 +120,10 @@ export default class JoinComponent {
       next: (res) => {
         if (this.handleResponseService.handleResponse(res, '', true, this.clearForm)) {
           this.playerService.startPlayer(data.token);
-          this.goGame();
+          this.playerService.navigateByRole();
         }
       },
       error: (error) => this.handleResponseService.handleError(error, 'error.warning', this.clearForm),
     });
-  }
-
-  goGame() {
-    this.router.navigate(['/game']);
   }
 }

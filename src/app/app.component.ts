@@ -5,7 +5,7 @@ import { LanguageService } from '@/services/language.service';
 import { LoaderComponent } from './shared/components/loader/loader.component';
 import { MessagesComponent } from './shared/components/messages/messages.component';
 import { PlayerService } from '@/services/player.service';
-import { SettingsService } from '@/services/settings.service';
+import { SettingsService } from '@/services/utils/settings.service';
 
 @Component({
   selector: 'app-root',
@@ -30,6 +30,6 @@ export class App implements OnInit {
   ngOnInit(): void {
     this.settingsService.loadSettings();
     this.languageService.loadLanguage();
-    this.playerService.loadPlayer();
+    this.playerService.loadPlayerData();
   }
 }

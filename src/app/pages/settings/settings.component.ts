@@ -9,7 +9,7 @@ import { LanguageService } from '@/services/language.service';
 import { SettingsForm } from 'src/app/core/interfaces/forms/settings.interface';
 import { SupportedLanguages } from 'src/app/core/enums/languages.enum';
 import { OverlayPosition } from '@/enums/overlay.enum';
-import { SettingsService } from '@/services/settings.service';
+import { SettingsService } from '@/services/utils/settings.service';
 import { Settings } from '@/interfaces/configuration-app.interface';
 import { GameService } from '@/services/game.service';
 
