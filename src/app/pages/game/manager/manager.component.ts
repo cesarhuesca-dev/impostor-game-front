@@ -12,10 +12,11 @@ import { ItemListInterface } from '@/interfaces/utilities/list.interface';
 import { AuxiliarService } from '@/services/auxiliar.service';
 import { Dialog } from 'primeng/dialog';
 import { FormsModule } from '@angular/forms';
+import { CloseGameTransitionComponent } from '@/shared/components/close-game-transition/close-game-transition.component';
 
 @Component({
   selector: 'app-manager',
-  imports: [ButtonModule, TranslatePipe, AvatarModule, PlayerImagePipe, ConfirmButton, Dialog, FormsModule],
+  imports: [ButtonModule, TranslatePipe, AvatarModule, PlayerImagePipe, ConfirmButton, Dialog, FormsModule, CloseGameTransitionComponent],
   templateUrl: './manager.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

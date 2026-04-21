@@ -1,7 +1,4 @@
 {
-  "welcome": "Bienvenido",
-  "join": "Unirse",
-
   "game" : {
     "category" : "Categoría",
     "word" : "Palabra",
@@ -26,6 +23,8 @@
     "round-secret" : "Mantén tu palabra y rol en secreto",
     "new-round" : "Nueva ronda",
     "get-ready" : "Prepárate",
+    "closed" : "Fin de la partida",
+    "thanks-for-play" : "Gracias por jugar. ¿Listo para otra partida?",
     "categories" : {
       "animals": "Animales",
       "fast": "Comida",
@@ -168,8 +167,8 @@
     "exit-confirm" : "Estas seguro de que quieres salir",
     "ban-player-confirm" : "Estas seguro de que quieres exuplsar al jugador",
     "close-game-confirm" : "Estas seguro de que quieres cerrar la sala",
-    "round-confirm" : "Estas seguro de que quieres una nueva ronda"
-
+    "round-confirm" : "Estas seguro de que quieres una nueva ronda",
+    "back": "Volver al inicio"
   },
   "success": {
     "game-found" : "Sala encontrada",

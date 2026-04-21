@@ -13,6 +13,8 @@ import { ImpostorInfoComponent } from '@/shared/components/impostor-info/imposto
 import { NormalInfoComponent } from '@/shared/components/normal-info/normal-info.component';
 import { InprogressInfoComponent } from '@/shared/components/inprogress-info/inprogress-info.component';
 import { RoundTransitionComponent } from '@/shared/components/round-transition/round-transition.component';
+import { CloseGameTransitionComponent } from '@/shared/components/close-game-transition/close-game-transition.component';
+import { CloseGameService } from '@/services/close-game.service';
 
 @Component({
   selector: 'app-game',
@@ -26,6 +28,7 @@ import { RoundTransitionComponent } from '@/shared/components/round-transition/r
     NormalInfoComponent,
     InprogressInfoComponent,
     RoundTransitionComponent,
+    CloseGameTransitionComponent,
   ],
   providers: [],
   templateUrl: './game.component.html',
@@ -37,6 +40,7 @@ export default class GameComponent implements OnInit {
   private readonly playerService = inject(PlayerService);
   private readonly loaderService = inject(LoaderService);
   private readonly handleResponseService = inject(HandleResponseService);
+  private readonly closeGameService = inject(CloseGameService);
 
   readonly player = computed(() => this.playerService.playerData);
   readonly game = computed(() => {
@@ -50,6 +54,7 @@ export default class GameComponent implements OnInit {
   ready = false;
 
   ngOnInit(): void {
+    //TODO CAMBIAR ESTO PARA EVITAR PASAR SIEMPRE POR AUQI
     this.startWsGameConnection();
   }
 
@@ -87,8 +92,7 @@ export default class GameComponent implements OnInit {
     this.playerService.playerExit(this.player()!.id).subscribe({
       next: (res) => {
         if (this.handleResponseService.handleResponse(res, 'success.exit')) {
-          this.playerService.deletePlayerData();
-          this.gameSocketService.disconnect();
+          this.closeGameService.startClosedGame();
         }
       },
       error: (error) => this.handleResponseService.handleError(error, 'error.warning'),

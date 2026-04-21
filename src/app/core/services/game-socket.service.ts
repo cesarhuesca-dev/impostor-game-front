@@ -10,6 +10,7 @@ import { GameService } from './game.service';
 import { Game } from '@/interfaces/game.interface';
 import { Player } from '@/interfaces/player.interface';
 import { RoundService } from './round.service';
+import { CloseGameService } from './close-game.service';
 
 @Injectable({ providedIn: 'root' })
 export class GameSocketService {
@@ -17,6 +18,7 @@ export class GameSocketService {
   private readonly loadingService = inject(LoaderService);
   private readonly gameService = inject(GameService);
   private readonly roundService = inject(RoundService);
+  private readonly closeGameService = inject(CloseGameService);
 
   private socket: Socket | null = null;
   private readonly socketNamespace = '/game';
@@ -92,8 +94,7 @@ export class GameSocketService {
         break;
       }
       case GameSocketTopic.CLOSE_GAME:
-        this.playerService.closeGame();
-        this.disconnect();
+        this.closeGameService.startClosedGame();
         break;
       default:
         break;

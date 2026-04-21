@@ -162,7 +162,6 @@
     </div>
 
 
-    <!-- TODO LOG DE EVENTOS -->
     <!-- <div class="max-w-7xl mx-auto mt-6 bg-slate-900/70 backdrop-blur border border-slate-700 rounded-2xl p-6">
       <h2 class="text-xl font-semibold mb-4 text-primary-light">
         <span> 📝 </span>
@@ -177,6 +176,9 @@
     </div> -->
 
   </div>
+
+  <s-closed-game-transition/>
+
 
   <p-dialog [header]="(this.customWordRound) ? ('manager.buttons.change-word-round' | translate) : ('manager.buttons.change-word' | translate)" [(visible)]="visibleChangeWord" [modal]="true" (onHide)="visibleChangeWord = false">
     <div class="w-full">

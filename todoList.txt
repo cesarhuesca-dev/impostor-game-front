@@ -1,12 +1,8 @@
 
 
-Todo list NO prioritario
-
+Posibles ampliaciones
+---------------------------------------------------------------
 1- Hacer una explicacion de como funciona el overlay
-2- Revisar paleta de colores, que no hay un orden en especifico
-3- Hay que hacer el tema oscuro y claro
-4- Hay que hacer un loader
+2- Efectos de sonido y musica? -> habria que ponerlo en settings
 
-
-Ideas para la aplicacion
-1- Efectos de sonido y musica? -> habria que ponerlo en settings
+3-Registro de eventos en el manager
