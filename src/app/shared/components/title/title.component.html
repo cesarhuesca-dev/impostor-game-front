@@ -1,0 +1,28 @@
+<div>
+  <svg viewBox="0 0 500 140" xmlns="http://www.w3.org/2000/svg" class="game-logo-svg">
+    <defs>
+      <filter id="thickBorder" x="-20%" y="0%" width="150%" height="150%">
+        <feMorphology operator="dilate" radius="2" in="SourceAlpha" result="shadowExpansion" />
+        <feOffset in="shadowExpansion" dx="0" dy="7" result="shadow" />
+
+        <feMorphology operator="dilate" radius="2" in="SourceAlpha" result="border" />
+
+        <feMerge>
+          <feMergeNode in="shadow" />
+          <feMergeNode in="border" />
+          <feMergeNode in="SourceGraphic" />
+        </feMerge>
+      </filter>
+    </defs>
+
+    <text x="50%" y="50" text-anchor="middle" class="title-impostor" filter="url(#thickBorder)">{{'title.impostor' | translate | uppercase  }}</text>
+    <text x="50%" y="110" text-anchor="middle" class="title-game" filter="url(#thickBorder)">{{'title.game' | translate | uppercase }}</text>
+  </svg>
+</div>
+
+
+
+<h1 class="text-5xl md:text-7xl font-extrabold relative uppercase text-shadow-md text-shadow-black">
+  <span class="">{{'home.find' | translate }} </span>
+  <span class="text-impostor-secondary">{{'home.impostor' | translate }}</span>
+</h1>

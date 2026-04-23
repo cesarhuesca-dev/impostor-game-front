@@ -1,4 +1,8 @@
 {
+  "title" : {
+    "impostor" : "Impostor",
+    "game" : "Game"
+  },
   "game": {
     "category": "Catégorie",
     "word": "Mot",

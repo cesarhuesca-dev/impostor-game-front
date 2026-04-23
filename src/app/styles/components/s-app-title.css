@@ -1,0 +1,27 @@
+.game-logo-svg {
+  font-family: 'Arial Black', 'Montserrat', sans-serif;
+  font-weight: 700;
+  overflow: visible;
+}
+
+.title-impostor {
+  font-size: 50px;
+  fill: white;
+  letter-spacing: 0px;
+}
+
+.title-game {
+  font-size: 60px;
+  fill: var(--color-purple-400);
+  letter-spacing: 2px;
+}
+
+/* Animación opcional para darle vida */
+.game-logo-svg {
+  animation: float 4s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
