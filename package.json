@@ -1,10 +1,14 @@
 {
-  "name": "game-impostor",
-  "version": "0.0.0",
+  "name": "impostor-game-front",
+  "version": "1.0.0",
+  "description": "Imposotr Game | Multiplayer party game of words and deception - Frontend",
+  "author": "Cesar Huesca <cesarhuesca.dev@gmail.com>",
+  "license": "MIT",
+  "private": true,
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "npm run lint && ng build",
+    "build": "npm run lint && ng build --configuration production",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "lint": "ng lint"
@@ -21,7 +25,6 @@
       }
     ]
   },
-  "private": true,
   "packageManager": "npm@11.6.2",
   "dependencies": {
     "@angular/common": "^21.0.0",
