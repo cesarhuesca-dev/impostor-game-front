@@ -1,7 +1,9 @@
 {
   "title" : {
     "impostor" : "Impostor",
-    "game" : "Game"
+    "game" : "Game",
+    "home-page" : "Impostor Game | Home",
+    "home-page-description" : "A multiplayer party game of words, deception and fun. Find the impostor before it's too late."
   },
   "game": {
     "category": "Category",

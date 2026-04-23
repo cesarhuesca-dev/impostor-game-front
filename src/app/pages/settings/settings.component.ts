@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, computed, inject, OnInit, signal } 
 
 import { ButtonModule } from 'primeng/button';
 import { SelectModule } from 'primeng/select';
-import { TranslatePipe } from '@ngx-translate/core';
+import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { form, FormField } from '@angular/forms/signals';
 import { LanguageService } from '@/services/language.service';
 import { SettingsForm } from 'src/app/core/interfaces/forms/settings.interface';
@@ -15,6 +15,8 @@ import { AuxiliarService } from '@/services/auxiliar.service';
 import { ItemListInterface } from '@/interfaces/utilities/list.interface';
 import { LoaderService } from '@/services/loader.service';
 import { PlayerService } from '@/services/player.service';
+import { Meta, Title } from '@angular/platform-browser';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'page-settings',
@@ -29,6 +31,10 @@ export default class SettingsComponent implements OnInit {
   private readonly auxiliarService = inject(AuxiliarService);
   private readonly loaderService = inject(LoaderService);
   private readonly playerService = inject(PlayerService);
+  private readonly translateService = inject(TranslateService);
+  private readonly router = inject(Router);
+  private meta = inject(Meta);
+  private title = inject(Title);
 
   readonly game = computed(() => this.gameService.gameData);
   private readonly settings = computed(() => this.settingsService.getSettings());
@@ -49,6 +55,15 @@ export default class SettingsComponent implements OnInit {
       code: OverlayPosition[x as keyof typeof OverlayPosition],
     }));
   });
+
+  constructor() {
+    this.translateService.get('title').subscribe((res) => {
+      this.title.setTitle(res['settings-page']);
+      this.meta.updateTag({ property: 'og:title', content: res['settings-page'] });
+      this.meta.updateTag({ name: 'description', content: res['settings-page-description'] });
+      this.meta.updateTag({ property: 'og:description', content: res['settings-page-description'] });
+    });
+  }
 
   ngOnInit(): void {
     this.setLanguagesSupported();
@@ -118,6 +133,10 @@ export default class SettingsComponent implements OnInit {
   }
 
   closeSettings() {
-    this.playerService.navigateByRole();
+    if (!this.playerService.playerData) {
+      this.router.navigate(['home']);
+    } else {
+      this.playerService.navigateByRole();
+    }
   }
 }

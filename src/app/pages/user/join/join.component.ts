@@ -4,7 +4,7 @@ import { form, FormField, required, minLength } from '@angular/forms/signals';
 import { ButtonModule } from 'primeng/button';
 import { LoginGameInterface } from 'src/app/core/interfaces/forms/game.interface';
 import { GameService } from '@/services/game.service';
-import { TranslatePipe } from '@ngx-translate/core';
+import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { MessageService } from 'primeng/api';
 import { UserModal } from '@/shared/components/user-modal/user-modal.component';
 import { LoaderService } from '@/services/loader.service';
@@ -12,6 +12,7 @@ import { PlayerService } from '@/services/player.service';
 import { UserModalInterface } from 'src/app/core/interfaces/forms/user-modal.interface';
 import { Join } from '@/interfaces/join.interface';
 import { HandleResponseService } from '@/services/utils/handle-response.service';
+import { Meta, Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-join',
@@ -27,6 +28,9 @@ export default class JoinComponent {
   private readonly loadingService = inject(LoaderService);
   private readonly handleResponseService = inject(HandleResponseService);
   private readonly playerService = inject(PlayerService);
+  private readonly translateService = inject(TranslateService);
+  private readonly meta = inject(Meta);
+  private readonly title = inject(Title);
 
   private readonly defaultDataForm = {
     roomName: '',
@@ -46,6 +50,15 @@ export default class JoinComponent {
   clearForm = () => {
     this.joinGameModel.update(() => ({ ...this.defaultDataForm }));
   };
+
+  constructor() {
+    this.translateService.get('title').subscribe((res) => {
+      this.title.setTitle(res['join-page']);
+      this.meta.updateTag({ property: 'og:title', content: res['join-page'] });
+      this.meta.updateTag({ name: 'description', content: res['join-page-description'] });
+      this.meta.updateTag({ property: 'og:description', content: res['join-page-description'] });
+    });
+  }
 
   loginGame() {
     if (!this.joinGameForm().valid()) {

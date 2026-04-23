@@ -2,7 +2,7 @@ import { GameService } from '@/services/game.service';
 import { PlayerService } from '@/services/player.service';
 import { PlayerImagePipe } from '@/shared/pipes/player-image.pipe';
 import { ChangeDetectionStrategy, Component, computed, inject, OnDestroy, OnInit } from '@angular/core';
-import { TranslatePipe } from '@ngx-translate/core';
+import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { AvatarModule } from 'primeng/avatar';
 import { Button } from 'primeng/button';
 import { ConfirmButton } from '@/shared/components/exit-button/confirm-button';
@@ -15,6 +15,7 @@ import { InprogressInfoComponent } from '@/shared/components/inprogress-info/inp
 import { RoundTransitionComponent } from '@/shared/components/round-transition/round-transition.component';
 import { CloseGameTransitionComponent } from '@/shared/components/close-game-transition/close-game-transition.component';
 import { CloseGameService } from '@/services/close-game.service';
+import { Meta, Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-game',
@@ -41,6 +42,9 @@ export default class GameComponent implements OnInit, OnDestroy {
   private readonly loaderService = inject(LoaderService);
   private readonly handleResponseService = inject(HandleResponseService);
   private readonly closeGameService = inject(CloseGameService);
+  private readonly translateService = inject(TranslateService);
+  private readonly meta = inject(Meta);
+  private readonly title = inject(Title);
 
   readonly player = computed(() => this.playerService.playerData);
   readonly game = computed(() => {
@@ -52,6 +56,15 @@ export default class GameComponent implements OnInit, OnDestroy {
 
   showWord = false;
   ready = false;
+
+  constructor() {
+    this.translateService.get('title').subscribe((res) => {
+      this.title.setTitle(res['game-page']);
+      this.meta.updateTag({ property: 'og:title', content: res['game-page'] });
+      this.meta.updateTag({ name: 'description', content: res['game-page-description'] });
+      this.meta.updateTag({ property: 'og:description', content: res['game-page-description'] });
+    });
+  }
 
   ngOnInit(): void {
     this.startConnection();

@@ -1,7 +1,21 @@
 {
   "title" : {
     "impostor" : "Impostor",
-    "game" : "Game"
+    "game" : "Game",
+    "home-page" : "Impostor Game | Home",
+    "home-page-description" : "Gioco di parole e inganno da giocare con gli amici",
+    "create-page" : "Impostor Game | Crea partita",
+    "create-page-description" : "Crea una partita e gioca con i tuoi amici",
+    "join-page" : "Impostor Game | Unisciti alla partita",
+    "join-page-description" : "Unisciti a una partita e gioca con i tuoi amici",
+    "overlay-page" : "Impostor Game | Overlay",
+    "overlay-page-description" : "Schermo per le trasmissioni",
+    "manager-page" : "Impostor Game | Gestore partita",
+    "manager-page-description" : "Controlla e regola la partita al ritmo di cui hai bisogno",
+    "game-page" : "Impostor Game | Partita",
+    "game-page-description" : "Schermo del gioco di parole e inganno per giocare con gli amici",
+    "settings-page" : "Impostor Game | Impostazioni",
+    "settings-page-description" : "Impostazioni della partita e del giocatore"
   },
   "game": {
     "category": "Categoria",

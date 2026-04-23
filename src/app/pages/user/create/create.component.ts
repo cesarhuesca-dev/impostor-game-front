@@ -4,7 +4,7 @@ import { form, FormField, required, min, minLength, validate, pattern } from '@a
 import { ButtonModule } from 'primeng/button';
 import { CreateGameInterface, LoginGameInterface } from 'src/app/core/interfaces/forms/game.interface';
 import { GameService } from '@/services/game.service';
-import { TranslatePipe } from '@ngx-translate/core';
+import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { UserModal } from '@/shared/components/user-modal/user-modal.component';
 import { LoaderService } from '@/services/loader.service';
 import { PlayerService } from '@/services/player.service';
@@ -14,6 +14,7 @@ import { ItemListInterface } from '@/interfaces/utilities/list.interface';
 import { Join } from '@/interfaces/join.interface';
 import { Game } from '@/interfaces/game.interface';
 import { HandleResponseService } from '@/services/utils/handle-response.service';
+import { Meta, Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-create',
@@ -29,6 +30,9 @@ export default class CreateComponent implements OnInit {
   private readonly handleResponseService = inject(HandleResponseService);
   private readonly playerService = inject(PlayerService);
   private readonly auxiliarService = inject(AuxiliarService);
+  private readonly translateService = inject(TranslateService);
+  private readonly meta = inject(Meta);
+  private readonly title = inject(Title);
 
   private readonly defaultDataForm = {
     roomName: '',
@@ -71,6 +75,15 @@ export default class CreateComponent implements OnInit {
   readonly gameCategories = signal<ItemListInterface[]>([]);
 
   readonly game = signal<Game | null>(null);
+
+  constructor() {
+    this.translateService.get('title').subscribe((res) => {
+      this.title.setTitle(res['create-page']);
+      this.meta.updateTag({ property: 'og:title', content: res['create-page'] });
+      this.meta.updateTag({ name: 'description', content: res['create-page-description'] });
+      this.meta.updateTag({ property: 'og:description', content: res['create-page-description'] });
+    });
+  }
 
   ngOnInit(): void {
     this.setGameCategories();

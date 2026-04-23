@@ -1,7 +1,21 @@
 {
   "title" : {
     "impostor" : "Impostor",
-    "game" : "Game"
+    "game" : "Game",
+    "home-page" : "Impostor Game | Accueil",
+    "home-page-description" : "Jeu de mots et de duperie pour jouer entre amis",
+    "create-page" : "Impostor Game | Créer une partie",
+    "create-page-description" : "Créez une partie et jouez avec vos amis",
+    "join-page" : "Impostor Game | Rejoindre une partie",
+    "join-page-description" : "Rejoignez une partie et jouez avec vos amis",
+    "overlay-page" : "Impostor Game | Overlay",
+    "overlay-page-description" : "Écran pour les diffusions",
+    "manager-page" : "Impostor Game | Gestionnaire de partie",
+    "manager-page-description" : "Contrôlez et ajustez la partie au rythme nécessaire",
+    "game-page" : "Impostor Game | Partie",
+    "game-page-description" : "Écran du jeu de mots et de duperie pour jouer avec des amis",
+    "settings-page" : "Impostor Game | Paramètres",
+    "settings-page-description" : "Paramètres de la partie et du joueur"
   },
   "game": {
     "category": "Catégorie",

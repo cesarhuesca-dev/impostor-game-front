@@ -1,7 +1,21 @@
 {
   "title" : {
     "impostor" : "Impostor",
-    "game" : "Game"
+    "game" : "Game",
+    "home-page" : "Impostor Game | Home",
+    "home-page-description" : "Word and deception game to play with friends",
+    "create-page" : "Impostor Game | Create Game",
+    "create-page-description" : "Create a game and play with your friends",
+    "join-page" : "Impostor Game | Join Game",
+    "join-page-description" : "Join a game and play with your friends",
+    "overlay-page" : "Impostor Game | Overlay",
+    "overlay-page-description" : "Screen for broadcasts and streaming",
+    "manager-page" : "Impostor Game | Game Manager",
+    "manager-page-description" : "Control and adjust the game at the pace you need",
+    "game-page" : "Impostor Game | In-Game",
+    "game-page-description" : "Word and deception game screen to play with friends",
+    "settings-page" : "Impostor Game | Settings",
+    "settings-page-description" : "Game and player settings"
   },
   "game" : {
     "category" : "Categoría",

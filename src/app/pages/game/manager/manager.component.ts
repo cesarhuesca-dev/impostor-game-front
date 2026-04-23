@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, computed, inject, OnDestroy, OnInit, signal } from '@angular/core';
 import { ButtonModule } from 'primeng/button';
-import { TranslatePipe } from '@ngx-translate/core';
+import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { GameService } from '@/services/game.service';
 import { AvatarModule } from 'primeng/avatar';
 import { PlayerImagePipe } from '@/shared/pipes/player-image.pipe';
@@ -14,6 +14,7 @@ import { FormsModule } from '@angular/forms';
 import { CloseGameTransitionComponent } from '@/shared/components/close-game-transition/close-game-transition.component';
 import { HandleResponseService } from '@/services/utils/handle-response.service';
 import { GameSocketService } from '@/services/websocket/game-socket.service';
+import { Meta, Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-manager',
@@ -28,6 +29,9 @@ export default class ManagerComponent implements OnInit, OnDestroy {
   private readonly auxiliarService = inject(AuxiliarService);
   private readonly loaderService = inject(LoaderService);
   private readonly handleResponseService = inject(HandleResponseService);
+  private readonly translateService = inject(TranslateService);
+  private readonly meta = inject(Meta);
+  private readonly title = inject(Title);
 
   readonly game = computed(() => this.gameService.gameData);
   readonly player = computed(() => this.playerService.playerData!);
@@ -40,6 +44,15 @@ export default class ManagerComponent implements OnInit, OnDestroy {
 
   readonly category = signal<string>('');
   visible = false;
+
+  constructor() {
+    this.translateService.get('title').subscribe((res) => {
+      this.title.setTitle(res['manager-page']);
+      this.meta.updateTag({ property: 'og:title', content: res['manager-page'] });
+      this.meta.updateTag({ name: 'description', content: res['manager-page-description'] });
+      this.meta.updateTag({ property: 'og:description', content: res['manager-page-description'] });
+    });
+  }
 
   ngOnInit(): void {
     this.startConnection();
