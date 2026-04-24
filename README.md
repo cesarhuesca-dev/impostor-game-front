@@ -1,6 +1,6 @@
 
 # 🕵️‍♂️ Impostor Game | Multiplayer Party Game
-<img src="src/assets/imgs/banner-social-es.png" width="500" height="300" alt="Impostor Game"><br>
+<img src="banner-social-es.png" width="500" height="300" alt="Impostor Game"><br>
 
 > Impostor Game es un juego multijugador en el que cada jugador recibe una palabra secreta… excepto uno, el impostor. <br>
 > A través de pistas, engaños y deducción, los jugadores deben descubrir al impostor, antes de que el impostor adivine la palabra real. <br>
@@ -86,10 +86,10 @@ Cada repositorio se puede descargar e implementar por separado:<br>
 
     2.1. **Configurar Backend .env**
     ```bash
-      ENVIRONMENT=development
+      ENVIRONMENT= #Tipo de entorno-> (development o production)
       FALLBACK_LANGUAGE=es
 
-      DB_TYPE= #Tipo de base de datos a utilizar -> (postgres o  sqlite)
+      DB_TYPE= #Tipo de base de datos a utilizar -> (postgres o sqlite)
       DB_USER= #Nombre de usuario que usara la base de datos
       DB_PASSWORD= #Contraseña del usuario que usara la base de datos
       DB_NAME= #Nombre de la base de datos
