@@ -43,6 +43,7 @@
     "get-ready": "Mach dich bereit",
     "closed": "Spiel beendet",
     "thanks-for-play": "Danke fürs Spielen. Bereit für eine weitere Runde?",
+    "start-round" : "Beginnt die Runde",
     "categories": {
       "animals": "Tiere",
       "fast": "Essen",
@@ -187,7 +188,8 @@
     "ban-player-confirm": "Bist du sicher, dass du den Spieler sperren möchtest?",
     "close-game-confirm": "Bist du sicher, dass du den Raum schließen möchtest?",
     "round-confirm": "Bist du sicher, dass du eine neue Runde möchtest?",
-    "back": "Zurück zum Start"
+    "back": "Zurück zum Start",
+    "start" : "Beginnen"
   },
   "success": {
     "game-found": "Raum gefunden",

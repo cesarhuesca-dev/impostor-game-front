@@ -13,6 +13,12 @@
       <div class="text-8xl font-extrabold text-light drop-shadow-lg animate-pulse">{{ this.countdown() }}</div>
       <!-- Texto secundario -->
       <p class="text-light-secondary mt-4">{{'game.get-ready' | translate }}...</p>
+
+      <div class="text-4xl mt-4">
+        <span class="text-light">{{'game.player' | translate}} </span>
+        <span class="text-primary-light">{{this.game().starterRoundPlayer}} </span>
+        <span class="text-light lowercase">{{'game.start-round' | translate}}</span>
+      </div>
     </div>
   </div>
 }

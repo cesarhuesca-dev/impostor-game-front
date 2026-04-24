@@ -43,6 +43,7 @@
     "get-ready": "Prepare-se",
     "closed": "Fim da partida",
     "thanks-for-play": "Obrigado por jogar. Pronto para outra rodada?",
+    "start-round" : "Inicia a rodada",
     "categories": {
       "animals": "Animais",
       "fast": "Comida",
@@ -187,7 +188,8 @@
     "ban-player-confirm": "Tem certeza que deseja banir o jogador?",
     "close-game-confirm": "Tem certeza que deseja fechar a sala?",
     "round-confirm": "Tem certeza que deseja uma nova rodada?",
-    "back": "Voltar ao início"
+    "back": "Voltar ao início",
+    "start" : "Começar"
   },
   "success": {
     "game-found": "Sala encontrada",

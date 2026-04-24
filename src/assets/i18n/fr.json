@@ -43,6 +43,7 @@
     "get-ready": "Prépare-toi",
     "closed": "Fin de partie",
     "thanks-for-play": "Merci d'avoir joué. Prêt pour une autre manche ?",
+    "start-round" : "Commence la manche",
     "categories": {
       "animals": "Animaux",
       "fast": "Nourriture",
@@ -187,7 +188,8 @@
     "ban-player-confirm": "Êtes-vous sûr de vouloir bannir le joueur ?",
     "close-game-confirm": "Êtes-vous sûr de vouloir fermer la salle ?",
     "round-confirm": "Êtes-vous sûr de vouloir une nouvelle manche ?",
-    "back": "Retour au début"
+    "back": "Retour au début",
+    "start" : "Commencer"
   },
   "success": {
     "game-found": "Salle trouvée",

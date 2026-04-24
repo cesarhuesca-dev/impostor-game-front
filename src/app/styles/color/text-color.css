@@ -11,6 +11,10 @@
   @apply text-gray-400;
 }
 
+.text-start-player {
+  @apply text-green-300;
+}
+
 .text-round {
   @apply text-orange-300;
 }

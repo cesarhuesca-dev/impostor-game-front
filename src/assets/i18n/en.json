@@ -31,6 +31,7 @@
     "get-ready": "Get ready",
     "closed": "Game over",
     "thanks-for-play": "Thanks for playing. Ready for another round?",
+    "start-round" : "Starts the round",
     "categories": {
       "animals": "Animals",
       "fast": "Food",
@@ -175,7 +176,8 @@
     "ban-player-confirm": "Are you sure you want to ban the player?",
     "close-game-confirm": "Are you sure you want to close the room?",
     "round-confirm": "Are you sure you want a new round?",
-    "back": "Back to start"
+    "back": "Back to start",
+    "start" : "Start"
   },
   "success": {
     "game-found": "Room found",

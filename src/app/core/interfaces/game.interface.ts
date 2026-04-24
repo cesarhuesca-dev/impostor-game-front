@@ -14,6 +14,7 @@ export interface Game {
   gameStarted: boolean;
   roomPlayersJoined: number;
   round: number;
+  starterRoundPlayer: string | null;
   word: string | null;
   players?: Player[];
 }

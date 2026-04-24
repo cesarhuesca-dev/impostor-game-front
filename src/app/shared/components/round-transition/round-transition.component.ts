@@ -1,5 +1,6 @@
+import { Game } from '@/interfaces/game.interface';
 import { RoundService } from '@/services/round.service';
-import { ChangeDetectionStrategy, Component, computed, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, inject, input } from '@angular/core';
 import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
@@ -14,4 +15,6 @@ export class RoundTransitionComponent {
   readonly started = computed(() => this.roundService.started());
   readonly show = computed(() => this.roundService.show());
   readonly countdown = computed(() => this.roundService.countdown());
+
+  readonly game = input.required<Game>();
 }

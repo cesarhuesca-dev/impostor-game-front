@@ -25,19 +25,16 @@ export class GameSocketHandlerService {
         const msgInfo = msg as SocketResponse<Game>;
         this.gameService.setGameData(msgInfo.data[0]);
         this.roundService.startCountdown();
-        console.log('NEW ROUND', msgInfo.data[0]);
         break;
       }
       case GameSocketTopic.UPDATE_GAME_STATUS: {
         const msgInfo = msg as SocketResponse<Game>;
         this.gameService.setGameData(msgInfo.data[0]);
-        console.log('GAME ACTUALIZADO', msgInfo.data[0]);
         break;
       }
       case GameSocketTopic.UPDATE_PLAYER_STATUS: {
         const msgInfo = msg as SocketResponse<Player>;
         this.playerService.setPlayerData(msgInfo.data[0]);
-        console.log('PLAYER ACTUALIZADO', msgInfo.data[0]);
         break;
       }
       case GameSocketTopic.PLAYER_ELIMINATED: {

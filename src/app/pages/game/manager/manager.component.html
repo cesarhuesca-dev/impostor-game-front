@@ -16,13 +16,19 @@
 
         <div class="px-4 py-2 rounded-lg border-dark-light bg-dark-light w-2/4 md:self-stretch">
           <div class="items-center justify-center flex gap-2 w-full h-full">
+            <span>{{'common.start' | translate}}: </span>
+            <span class="text-start-player font-semibold">{{this.game()!.starterRoundPlayer}}</span>
+          </div>
+        </div>
+
+        <div class="px-4 py-2 rounded-lg border-dark-light bg-dark-light w-2/4 md:self-stretch">
+          <div class="items-center justify-center flex gap-2 w-full h-full">
             <span>{{'manager.round' | translate}}: </span>
             <span class="text-round font-semibold">{{this.game()!.round}}</span>
           </div>
-
         </div>
 
-        <div class="px-4 py-2 rounded-lg border-dark-light bg-dark-light w-2/4 md:self-stretchself-stretch">
+        <div class="px-4 py-2 rounded-lg border-dark-light bg-dark-light w-2/4 md:self-stretch">
           <div class="items-center justify-center flex gap-2 w-full h-full">
             <span>{{'manager.category' | translate}}: </span>
             @if (this.game()!.category) {
