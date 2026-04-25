@@ -8,7 +8,8 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "npm run lint && ng build --configuration production",
+    "build": "npm run lint && npm run prebuild && ng build --configuration production",
+    "prebuild": "node scripts/replace-index-urls.js",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "lint": "ng lint"
