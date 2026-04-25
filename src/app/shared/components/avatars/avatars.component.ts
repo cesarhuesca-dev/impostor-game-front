@@ -13,4 +13,5 @@ import { PlayerImagePipe } from '@/shared/pipes/player-image.pipe';
 export class AvatarsComponent {
   private gameService = inject(GameService);
   readonly game = computed(() => this.gameService.gameData);
+  readonly players = computed(() => this.game()!.players?.sort((a, b) => a.createdAt - b.createdAt));
 }

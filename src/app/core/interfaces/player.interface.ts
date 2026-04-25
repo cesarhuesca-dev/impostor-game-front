@@ -8,6 +8,7 @@ export interface Player {
   host: boolean;
   impostor: boolean;
   roles: UserRoles[];
-
+  createdAt: number;
+  updatedAt: number;
   game: Game;
 }

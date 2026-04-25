@@ -1,7 +1,7 @@
 
 @if(this.game()){
   <div class="flex flex-row gap-3">
-    @for (player of this.game()!.players; track player.id) {
+    @for (player of players()!; track player.createdAt) {
       <div class="flex flex-col items-center justify-center">
 
         @if (player.avatarImg) {
