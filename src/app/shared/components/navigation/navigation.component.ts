@@ -37,7 +37,7 @@ export class NavigationComponent implements OnInit {
   readonly isOpen = signal<boolean>(true);
 
   @HostListener('window:dblclick') dblClickWindow() {
-    this.isOpen.update((old) => !old);
+    if (this.router.url.includes('overlay')) this.isOpen.update((old) => !old);
   }
 
   constructor() {
