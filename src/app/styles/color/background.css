@@ -29,3 +29,9 @@
   @apply bg-purple-950;
 }
 
+.bg-secondary {
+  @apply bg-purple-700;
+}
+
+
+
